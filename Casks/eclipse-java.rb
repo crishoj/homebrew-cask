@@ -1,16 +1,11 @@
-cask :v1 => 'eclipse-java' do
-  version '4.4.1'
+cask 'eclipse-java' do
+  version '4.12.0,2019-06:R'
+  sha256 '3debfc470ccccfc639e148bcbb8ad7c2ed92b6f735fa1d618d759521bff65e36'
 
-  if Hardware::CPU.is_32_bit?
-    sha256 'a4e80a5e4901027f74412786898456d8ce1b6b56d9689293b472f9509d1b65cf'
-    url 'http://download.eclipse.org/technology/epp/downloads/release/luna/SR1/eclipse-java-luna-SR1-macosx-cocoa.tar.gz'
-  else
-    sha256 'adbfcd2fa587eac82a34da76079747120031a778478b3197ad1c94e537312268'
-    url 'http://download.eclipse.org/technology/epp/downloads/release/luna/SR1/eclipse-java-luna-SR1-macosx-cocoa-x86_64.tar.gz'
-  end
+  url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.after_comma.before_colon}/#{version.after_colon}/eclipse-java-#{version.after_comma.before_colon}-#{version.after_colon}-macosx-cocoa-x86_64.dmg&r=1"
+  name 'Eclipse IDE for Java Developers'
+  homepage 'https://eclipse.org/'
 
-  homepage 'http://eclipse.org/'
-  license :eclipse
-
-  app 'eclipse/Eclipse.app'
+  # Renamed to avoid conflict with other Eclipse.
+  app 'Eclipse.app', target: 'Eclipse Java.app'
 end

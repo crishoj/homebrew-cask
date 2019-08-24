@@ -1,14 +1,15 @@
-cask :v1 => 'inkscape' do
-  version '0.48.5-2'
-  sha256 '72191861ee19a4e047d9084c7181a5ccf6e89d9b4410e197a98c2e1027e65e72'
+cask 'inkscape' do
+  version '0.92.2-1,11269'
+  sha256 'faece7a9a5fa9db7724b0c761f7f2014676d00ef8b90a0ef506fa39d09209fea'
 
-  url "http://downloads.sourceforge.net/inkscape/Inkscape-#{version}+X11.dmg"
-  homepage 'http://inkscape.org'
-  license :oss
+  url "https://inkscape.org/gallery/item/#{version.after_comma}/Inkscape-#{version.before_comma}-x11-10.7-x86_64.dmg"
+  name 'Inkscape'
+  homepage 'https://inkscape.org/'
+
+  depends_on x11: true
 
   app 'Inkscape.app'
+  binary "#{appdir}/Inkscape.app/Contents/Resources/bin/inkscape"
 
-  zap :delete => '~/.inkscape-etc'
-
-  depends_on :x11 => true
+  zap trash: '~/.inkscape-etc'
 end

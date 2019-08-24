@@ -1,10 +1,11 @@
-cask :v1 => 'bzflag' do
-  version '2.4.2'
-  sha256 '4ce7f007cb7c78a5243ced84d310c37637a2aa8fe9569231edd2dbc45286e293'
+cask 'bzflag' do
+  version '2.4.18'
+  sha256 '268151bebde80144c3fc6cb742e8024b822b3cf97e822e278cb4e2f546681e65'
 
-  url "http://downloads.sourceforge.net/project/bzflag/bzflag%20Mac%20OS%20X/#{version}/BZFlag-#{version}.zip"
-  homepage 'http://bzflag.org/'
-  license :gpl
+  url "https://download.bzflag.org/bzflag/macos/#{version}/BZFlag-#{version}-macOS.zip"
+  appcast 'https://github.com/BZFlag-Dev/bzflag/releases.atom'
+  name 'BZFlag'
+  homepage 'https://www.bzflag.org/'
 
   app "BZFlag-#{version}.app"
 end

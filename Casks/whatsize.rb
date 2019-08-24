@@ -1,11 +1,16 @@
-cask :v1 => 'whatsize' do
-  version :latest
-  sha256 :no_check
+cask 'whatsize' do
+  version '7.1.1'
+  sha256 '09ee57148354e0dc7f8d59b8a8d1fb5a6c60d199ddf777db713903de7499ff26'
 
-  url 'http://www.whatsizemac.com/software/whatsize6/whatsize.dmg'
-  appcast 'http://www.id-design.com/software/whatsize/release/notes.xml'
-  homepage 'http://whatsizemac.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.whatsizemac.com/software/whatsize#{version.major}/whatsize_#{version}.tgz"
+  appcast "https://www.whatsizemac.com/software/whatsize#{version.major}/release/notes.xml"
+  name 'WhatSize'
+  homepage 'https://www.whatsizemac.com/'
 
-  app 'WhatSize.app'
+  depends_on macos: '>= :sierra'
+
+  pkg 'WhatSize.pkg'
+
+  uninstall pkgutil:   "com.id-design.whatsize#{version.major}.pkg",
+            launchctl: "com.id-design.v#{version.major}.whatsizehelper"
 end

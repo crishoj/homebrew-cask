@@ -1,11 +1,13 @@
-cask :v1 => 'minitube' do
-  version :latest
-  sha256 :no_check
+cask 'minitube' do
+  version '3.1'
+  sha256 '596d15a07534b0ea392211c1c154239f3b85caf5fff9cecfcfa303fd43fcdd64'
 
-  url 'http://flavio.tordini.org/files/minitube/minitube.dmg'
-  appcast 'http://flavio.tordini.org/minitube-ws/appcast.xml'
-  homepage 'http://flavio.tordini.org/minitube'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url 'https://flavio.tordini.org/files/minitube/minitube.dmg'
+  appcast 'https://flavio.tordini.org/minitube-ws/appcast.xml'
+  name 'Minitube'
+  homepage 'https://flavio.tordini.org/minitube'
+
+  depends_on macos: '>= :sierra'
 
   app 'Minitube.app'
 end

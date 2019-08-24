@@ -1,13 +1,13 @@
-cask :v1 => 'onionshare' do
-  version '0.4'
-  sha256 '80c583f1dc280f08c11dc60b308e2f6d8fe31c554d59f795ccf0f3252733a6ce'
+cask 'onionshare' do
+  version '2.1'
+  sha256 '5f1d861eeb1422f592b388b200286704c9d94288a20c146164ebed57fef6b077'
 
-  url "https://onionshare.org/files/#{version}/OnionShare-#{version}.dmg"
-  gpg "#{url}.sig",
-      :key_url => 'https://onionshare.org/signing-key.asc'
+  url "https://onionshare.org/dist/#{version}/OnionShare-#{version}.pkg"
+  appcast 'https://github.com/micahflee/onionshare/releases.atom'
   name 'OnionShare'
   homepage 'https://onionshare.org/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
 
-  app 'OnionShare.app'
+  pkg "OnionShare-#{version}.pkg"
+
+  uninstall pkgutil: 'com.micahflee.onionshare'
 end

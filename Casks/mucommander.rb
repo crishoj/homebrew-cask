@@ -1,10 +1,12 @@
-cask :v1 => 'mucommander' do
-  version '0.9.0'
-  sha256 '24665a248bd0f027b399277c2e7096a57e75120048302f3ac2f89ce4f7f1acae'
+cask 'mucommander' do
+  version '0.9.3,3'
+  sha256 '17d3fdf19b14299e8edbe3bb1b4ec5629c100d9ffc5f702e736094a1a500354b'
 
-  url "http://www.mucommander.com/download/mucommander-#{version.gsub('.','_')}.dmg"
-  homepage 'http://www.mucommander.com/'
-  license :gpl
+  # github.com/mucommander/mucommander was verified as official when first introduced to the cask
+  url "https://github.com/mucommander/mucommander/releases/download/#{version.before_comma}-#{version.after_comma}/mucommander-#{version.before_comma}.dmg"
+  appcast 'https://github.com/mucommander/mucommander/releases.atom'
+  name 'muCommander'
+  homepage 'https://www.mucommander.com/'
 
   app 'muCommander.app'
 end

@@ -1,11 +1,10 @@
-cask :v1 => 'sauce-connect' do
-  version '4.3.5'
-  sha256 'c79dd136b019b7f55deb81b3bb1c109bdfa339a2fb8e0f3681d40a6e6e2ee40b'
+cask 'sauce-connect' do
+  version '4.5.4'
+  sha256 '7dd691a46a57c7c39f527688abd4825531d25a8a1c5b074f684783e397529ba6'
 
   url "https://saucelabs.com/downloads/sc-#{version}-osx.zip"
   name 'Sauce Connect'
-  homepage 'https://docs.saucelabs.com/reference/sauce-connect/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://wiki.saucelabs.com/display/DOCS/Sauce+Connect+Proxy'
 
   binary "sc-#{version}-osx/bin/sc"
 end

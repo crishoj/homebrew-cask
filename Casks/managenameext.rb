@@ -1,11 +1,11 @@
-cask :v1 => 'managenameext' do
-  version :latest
-  sha256 :no_check
+cask 'managenameext' do
+  version '1.6.8'
+  sha256 'b8c8c6d13724b5d8e1b682f3dbeae284734d5396f526875ada2b514b364f269b'
 
-  # free.fr is the official download host per the vendor homepage
-  url 'http://tom.25.free.fr/site/programmes/xojo/ManageNameExt_c.zip'
-  homepage 'http://throb.pagesperso-orange.fr/site/ind_JS.html?Prg_S.html&Prg_AutresRB.html#ManageNameExt'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url 'https://throb.pagesperso-orange.fr/prg/Xojo/ManageNameExt_c.zip'
+  appcast 'https://throb.pagesperso-orange.fr/prg/Xojo/ManageNameExt_V.txt'
+  name 'ManageNameExt'
+  homepage 'https://throb.pagesperso-orange.fr/site/ind_JS.html?Prg_S.html&Prg_ApplisRB.html#ManageNameExt'
 
   app 'ManageNameExt.app'
 end

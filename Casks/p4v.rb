@@ -1,19 +1,36 @@
-cask :v1 => 'p4v' do
-  version '2014.1-888424'
+cask 'p4v' do
+  version '19.1-1830398'
+  sha256 '316053c60461120ab7e859a737c0a996e1f4c1c99ee42484fcfb67a75ea57a1c'
 
-  if Hardware::CPU.is_32_bit?
-    sha256 '03b716dde2c39f4214c1b9b016e151225d8830e2e555b30234c5f9c1d2940a78'
-    url "http://filehost.perforce.com/perforce/r#{version.sub(%r{\A20(\d\d\.\d+).*},'\1')}/bin.macosx106x86/P4V.dmg"
-  else
-    sha256 'c5d05d78596fe9b4f83193a11805a027b2652fdf87365de1321e671286fdca3f'
-    url "http://filehost.perforce.com/perforce/r#{version.sub(%r{\A20(\d\d\.\d+).*},'\1')}/bin.macosx106x86_64/P4V.dmg"
-  end
-
-  homepage 'http://www.perforce.com/product/components/perforce-visual-client'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://cdist2.perforce.com/perforce/r#{version.major_minor}/bin.macosx1013x86_64/P4V.dmg"
+  appcast 'https://cdist2.perforce.com/perforce/'
+  name 'Perforce Visual Client'
+  name 'P4Merge'
+  name 'P4V'
+  homepage 'https://www.perforce.com/products/helix-core-apps/helix-visual-client-p4v'
 
   app 'p4v.app'
+  app 'p4admin.app'
+  app 'p4merge.app'
   binary 'p4vc'
+  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
+  p4_wrapper = "#{staged_path}/p4.wrapper.sh"
+  binary p4_wrapper, target: 'p4v'
+  binary p4_wrapper, target: 'p4admin'
+  binary p4_wrapper, target: 'p4merge'
 
-  caveats 'p4merge is in a separate Cask'
+  preflight do
+    IO.write p4_wrapper, <<~EOS
+      #!/bin/bash
+      set -euo pipefail
+      COMMAND=$(basename "$0")
+      exec "#{appdir}/${COMMAND}.app/Contents/MacOS/${COMMAND}" "$@" 2> /dev/null
+    EOS
+  end
+
+  zap trash: [
+               '~/Library/Preferences/com.perforce.p4v',
+               '~/Library/Preferences/com.perforce.p4v.plist',
+               '~/Library/Saved Application State/com.perforce.p4v.savedState',
+             ]
 end

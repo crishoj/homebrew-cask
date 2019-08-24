@@ -1,12 +1,13 @@
-cask :v1 => 'fing' do
-  version '2.2'
-  sha256 '6794afb734c266b0a9617209688259bf04ad8738cb9126fbb922d8816c7d74aa'
+cask 'fing' do
+  version '5.4.0'
+  sha256 'e7e2fe5906c6f6e21ff8d620f463fcae7f895d3f4c732426214dff4b8dc868aa'
 
-  url 'http://www.overlooksoft.com/packages/download?plat=osx'
-  homepage 'http://www.overlooksoft.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.fing.com/images/uploads/general/CLI_macOSX_#{version}.zip"
+  appcast 'https://www.fing.com/products/development-toolkit/'
+  name 'Fing'
+  homepage 'https://www.fing.com/products/development-toolkit/'
 
-  pkg "overlook-fing-#{version}.pkg"
+  pkg "Fing-#{version}-osX.pkg"
 
-  uninstall :pkgutil => 'com.Overlook.Fing'
+  uninstall pkgutil: 'Fing'
 end

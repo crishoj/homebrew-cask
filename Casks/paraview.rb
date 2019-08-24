@@ -1,18 +1,14 @@
-cask :v1 => 'paraview' do
-  version '4.1.0'
+cask 'paraview' do
+  version '5.6.1'
+  sha256 '749295130032b9e7e1fa0d281934c942d790124bbd4cdaf46aa49baa0a33627f'
 
-  if MacOS.release <= :mountain_lion
-    sha256 '8784481c90b58b0c6158e21b7f978a7d78caa67c63d28d6d5d770ef43f0ad890'
-    url "http://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v4.1&type=binary&os=osx&downloadFile=ParaView-#{version}-Darwin-64bit-Lion-Python27.dmg"
-  else
-    sha256 '1eef4a2ee155049059967733e40010e86cc6cd05458de676217af5c276995817'
-    url "http://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v4.1&type=binary&os=osx&downloadFile=ParaView-#{version}-Darwin-64bit.dmg"
-  end
+  url "https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v#{version.major_minor}&type=binary&os=macOS&downloadFile=ParaView-#{version}-MPI-OSX10.12-64bit.unsigned.dmg",
+      user_agent: :fake
+  appcast 'https://www.paraview.org/files/listing.txt'
+  name 'ParaView'
+  homepage 'https://www.paraview.org/'
 
-  homepage 'http://www.paraview.org/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  depends_on macos: '>= :sierra'
 
-  app 'paraview.app'
-
-  depends_on :arch => :x86_64
+  app "ParaView-#{version}.app"
 end

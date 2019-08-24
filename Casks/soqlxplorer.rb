@@ -1,12 +1,13 @@
-cask :v1 => 'soqlxplorer' do
-  version '2.00'
-  sha256 '72c5d9dc582bc30d757c5199cdebdc79ffee479a3435252906554d52b236217d'
+cask 'soqlxplorer' do
+  version '3.2'
+  sha256 '66103063a180c1c44e42a9c185cc04b38d8e48db752d58f9cd69cf287e86420a'
 
-  url "http://www.pocketsoap.com/osx/soqlx/soqlXplorer_v#{version}.zip"
-  appcast 'http://www.pocketsoap.com/osx/soqlx/appcast.xml',
-          :sha256 => '16b61d4f11f57698ffb54da8f25c1ca443f3f35606e1e794eca4c12ee6ebabae'
-  homepage 'http://www.pocketsoap.com/osx/soqlx/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.pocketsoap.com/osx/soqlx/SoqlXplorer_v#{version}.zip"
+  appcast 'https://www.pocketsoap.com/osx/soqlx/appcast.xml'
+  name 'SoqlXplorer'
+  homepage 'https://www.pocketsoap.com/osx/soqlx/'
+
+  depends_on macos: '>= :high_sierra'
 
   app 'SoqlXplorer.app'
 end

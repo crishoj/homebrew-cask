@@ -1,12 +1,30 @@
-cask :v1 => 'texpad' do
-  version '1.6.14'
-  sha256 '18fcbe93e77e5b5bc848172546962fcde397a26fd543efcc1054004369192f7e'
+cask 'texpad' do
+  if MacOS.version <= :yosemite
+    version '1.7.45,237,1487350'
+    sha256 '5973da0e221a9f9168228d628e25b1f788bcdc9ca8cae86cb02089804f3240f5'
+  elsif MacOS.version == :el_capitan
+    version '1.8.5,404,f8f30e5'
+    sha256 '676a1b071142c022cdfda57668c811f7747b36ded442548073fe6dda1b9ca934'
+  else
+    version '1.8.11,474,9beaeb1'
+    sha256 '46b5307e47cefc56ee2395cdd413a4cb95bdc8278ee3975066757a98f08f632d'
+  end
 
-  url "https://cloud.texpadapp.com/bundles/Texpad_#{version.gsub('.','_')}.zip"
-  appcast 'https://www.texpadapp.com/static-collected/upgrades/texpadappcast.xml',
-          :sha256 => 'a8522a4533df93fbf9d50489aa5f1c91bb01916faebd81ee20f56ea96dad8d97'
-  homepage 'https://www.texpadapp.com/osx'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # download.texpadapp.com was verified as official when first introduced to the cask
+  url "https://download.texpadapp.com/apps/osx/updates/Texpad_#{version.before_comma.dots_to_underscores}__#{version.after_comma.before_comma}__#{version.after_comma.after_comma}.dmg"
+  appcast 'https://www.texpad.com/static-collected/upgrades/texpadappcast.xml'
+  name 'Texpad'
+  homepage 'https://www.texpad.com/osx'
+
+  auto_updates true
 
   app 'Texpad.app'
+
+  zap trash: [
+               '~/Library/Application Support/Texpad',
+               '~/Library/Caches/com.vallettaventures.Texpad',
+               '~/Library/Cookies/com.vallettaventures.Texpad.binarycookies',
+               '~/Library/Preferences/com.vallettaventures.Texpad.plist',
+               '~/Library/Saved Application State/com.vallettaventures.Texpad.savedState',
+             ]
 end

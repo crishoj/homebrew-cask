@@ -1,10 +1,11 @@
-cask :v1 => 'dupin' do
-  version '2.8.2'
-  sha256 '282116dbbfd75f73efe4655f21f42dd76720e71a8babea54f57a07e600396264'
+cask 'dupin' do
+  version '2.14.1'
+  sha256 'c4cd423768d2bd2982e10e965fcc8965dd78ce7b7e409a20f159a513573f6dd1'
 
-  url "http://dougscripts.com/itunes/scrx/dupinv#{version.to_i}mv.zip"
-  homepage 'http://dougscripts.com/apps/dupinapp.php'
-  license :commercial
+  url "https://dougscripts.com/itunes/scrx/dupinv#{version.no_dots}.zip"
+  appcast 'https://dougscripts.com/itunes/itinfo/dupin_appcast.xml'
+  name 'Dupin'
+  homepage 'https://dougscripts.com/apps/dupinapp.php'
 
   app 'Dupin.app'
 end

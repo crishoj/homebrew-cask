@@ -1,14 +1,13 @@
-cask :v1 => 'smartgit' do
-  version '6.5.2'
-  sha256 '3fc0fd89e1e2b7e5aec5f12b8da2ae1da1d2a84d96ce335a62d922db1640b965'
+cask 'smartgit' do
+  version '19.1.1'
+  sha256 '50fcc41ff5104c5f4629d1d5b1835de5f98383b5c1bd3894d6930c9d8fb259c6'
 
-  url "http://www.syntevo.com/download/smartgit/smartgit-macosx-#{version.gsub('.', '_')}.dmg"
-  homepage 'http://www.syntevo.com/smartgit/'
-  license :commercial
+  url "https://www.syntevo.com/downloads/smartgit/smartgit-macosx-#{version.dots_to_underscores}.dmg"
+  appcast 'https://www.syntevo.com/smartgit/changelog.txt',
+          configuration: version.chomp('.0')
+  name 'SmartGit'
+  homepage 'https://www.syntevo.com/smartgit/'
 
   app 'SmartGit.app'
-  binary 'SmartGit.app/Contents/MacOS/SmartGit'
-  caveats do
-    files_in_usr_local
-  end
+  binary "#{appdir}/SmartGit.app/Contents/MacOS/SmartGit"
 end

@@ -1,13 +1,14 @@
-cask :v1 => 'julia' do
-  version '0.3.4'
-  sha256 'eba64c0f2788ab39565541498fcd3c76625ebdfb9564e3f3ca023e022754c91b'
+cask 'julia' do
+  version '1.2.0'
+  sha256 '7a27780d3b791032b788aa0d411aee117cb3cd602ea76ba6514468e4459bca0e'
 
-  url "https://s3.amazonaws.com/julialang/bin/osx/x64/0.3/julia-#{version}-osx10.7+.dmg"
-  homepage 'http://julialang.org/'
-  license :mit
+  url "https://julialang-s3.julialang.org/bin/mac/x64/#{version.major_minor}/julia-#{version}-mac64.dmg"
+  appcast 'https://github.com/JuliaLang/julia/releases.atom'
+  name 'Julia'
+  homepage 'https://julialang.org/'
 
-  app "Julia-#{version}.app"
-  binary "Julia-#{version}.app/Contents/Resources/julia/bin/julia"
+  app "Julia-#{version.major_minor}.app"
+  binary "#{appdir}/Julia-#{version.major_minor}.app/Contents/Resources/julia/bin/julia"
 
-  zap :delete => '~/.julia'
+  zap trash: '~/.julia'
 end

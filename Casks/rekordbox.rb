@@ -1,13 +1,22 @@
-cask :v1 => 'rekordbox' do
-  version '3.0.3'
-  sha256 '65e165e0c385142be825806c85e330d4636bab17e1a8a5c1f9bd5784d9ef721b'
+cask 'rekordbox' do
+  version '5.6.0'
+  sha256 '1231d3ac99acce3a36f5f572fa21dbdfc75ef302c89a3f3a9c4c649d5faa3b8f'
 
-  url "http://rekordbox.com/_app/files/Install_rekordbox_#{version.gsub('.','_')}.pkg.zip"
-  homepage 'http://rekordbox.com/en/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://rekordbox.com/_app/files/Install_rekordbox_#{version.dots_to_underscores}.pkg.zip"
+  appcast 'https://rekordbox.com/en/support/releasenote.php'
+  name 'rekordbox'
+  homepage 'https://rekordbox.com/en/'
 
-  pkg "Install_rekordbox_#{version.gsub('.','_')}.pkg"
+  auto_updates true
+  depends_on macos: '>= :yosemite'
 
-  uninstall :pkgutil => 'com.pioneer.rekordbox.*',
-            :delete  => '/Applications/rekordbox 3/'
+  pkg "Install_rekordbox_#{version.dots_to_underscores}.pkg"
+
+  uninstall pkgutil: "com.pioneer.rekordbox.#{version.major}.*",
+            delete:  "/Applications/rekordbox #{version.major}"
+
+  zap trash: [
+               '~/Library/Application Support/Pioneer/rekordbox',
+               '~/Library/Pioneer/rekordbox',
+             ]
 end

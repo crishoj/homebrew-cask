@@ -1,13 +1,31 @@
-cask :v1 => 'slack' do
-  version '1.0.2'
-  sha256 '09c92acb4cd79bd94418bf1aebcc3675a0cc4e4125d72d202be237bf06507235'
+cask 'slack' do
+  version '4.0.2'
+  sha256 '6919cf2c3431f9eb47c5be95997f8847f896d677f5e1fb80d4c4ce28193ab34e'
 
-  # hockeyapp.net is the official download host per the appcast feed
-  url 'https://rink.hockeyapp.net/api/2/apps/38e415752d573e7e78e06be8daf5acc1/app_versions/5?format=zip&avtoken=10c1da892a7c9afb1ef4d3543565c6ee3c9825fa'
-  appcast 'https://rink.hockeyapp.net/api/2/apps/38e415752d573e7e78e06be8daf5acc1',
-          :sha256 => 'e7af629495c52f3082dd4d7dca917a5a21921031b871461045e204bcc6d8fe03'
-  homepage 'http://slack.com'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # downloads.slack-edge.com was verified as official when first introduced to the cask
+  url "https://downloads.slack-edge.com/mac_releases/Slack-#{version}-macOS.zip"
+  name 'Slack'
+  homepage 'https://slack.com/'
+
+  auto_updates true
 
   app 'Slack.app'
+
+  uninstall quit: 'com.tinyspeck.slackmacgap'
+
+  zap trash: [
+               '~/Library/Application Scripts/com.tinyspeck.slackmacgap',
+               '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.tinyspeck.slackmacgap.sfl*',
+               '~/Library/Application Support/Slack',
+               '~/Library/Caches/com.tinyspeck.slackmacgap',
+               '~/Library/Caches/com.tinyspeck.slackmacgap.ShipIt',
+               '~/Library/Containers/com.tinyspeck.slackmacgap',
+               '~/Library/Containers/com.tinyspeck.slackmacgap.SlackCallsService',
+               '~/Library/Cookies/com.tinyspeck.slackmacgap.binarycookies',
+               '~/Library/Group Containers/*.com.tinyspeck.slackmacgap',
+               '~/Library/Group Containers/*.slack',
+               '~/Library/Preferences/com.tinyspeck.slackmacgap.helper.plist',
+               '~/Library/Preferences/com.tinyspeck.slackmacgap.plist',
+               '~/Library/Saved Application State/com.tinyspeck.slackmacgap.savedState',
+             ]
 end

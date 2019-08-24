@@ -1,12 +1,13 @@
-cask :v1 => 'netbeans-php' do
-  version '8.0.1'
-  sha256 '97b53f6881236a533cfac78b17124e26393eb0445f5e0336fbd765c9b0230482'
+cask 'netbeans-php' do
+  version '8.2'
+  sha256 '084c34512db43a9027c0ee24bb1dc72364fc64ff6fa1b5ddeface07ba1c80c3b'
 
-  url "http://download.netbeans.org/netbeans/#{version}/final/bundles/netbeans-#{version}-php-macosx.dmg"
+  url "https://download.netbeans.org/netbeans/#{version}/final/bundles/netbeans-#{version}-php-macosx.dmg"
+  appcast 'https://netbeans.org/downloads/'
+  name 'NetBeans IDE for PHP'
   homepage 'https://netbeans.org/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
 
-  pkg "NetBeans #{version}.mpkg"
+  pkg "NetBeans #{version}.pkg"
 
-  uninstall :delete => '/Applications/NetBeans'
+  uninstall delete: '/Applications/NetBeans'
 end

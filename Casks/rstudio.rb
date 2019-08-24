@@ -1,12 +1,26 @@
-cask :v1 => 'rstudio' do
-  version '0.98.1091'
-  sha256 'ea8baebe66903312bb84816669711b11f0dcd377a6f8c1c4c9f4c669ebd3dc18'
+cask 'rstudio' do
+  version '1.2.1335'
+  sha256 '9633421e4c8fd8a439fcf54be495c489734b12900c5ffc378fb2fecc6e1bff51'
 
-  url "http://download1.rstudio.org/RStudio-#{version}.dmg"
-  homepage 'http://www.rstudio.com/'
-  license :affero
+  # rstudio.org was verified as official when first introduced to the cask
+  url "https://download1.rstudio.org/desktop/macos/RStudio-#{version}.dmg"
+  appcast 'https://www.rstudio.org/links/check_for_update?version=1.0.0&os=mac'
+  name 'RStudio'
+  homepage 'https://www.rstudio.com/'
+
+  depends_on macos: '>= :sierra'
 
   app 'RStudio.app'
 
-  zap :delete => '~/.rstudio-desktop'
+  zap trash: '~/.rstudio-desktop'
+
+  caveats <<~EOS
+    #{token} depends on R. The R Project provides official binaries:
+
+      brew cask install r
+
+    Alternatively, the Homebrew-compiled version of R omits the GUI app:
+
+      brew install r
+  EOS
 end

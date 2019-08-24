@@ -1,11 +1,11 @@
-cask :v1 => 'cuppa' do
-  version :latest
-  sha256 :no_check
+cask 'cuppa' do
+  version '1.8.2'
+  sha256 'cf1ce3129044cf588e83f8030aef4c30a01859d82265a3e938501e8e2f1ca44c'
 
-  url 'http://www.nathanatos.com/software/downloads/Cuppa.zip'
-  appcast 'http://www.nathanatos.com/software/cuppa.xml'
-  homepage 'http://www.nathanatos.com/software'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.nathanatos.com/software/downloads/Cuppa-#{version}.zip"
+  appcast 'https://www.nathanatos.com/software/cuppa.xml'
+  name 'Cuppa'
+  homepage 'https://www.nathanatos.com/software/'
 
   app 'Cuppa.app'
 end

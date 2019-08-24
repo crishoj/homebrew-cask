@@ -1,26 +1,28 @@
-cask :v1 => 'hipchat' do
-  version :latest
-  sha256 :no_check
+cask 'hipchat' do
+  version '4.30.2-760'
+  sha256 '0f7680eac626fafff0b7e5d7211901cb0d30494a73326eadad4bc9ae05fbf4af'
 
-  url 'https://www.hipchat.com/downloads/latest/mac'
+  # s3.amazonaws.com/hipchat-server-stable/ was verified as official when first introduced to the cask
+  url 'https://s3.amazonaws.com/hipchat-server-stable/clients/macos/HipChat-latest.dmg'
   appcast 'https://www.hipchat.com/release_notes/appcast/mac'
+  name 'HipChat'
   homepage 'https://www.hipchat.com/'
-  license :commercial
+
+  auto_updates true
 
   app 'HipChat.app'
 
-  postflight do
-    suppress_move_to_applications
-  end
+  zap trash: [
+               '~/Library/Application Support/HipChat',
+               '~/Library/Caches/com.hipchat.HipChat',
+               '~/Library/HipChat',
+               '~/Library/Logs/HipChat',
+               '~/Library/Preferences/com.hipchat.HipChat.plist',
+               '~/Library/Saved Application State/com.hipchat.HipChat.savedState',
+               '~/Library/chat.hipchat.com',
+             ]
 
-  zap :delete => [
-                  # todo expand/glob for '~/Library/<userid>/HipChat/'
-                  '~/Library/Application Support/HipChat',
-                  '~/Library/Caches/com.hipchat.HipChat',
-                  '~/Library/HipChat',
-                  '~/Library/Logs/HipChat',
-                  '~/Library/Preferences/com.hipchat.HipChat.plist',
-                  '~/Library/Saved Application State/com.hipchat.HipChat.savedState',
-                  '~/Library/chat.hipchat.com',
-                 ]
+  caveats do
+    discontinued
+  end
 end

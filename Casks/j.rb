@@ -1,16 +1,43 @@
-cask :v1 => 'j' do
-  version '802'
-  sha256 '294cc7a2b92afe43ad19ec7921de2d9a65351ba1c5cfd9836bc07fe9d9a0d159'
+cask 'j' do
+  version '807'
+  sha256 '3c78500eded82cd70dfff522ae61c54c0b7b8e746e43535e47f8e4c9df0987bd'
 
-  url "http://www.jsoftware.com/download/j#{version}/install/j#{version}_mac64.zip"
-  homepage 'http://www.jsoftware.com'
-  license :gpl
+  url "https://www.jsoftware.com/download/j#{version}/install/j#{version}_mac64.zip"
+  name 'J'
+  homepage 'https://www.jsoftware.com/'
 
-  %w<jbrk jcon jhs jqt>.each do |a|
+  apps = ['jbrk', 'jcon', 'jhs', 'jqt']
+  apps.each do |a|
     app "j64-#{version}/#{a}.app"
   end
 
-  %w<jconsole>.each do |b|
-    binary "j64-#{version}/bin/#{b}"
+  installer script: {
+                      executable: "j64-#{version}/bin/jconsole",
+                      args:       ['-js', "exit install'qtide'"],
+                    }
+
+  # target names according to readme.txt
+  ['jcon', 'jconsole'].each do |b|
+    binary "j64-#{version}/bin/jconsole", target: b
   end
+  commands = ['jbrk', 'jhs', 'jqt']
+  commands.each do |b|
+    binary "j64-#{version}/bin/#{b}.command", target: b
+  end
+
+  postflight do
+    # Use `readlink` to get full path of symlinked commands.
+    commands.each do |c|
+      command = "#{staged_path}/j64-#{version}/bin/#{c}.command"
+      IO.write command, IO.read(command).gsub('$0', '$(/usr/bin/readlink "$0" || /bin/echo "$0")')
+    end
+
+    # Fix relative paths inside App bundles.
+    apps.each do |a|
+      apprun = "#{appdir}/#{a}.app/Contents/MacOS/apprun"
+      IO.write apprun, IO.read(apprun).gsub(%r{`dirname "\$0"`.*?/bin}, "#{staged_path}/j64-#{version}/bin")
+    end
+  end
+
+  uninstall delete: "#{staged_path}/#{token}" # Not actually necessary, since it would be deleted anyway. It is present to make clear an uninstall was not forgotten and that for this cask it is indeed this simple.
 end

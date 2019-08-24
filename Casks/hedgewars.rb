@@ -1,12 +1,16 @@
-cask :v1 => 'hedgewars' do
-  version '0.9.20'
-  sha256 '167667f32f4798733b7bfd50423493067e6a9fd19f02f45e737b324038f0d559'
+cask 'hedgewars' do
+  if MacOS.version <= :el_capitan
+    version '0.9.22'
+    sha256 'adc0b6dd3b47de115e85db1cb72841836444c0ebc77caee8139bfd6561e28fe8'
+  else
+    version '0.9.23'
+    sha256 '2a5fbfa005ec6aeea172270397025c17a2c117224dd21db5214b8cbbeade411b'
+  end
 
-  url "http://download.gna.org/hedgewars/Hedgewars-#{version}-3.dmg"
-  appcast 'http://www.hedgewars.org/download/appcast.xml',
-          :sha256 => 'bb5344972d01c4007ab4d8193fc2aaaebe68c4048213a10ba6b4cbc61210747f'
-  homepage 'http://hedgewars.org'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.hedgewars.org/download/releases/Hedgewars-#{version}.dmg"
+  appcast 'https://www.hedgewars.org/download/appcast.xml'
+  name 'Hedgewars'
+  homepage 'https://hedgewars.org/'
 
   app 'Hedgewars.app'
 end

@@ -1,12 +1,12 @@
-cask :v1 => 'usb-overdrive' do
-  version '3.1'
-  sha256 '1a93082f1a2236bca088372c54b1933b3e491c3a986a1f13f78b59fda0c40fa2'
+cask 'usb-overdrive' do
+  version '3.4'
+  sha256 '8dd426c9bb2ab048269189acea143df9e77bbe106747f2a2d505d75e4079b340'
 
-  url "http://www.senlick.com/macsw/USB-Overdrive-#{version.gsub('.','')}.dmg"
+  url "http://www.usboverdrive.com/download/USB-Overdrive-#{version.no_dots}.dmg"
+  name 'USB Overdrive'
   homepage 'http://www.usboverdrive.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
 
   pkg 'Install USB Overdrive.pkg'
 
-  uninstall :pkgutil => 'com.usboverdrive.installer'
+  uninstall pkgutil: 'com.usboverdrive.installer'
 end

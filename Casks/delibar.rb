@@ -1,11 +1,12 @@
-cask :v1 => 'delibar' do
-  version :latest
-  sha256 :no_check
+cask 'delibar' do
+  version '1.6'
+  sha256 '960714a35c659dc327f73752b20a53c25b3aa77da578e457b187e9ff76cac5c8'
 
+  # shinyfrog.net was verified as official when first introduced to the cask
   url 'http://static.shinyfrog.net/downloads/delibar/Delibar.zip'
   appcast 'http://apps.shinynode.com/apps/delibar_appcast.xml'
+  name 'Delibar'
   homepage 'http://www.delibarapp.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
 
   app 'Delibar.app'
 end

@@ -1,10 +1,11 @@
-cask :v1 => 'dungeon-crawl-stone-soup-tiles' do
-  version '0.14.0'
-  sha256 '0cd2b2a7cf8675a208889ae406e6992c2a4c056ff05a974edfb99fd7a9e77e79'
+cask 'dungeon-crawl-stone-soup-tiles' do
+  version '0.23.2'
+  sha256 '6ba47351b14a57be65d3c631013d6ed828c9badaf07956f4b3ff2d0461ed4f9a'
 
-  url "https://crawl.develz.org/release/stone_soup-#{version}-tiles-macosx.zip"
-  homepage 'http://crawl.develz.org'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://crawl.develz.org/release/#{version.major_minor}/stone_soup-#{version}-tiles-macosx.zip"
+  appcast 'https://github.com/crawl/crawl/releases.atom'
+  name 'Dungeon Crawl Stone Soup'
+  homepage 'https://crawl.develz.org/'
 
   app 'Dungeon Crawl Stone Soup - Tiles.app'
 end

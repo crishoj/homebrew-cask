@@ -1,31 +1,26 @@
-cask :v1 => 'intellij-idea' do
-  version '14.0.2'
-  sha256 'cfab01c2b5b7265f0cf7b365872180261154a5e3ff1fc710c545d36e1f936a7b'
+cask 'intellij-idea' do
+  version '2019.2.1'
+  sha256 '1c75b5cbb165f43e6ae7b65ef456fa3979b8b5a56e2b91a943ef98b8df18d689'
 
-  url "http://download.jetbrains.com/idea/ideaIU-#{version}.dmg"
-  name 'IntelliJ IDEA'
+  url "https://download.jetbrains.com/idea/ideaIU-#{version}.dmg"
+  appcast 'https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=release'
+  name 'IntelliJ IDEA Ultimate'
   homepage 'https://www.jetbrains.com/idea/'
-  license :commercial
 
-  app 'IntelliJ IDEA 14.app'
+  auto_updates true
 
-  postflight do
-    plist_set(':JVMOptions:JVMVersion', '1.6+')
+  app 'IntelliJ IDEA.app'
+
+  uninstall_postflight do
+    ENV['PATH'].split(File::PATH_SEPARATOR).map { |path| File.join(path, 'idea') }.each { |path| File.delete(path) if File.exist?(path) && File.readlines(path).grep(%r{# see com.intellij.idea.SocketLock for the server side of this interface}).any? }
   end
 
-  zap :delete => [
-                  '~/Library/Application Support/IntelliJIdea14',
-                  '~/Library/Preferences/IntelliJIdea14',
-                 ]
-
-  caveats <<-EOS.undent
-    #{token} may require Java 7 (an older version) available from the
-    caskroom-versions repository via
-
-      brew cask install caskroom/versions/java7
-
-    Alternatively, #{token} can be modified to use Java 8 as described in
-
-      https://github.com/caskroom/homebrew-cask/issues/4500#issuecomment-43955932
-  EOS
+  zap trash: [
+               '~/Library/Preferences/com.jetbrains.intellij.plist',
+               "~/Library/Caches/IntelliJIdea#{version.major_minor}",
+               "~/Library/Logs/IntelliJIdea#{version.major_minor}",
+               "~/Library/Application Support/IntelliJIdea#{version.major_minor}",
+               "~/Library/Preferences/IntelliJIdea#{version.major_minor}",
+               '~/Library/Saved Application State/com.jetbrains.intellij.savedState',
+             ]
 end

@@ -1,12 +1,22 @@
-cask :v1 => 'airparrot' do
-  version :latest
-  sha256 :no_check
+cask 'airparrot' do
+  version '2.8.0'
+  sha256 '3ec8e83c5a029d926cdfb16c4015c72996911826ca39ca4a39eed41c2e7aeb1e'
 
-  url 'http://download.airsquirrels.com/AirParrot2/Mac/AirParrot2.dmg'
+  url "https://download.airsquirrels.com/AirParrot#{version.major}/Mac/AirParrot-#{version}.dmg"
+  appcast "https://updates.airsquirrels.com/AirParrot#{version.major}/Mac/AirParrot#{version.major}.xml"
   name 'AirParrot'
-  appcast 'https://updates.airsquirrels.com/AirParrot2/Mac/AirParrot2.xml'
-  homepage 'http://www.airsquirrels.com/airparrot/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://www.airsquirrels.com/airparrot/'
 
-  app 'AirParrot 2.app'
+  app "AirParrot #{version.major}.app"
+
+  uninstall kext: [
+                    'com.squirrels.driver.AirParrotSpeakers',
+                    '/Library/Extensions/AirParrotDriver.kext',
+                    '/Library/Extensions/APExtFramebuffer.kext',
+                    '/System/Library/Extensions/AirParrotDriver.kext',
+                    '/System/Library/Extensions/APExtFramebuffer.kext',
+                  ],
+            quit: "com.squirrels.AirParrot-#{version.major}"
+
+  zap trash: '~/Library/Preferences/com.squirrels.AirParrot-*.plist'
 end

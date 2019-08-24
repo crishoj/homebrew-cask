@@ -1,12 +1,13 @@
-cask :v1 => 'yourkit-java-profiler' do
-  version '2014-build-14114'
-  sha256 'd64d6496a7ae8e240ab5c32f6b1727898cd69a8f2e2716cf9901e3a9cc8a4c26'
+cask 'yourkit-java-profiler' do
+  version '2019.8-b109'
+  sha256 '15543270e915fbf37f897a171665ec7465b165318517eab269327a08ec78259e'
 
-  url "http://www.yourkit.com/download/yjp-#{version}-mac.zip"
+  url "https://www.yourkit.com/download/YourKit-JavaProfiler-#{version}.dmg"
+  appcast 'https://www.yourkit.com/download/'
   name 'YourKit Java Profiler'
-  homepage 'http://www.yourkit.com/overview/'
-  license :commercial
-  tags :vendor => 'YourKit'
+  homepage 'https://www.yourkit.com/features/'
 
-  app 'YourKit_Java_Profiler_2014_build_14114.app'
+  auto_updates true
+
+  app "YourKit-Java-Profiler-#{version.major_minor}.app"
 end

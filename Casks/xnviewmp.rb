@@ -1,10 +1,10 @@
-cask :v1 => 'xnviewmp' do
+cask 'xnviewmp' do
   version :latest
   sha256 :no_check
 
-  url 'http://download.xnview.com/XnViewMP-mac.tgz'
-  homepage 'http://www.xnview.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url 'https://download.xnview.com/XnViewMP-mac.tgz'
+  name 'XnViewMP'
+  homepage 'https://www.xnview.com/'
 
   app 'XnViewMP.app'
 end

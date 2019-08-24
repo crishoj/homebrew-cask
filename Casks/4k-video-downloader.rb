@@ -1,11 +1,13 @@
-cask :v1 => '4k-video-downloader' do
-  version '3.1'
-  sha256 '5f2243e9d2352b411414e3819d2dbb36cbd2c4f4d9a72a9579e4fbc1f820a324'
+cask '4k-video-downloader' do
+  version '4.8.2.2902'
+  sha256 '74991a4c0bd0ff0bd1f90119c16132bc8e113cddd8eafc722c260c9f80337e5f'
 
-  url "http://downloads.4kdownload.com/app/4kvideodownloader_#{version}.dmg"
+  url "https://dl.4kdownload.com/app/4kvideodownloader_#{version.major_minor_patch}.dmg"
+  appcast 'https://www.4kdownload.com/download'
   name '4K Video Downloader'
-  homepage 'http://www.4kdownload.com/products/product-videodownloader'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://www.4kdownload.com/products/product-videodownloader'
+
+  depends_on macos: '>= :sierra'
 
   app '4K Video Downloader.app'
 end

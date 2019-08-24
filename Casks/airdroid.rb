@@ -1,11 +1,12 @@
-cask :v1 => 'airdroid' do
-  version '3.0.2'
-  sha256 '09ca123ad4c4fed7a83fe56f7dac5f5657da0dacbe7b7d51f933014582a328f4'
+cask 'airdroid' do
+  version '3.6.5.0'
+  sha256 '497d16cf895ca81beb745dddc07e1a225d72d2e9631192aadf11db069d026478'
 
-  url "http://dl.airdroid.com/AirDroid_Desktop_Client_#{version}.dmg"
+  # s3.amazonaws.com/dl.airdroid.com was verified as official when first introduced to the cask
+  url "https://s3.amazonaws.com/dl.airdroid.com/AirDroid_Desktop_Client_#{version}.dmg"
+  appcast 'https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://srv3.airdroid.com/p20/web/getbinaryredirect?type=dmg&channel=&version='
   name 'AirDroid'
-  homepage 'http://airdroid.com'
-  license :closed
+  homepage 'https://www.airdroid.com/'
 
   app 'AirDroid.app'
 end

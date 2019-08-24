@@ -1,11 +1,12 @@
-cask :v1 => 'scribus' do
-  version '1.4.4'
-  sha256 '57cdfacbfa6c60c035b746ac40ea8c46718fdfd4a9ac382b3b6c56a318fa162c'
+cask 'scribus' do
+  version '1.4.8'
+  sha256 '9626c35ca5de5da59ac983efac3572318d327b3a921522c9f80a525b039a0af5'
 
-  url "http://downloads.sourceforge.net/project/scribus/scribus/#{version}/scribus-#{version}.dmg"
+  # sourceforge.net/scribus was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/scribus/scribus/#{version}/scribus-#{version}.dmg"
+  appcast 'https://www.scribus.net/downloads/stable-branch/'
   name 'Scribus'
-  homepage 'http://www.scribus.net/canvas/Scribus'
-  license :oss
+  homepage 'https://www.scribus.net/'
 
   app 'Scribus.app'
 end

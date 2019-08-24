@@ -1,10 +1,19 @@
-cask :v1 => 'macs-fan-control' do
-  version :latest
-  sha256 :no_check
+cask 'macs-fan-control' do
+  version '1.4.12'
+  sha256 'a76239e1ad8a116dccf6d4387242792f8d8771dc60846d246455a3128ba6ff15'
 
-  url 'http://www.crystalidea.com/downloads/macsfancontrol.zip'
-  homepage 'http://www.crystalidea.com/macs-fan-control'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # github.com/crystalidea/macs-fan-control was verified as official when first introduced to the cask
+  url "https://github.com/crystalidea/macs-fan-control/releases/download/v#{version}/macsfancontrol.zip"
+  appcast 'https://github.com/crystalidea/macs-fan-control/releases.atom'
+  name 'Macs Fan Control'
+  homepage 'https://www.crystalidea.com/macs-fan-control'
+
+  auto_updates true
 
   app 'Macs Fan Control.app'
+
+  uninstall login_item: 'Macs Fan Control',
+            signal:     ['TERM', 'com.crystalidea.MacsFanControl']
+
+  zap trash: '~/Library/Preferences/com.crystalidea.macsfancontrol.plist'
 end

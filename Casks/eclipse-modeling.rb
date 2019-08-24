@@ -1,16 +1,11 @@
-cask :v1 => 'eclipse-modeling' do
-  version '4.4.1'
+cask 'eclipse-modeling' do
+  version '4.12.0,2019-06:R'
+  sha256 '8b0c958a5b2e7d4e388341ca0dc8b0fbd72469a84f052d4a0f789aa0bc33b4ff'
 
-  if Hardware::CPU.is_32_bit?
-    sha256 'df00541d1291c9f4dda6917ec8f07f22b1cad645f9641be53d9988a86528099d'
-    url 'http://download.eclipse.org/technology/epp/downloads/release/luna/SR1/eclipse-modeling-luna-SR1-macosx-cocoa.tar.gz'
-  else
-    sha256 'ad09c657dd1795eee42f1940473ce389168f819ecff7ea022ae0b9517e37f7be'
-    url 'http://download.eclipse.org/technology/epp/downloads/release/luna/SR1/eclipse-modeling-luna-SR1-macosx-cocoa-x86_64.tar.gz'
-  end
+  url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.after_comma.before_colon}/#{version.after_colon}/eclipse-modeling-#{version.after_comma.before_colon}-#{version.after_colon}-macosx-cocoa-x86_64.dmg&r=1"
+  name 'Eclipse Modeling Tools'
+  homepage 'https://eclipse.org/'
 
-  homepage 'http://eclipse.org/'
-  license :oss
-
-  app 'eclipse/eclipse.app'
+  # Renamed to avoid conflict with other Eclipse.
+  app 'Eclipse.app', target: 'Eclipse Modeling.app'
 end

@@ -1,11 +1,14 @@
-cask :v1 => 'prizmo' do
-  version :latest
-  sha256 :no_check
+cask 'prizmo' do
+  version '3.7.2'
+  sha256 '6f811c4eb7b2f08f212749b615c3ad2587a610278fb5ca761d43710ecf962d6c'
 
-  url 'http://www.creaceed.com/downloads/prizmo2.zip'
-  appcast 'http://www.creaceed.com/appcasts/prizmo2.xml'
-  homepage 'http://www.creaceed.com/prizmo'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.creaceed.com/downloads/prizmo#{version.major}_#{version}.zip"
+  appcast "https://www.creaceed.com/appcasts/prizmo#{version.major}.xml"
+  name 'Prizmo'
+  homepage 'https://creaceed.com/prizmo'
+
+  auto_updates true
+  depends_on macos: '>= :yosemite'
 
   app 'Prizmo.app'
 end

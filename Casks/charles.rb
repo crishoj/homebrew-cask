@@ -1,15 +1,20 @@
-cask :v1 => 'charles' do
-  version '3.9.3'
-  sha256 '84de5c3f233ec6af24f5bab04631daf9ef4af0c549efca8675f9d3946e5aceb8'
+cask 'charles' do
+  version '4.2.8'
+  sha256 '091268247ce67ee98eec0fb5fd908f332494234666ad8e81a1be08a144d67b87'
 
-  url "http://www.charlesproxy.com/assets/release/#{version}/charles-proxy-#{version}-applejava.dmg"
-  homepage 'http://www.charlesproxy.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.charlesproxy.com/assets/release/#{version}/charles-proxy-#{version}.dmg"
+  appcast 'https://www.charlesproxy.com/latest.do'
+  name 'Charles'
+  homepage 'https://www.charlesproxy.com/'
 
   app 'Charles.app'
 
-  zap :delete => [
-                  '~/Library/Application Support/Charles',
-                  '~/Library/Preferences/com.xk72.charles.config',
-                 ]
+  uninstall quit: 'com.xk72.Charles'
+
+  zap trash: [
+               '~/Library/Application Support/Charles',
+               '~/Library/Preferences/com.xk72.Charles.plist',
+               '~/Library/Preferences/com.xk72.charles.config',
+               '~/Library/Saved Application State/com.xk72.Charles.savedState',
+             ]
 end

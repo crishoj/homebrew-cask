@@ -1,11 +1,10 @@
-cask :v1 => 'rightzoom' do
+cask 'rightzoom' do
   version :latest
   sha256 :no_check
 
-  url 'http://www.blazingtools.com/mac/RightZoom.zip'
+  url 'https://www.blazingtools.com/mac/RightZoom20.zip'
   name 'Right Zoom'
-  homepage 'http://www.blazingtools.com/right_zoom_mac.html'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://www.blazingtools.com/right_zoom_mac.html'
 
   app 'RightZoom.app'
 end

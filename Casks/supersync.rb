@@ -1,10 +1,11 @@
-cask :v1 => 'supersync' do
-  version '6.1'
-  sha256 'c97191ea844a581bbafc8382cac6449be577c1c8b5639c64033fb200fc3a79dc'
+cask 'supersync' do
+  version '6.2'
+  sha256 '007efaad1d8de0703859a3677197f504cfd9faa2183ca01602c7dbb26e02766d'
 
-  url "http://supersync.com/downloads/SuperSync-#{version}.dmg"
-  homepage 'http://supersync.com/'
-  license :commercial
+  url "https://supersync.com/downloads/SuperSync_#{version}.dmg"
+  appcast 'https://supersync.com/downloads.php'
+  name 'SuperSync'
+  homepage 'https://supersync.com/'
 
   app 'SuperSync.app'
 end

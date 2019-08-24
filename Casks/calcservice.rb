@@ -1,10 +1,11 @@
-cask :v1 => 'calcservice' do
-  version '3.4'
-  sha256 '4406f34eb65a72be04548e4cbd4a10b7e1d1518f2acb8df6d20ae40b8620c4b6'
+cask 'calcservice' do
+  version '3.5'
+  sha256 '5add1e69460a7f13f05bb6e4e8d1337e9bc1b8f9c40893415cb9933968d7cfc0'
 
+  # s3.amazonaws.com/DTWebsiteSupport was verified as official when first introduced to the cask
   url "https://s3.amazonaws.com/DTWebsiteSupport/download/freeware/calcservice/#{version}/CalcService.zip"
-  homepage 'http://www.devontechnologies.com/products/freeware.html#c1111'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  name 'CalcService'
+  homepage 'https://www.devontechnologies.com/products/freeware.html#c1111'
 
-  service 'CalcService/CalcService.service'
+  app 'CalcService.app'
 end

@@ -1,10 +1,11 @@
-cask :v1 => 'komodo-ide' do
-  version '8.5.4-86985'
-  sha256 'dde427a79aa17f5404b15bb286c075857fe5407f98395cc97f3e0e9c8b27851c'
+cask 'komodo-ide' do
+  version '11.1.1-91089'
+  sha256 'a522a104da9023311955cfe4ebf3c4e50f7f709e58432a47ea0c4a829d7b2335'
 
-  url "http://downloads.activestate.com/Komodo/releases/#{version.sub(/-.*$/, '')}/Komodo-IDE-#{version}-macosx-x86_64.dmg"
-  homepage 'http://komodoide.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://downloads.activestate.com/Komodo/releases/#{version.sub(%r{-.*}, '')}/Komodo-IDE-#{version}-macosx-x86_64.dmg"
+  appcast 'https://www.activestate.com/komodo-ide/downloads/ide'
+  name 'Komodo IDE'
+  homepage 'https://www.activestate.com/komodo-ide/'
 
-  app 'Komodo IDE 8.app'
+  app "Komodo IDE #{version.major}.app"
 end

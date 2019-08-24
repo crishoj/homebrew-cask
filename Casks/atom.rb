@@ -1,33 +1,33 @@
-cask :v1 => 'atom' do
-  version :latest
-  sha256 :no_check
+cask 'atom' do
+  version '1.40.1'
+  sha256 '1697c2e47b7bde34bdadd093329dfc87436c6e2c14e439c8106cb090de499029'
 
-  url 'https://atom.io/download/mac'
-  name 'Atom'
-  homepage 'http://atom.io'
-  license :mit
+  # github.com/atom/atom was verified as official when first introduced to the cask
+  url "https://github.com/atom/atom/releases/download/v#{version}/atom-mac.zip"
+  appcast 'https://github.com/atom/atom/releases.atom'
+  name 'Github Atom'
+  homepage 'https://atom.io/'
+
+  auto_updates true
 
   app 'Atom.app'
-  binary 'Atom.app/Contents/Resources/app/apm/node_modules/.bin/apm', :target => 'apm'
-  binary 'Atom.app/Contents/Resources/app/atom.sh', :target => 'atom'
+  binary "#{appdir}/Atom.app/Contents/Resources/app/apm/bin/apm"
+  binary "#{appdir}/Atom.app/Contents/Resources/app/atom.sh", target: 'atom'
 
-  postflight do
-    suppress_move_to_applications
-  end
-
-  zap :delete => [
-                  '~/.atom/config.cson',
-                  '~/.atom/init.coffee',
-                  '~/.atom/keymap.cson',
-                  '~/.atom/keymaps',
-                  '~/.atom/packages',
-                  '~/.atom/snippets.cson',
-                  '~/.atom/styles.less',
-                  '~/Library/Application Support/ShipIt_stderr.log',
-                  '~/Library/Application Support/ShipIt_stdout.log',
-                  '~/Library/Application Support/com.github.atom.ShipIt',
-                  '~/Library/Caches/com.github.atom',
-                  '~/Library/Preferences/com.github.atom.plist',
-                 ],
-      :rmdir  => '~/.atom/'
+  zap trash: [
+               '~/.atom',
+               '~/Library/Application Support/Atom',
+               '~/Library/Application Support/ShipIt_stderr.log',
+               '~/Library/Application Support/ShipIt_stdout.log',
+               '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.github.atom.sfl*',
+               '~/Library/Application Support/com.github.atom.ShipIt',
+               '~/Library/Caches/com.github.atom',
+               '~/Library/Caches/com.github.atom.ShipIt',
+               '~/Library/Logs/Atom',
+               '~/Library/Preferences/ByHost/com.github.atom.ShipIt.*.plist',
+               '~/Library/Preferences/com.github.atom.helper.plist',
+               '~/Library/Preferences/com.github.atom.plist',
+               '~/Library/Saved Application State/com.github.atom.savedState',
+               '~/Library/WebKit/com.github.atom',
+             ]
 end

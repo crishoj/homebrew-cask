@@ -1,10 +1,16 @@
-cask :v1 => 'licecap' do
-  version '1.24'
-  sha256 '0aae74885097731048b7e2111db9afbe77c30eb10779898bf9ea817de845bcbb'
+cask 'licecap' do
+  version '1.29'
+  sha256 '9d12df4946d3247483a1e050279b032320799ee96918f44628b92d862866250f'
 
-  url "http://www.cockos.com/licecap/licecap#{version.gsub('.','')}.dmg"
-  homepage 'http://www.cockos.com/licecap/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.cockos.com/licecap/licecap#{version.no_dots}.dmg"
+  appcast 'https://www.cockos.com/licecap/'
+  name 'LICEcap'
+  homepage 'https://www.cockos.com/licecap/'
 
   app 'LICEcap.app'
+
+  zap trash: [
+               '~/Library/Application Support/LICEcap',
+               '~/Library/Preferences/com.cockos.LICEcap.plist',
+             ]
 end

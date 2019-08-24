@@ -1,11 +1,11 @@
-cask :v1 => 'mavensmate' do
-  version :latest
-  sha256 :no_check
+cask 'mavensmate' do
+  version '0.0.11'
+  sha256 'a16344436cebb550f57d3800bf47f3176e2135701462dcd2b41c7f02192d5fd7'
 
-  url 'http://push.mavensconsulting.netdna-cdn.com/mavensmate/builds/MavensMate.zip'
-  appcast 'http://mavensconsulting.com/mavensmate/builds/appcast.xml'
-  homepage 'http://mavensmate.com'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://github.com/joeferraro/MavensMate-Desktop/releases/download/v#{version}/MavensMate-#{version}.dmg"
+  appcast 'https://github.com/joeferraro/MavensMate-Desktop/releases.atom'
+  name 'MavensMate'
+  homepage 'https://github.com/joeferraro/MavensMate-Desktop'
 
   app 'MavensMate.app'
 end

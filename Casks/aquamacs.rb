@@ -1,22 +1,14 @@
-cask :v1 => 'aquamacs' do
+cask 'aquamacs' do
+  version '3.5'
+  sha256 'c27165c0b42b93ef3c9e5dfd0dd53527b10c683aae35fceedd4fecc52332c2ba'
 
-  if Hardware::CPU.is_32_bit?
-    version '2.5'
-    sha256 '5857848d8d46bba43d160c02393b098a370e2156608be24b288419f668210be9'
-
-    url "http://braeburn.aquamacs.org/releases/Aquamacs-Emacs-#{version}.dmg"
-  else
-    version '3.2'
-    sha256 '0bdbbe20afd1d2f2bc23fd583de9475a8826493fcf9fe0e4d2717353cf5f04b2'
-
-    url "https://github.com/davidswelt/aquamacs-emacs/releases/download/Aquamacs-#{version}/Aquamacs-Emacs-#{version}.dmg"
-  end
-
+  # github.com/davidswelt/aquamacs-emacs was verified as official when first introduced to the cask
+  url "https://github.com/davidswelt/aquamacs-emacs/releases/download/Aquamacs-#{version}/Aquamacs-Emacs-#{version}.dmg"
+  appcast 'https://github.com/davidswelt/aquamacs-emacs/releases.atom'
   name 'Aquamacs'
   homepage 'http://aquamacs.org/'
-  license :gpl
 
   app 'Aquamacs.app'
 
-  zap :delete => '~/Library/Caches/Aquamacs Emacs'
+  zap trash: '~/Library/Caches/Aquamacs Emacs'
 end

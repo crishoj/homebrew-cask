@@ -1,10 +1,11 @@
-cask :v1 => 'tresorit' do
+cask 'tresorit' do
   version :latest
   sha256 :no_check
 
-  url 'https://installerstorage.blob.core.windows.net/install/Tresorit.dmg'
-  homepage 'http://tresorit.com'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # installerstorage.blob.core.windows.net was verified as official when first introduced to the cask
+  url 'https://installerstorage.blob.core.windows.net/public/install/Tresorit.dmg'
+  name 'Tresorit'
+  homepage 'https://tresorit.com/'
 
   app 'Tresorit.app'
 end

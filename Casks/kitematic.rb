@@ -1,11 +1,22 @@
-cask :v1 => 'kitematic' do
-  version '0.4.0'
-  sha256 'bacc15d30c92cd2592dc3b553b830098f7b87fd39c92f5580f20081a7eb499f2'
+cask 'kitematic' do
+  version '0.17.7'
+  sha256 '7a1c42058c05991c23df07b9af7f206da8d459aa701f7d0fd700e5c94f816e07'
 
-  url "https://github.com/kitematic/kitematic/releases/download/v#{version}/Kitematic-#{version}.zip"
+  # github.com/docker/kitematic was verified as official when first introduced to the cask
+  url "https://github.com/docker/kitematic/releases/download/v#{version}/Kitematic-#{version}-Mac.zip"
+  appcast 'https://github.com/docker/kitematic/releases.atom'
   name 'Kitematic'
   homepage 'https://kitematic.com/'
-  license :affero
 
   app 'Kitematic.app'
+
+  zap trash: [
+               '~/Kitematic',
+               '~/Library/Application Support/Kitematic',
+               '~/Library/Caches/Kitematic',
+               '~/Library/Logs/Kitematic',
+               '~/Library/Preferences/com.electron.kitematic.plist',
+               '~/Library/Preferences/com.electron.kitematic.helper.plist',
+               '~/Library/Saved Application State/com.electron.kitematic.savedState',
+             ]
 end

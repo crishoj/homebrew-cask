@@ -1,10 +1,13 @@
-cask :v1 => 'chemdoodle' do
-  version '6.0.1'
-  sha256 '004c4d828230f4640678ba31ef07bf878e00ef3f225144fa088a81c4279c1776'
+cask 'chemdoodle' do
+  version '9.1.0'
+  sha256 'c254f172ac197e0183fcacb6c60995f9f8545167b9684fb08559787d6abe5893'
 
-  url "http://www.chemdoodle.com/downloads/ChemDoodle-osx-#{version}.dmg"
-  homepage 'http://www.chemdoodle.com'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.chemdoodle.com/downloads/ChemDoodle-osx-#{version}.dmg"
+  appcast 'https://www.chemdoodle.com/download/osx-installation-instructions/'
+  name 'ChemDoodle'
+  homepage 'https://www.chemdoodle.com/'
+
+  depends_on macos: '>= :yosemite'
 
   suite 'ChemDoodle'
 end

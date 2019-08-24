@@ -1,13 +1,13 @@
-cask :v1 => 'eagle' do
-  version '7.2.0'
-  sha256 '9cae311072d8be5a16631ce08d9e0653bdc21e336cc90df2463d7df35521ff2a'
+cask 'eagle' do
+  version '9.4.2'
+  sha256 '2fa5597c7f996df0a9c47473a4551d5b3c15fd4a52437832bd754e2b7faea7a6'
 
-  url "ftp://ftp.cadsoft.de/eagle/program/#{version.sub(/\.\d+$/, '')}/eagle-mac-#{version}.zip"
-  homepage 'http://www.cadsoftusa.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://eagle-updates.circuits.io/downloads/#{version.dots_to_underscores}/Autodesk_EAGLE_#{version}_English_Mac_64bit.pkg"
+  appcast 'https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://www.autodesk.com/eagle-download-mac'
+  name 'Autodesk EAGLE'
+  homepage 'https://circuits.io/'
 
-  pkg "eagle-#{version}.pkg"
+  pkg "Autodesk_EAGLE_#{version}_English_Mac_64bit.pkg"
 
-  uninstall :pkgutil => 'com.CadSoftComputerGmbH.EAGLE',
-            :delete => "/Applications/EAGLE-#{version}"
+  uninstall pkgutil: 'com.Autodesk.eagle'
 end

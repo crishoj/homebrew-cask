@@ -1,12 +1,13 @@
-cask :v1 => 'pacifist' do
-  version :latest
-  sha256 :no_check
+cask 'pacifist' do
+  version '3.6.1'
+  sha256 'a884c8c0d16ca159bf7f90064247d7c00f4ebbd54ac86028bb57c0cbf666cf2a'
 
-  url 'https://www.charlessoft.com/cgi-bin/pacifist_download.cgi?type=dmg'
-  appcast 'http://www.charlessoft.com/cgi-bin/pacifist_sparkle.cgi'
+  url "https://www.charlessoft.com/pacifist_download/Pacifist_#{version}.dmg"
+  appcast 'https://www.charlessoft.com/cgi-bin/pacifist_sparkle.cgi'
   name 'Pacifist'
-  homepage 'http://www.charlessoft.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://www.charlessoft.com/'
+
+  auto_updates true
 
   app 'Pacifist.app'
 end

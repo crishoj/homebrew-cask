@@ -1,10 +1,12 @@
-cask :v1 => 'phoenix-slides' do
-  version '1.3.1'
-  sha256 '6e5df9e586bb33b79249d9917f99f50395f255b85bf39c5fafca64fe66aef758'
+cask 'phoenix-slides' do
+  version '1.4.4'
+  sha256 'f27bb747a822e8b39eae81a6fe426692624d209cf7a50b98bdd5331bd451fdb9'
 
-  url "http://blyt.net/phxslides/phoenix-slides-#{version.gsub('.','')}.zip"
-  homepage 'http://blyt.net/phxslides'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # github.com/gobbledegook/creevey was verified as official when first introduced to the cask
+  url "https://github.com/gobbledegook/creevey/releases/download/v#{version}/phoenix-slides-#{version.no_dots}.dmg"
+  appcast 'https://github.com/gobbledegook/creevey/releases.atom'
+  name 'Phoenix Slides'
+  homepage 'https://blyt.net/phxslides/'
 
   app 'Phoenix Slides.app'
 end

@@ -1,10 +1,11 @@
-cask :v1 => 'pusher' do
-  version '0.5.3'
-  sha256 'f2a2c6a39f105c10d5653fa1afe364aa8e930a9cb411c738197e5dc97f378edb'
+cask 'pusher' do
+  version '0.7.5'
+  sha256 'b329a5106b6670bf50da4b91ba34d82102edb70074828cf4d0cd879b1a5e2180'
 
   url "https://github.com/noodlewerk/NWPusher/releases/download/#{version}/pusher.app.zip"
+  appcast 'https://github.com/noodlewerk/NWPusher/releases.atom'
+  name 'NWPusher'
   homepage 'https://github.com/noodlewerk/NWPusher'
-  license :oss
 
   app 'Pusher.app'
 end

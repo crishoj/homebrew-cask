@@ -1,11 +1,11 @@
-cask :v1 => 'soulseek' do
-  version '2014-11-30'
-  sha256 '64ddff73a6744a316f1159e7b6267a2837c82091d6045265dd6807eaae5e6124'
+cask 'soulseek' do
+  version '2017-2-25'
+  sha256 '9bc76b360fb326807c3c655fdb9af98ea4b5db30ee56a1baed9c65c0897fd5d4'
 
-  url "http://www.soulseekqt.net/SoulseekQt/Mac/SoulseekQt-#{version}.dmg"
+  url "https://www.slsknet.org/SoulseekQt/Mac/SoulseekQt-#{version}.dmg"
+  appcast 'http://www.slsknet.org/news/node/1'
   name 'Soulseek'
-  homepage 'http://www.soulseekqt.net/'
-  license :gratis
+  homepage 'https://www.slsknet.org/'
 
-  app "SoulseekQt.app"
+  app 'SoulseekQt.app'
 end

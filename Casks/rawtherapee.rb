@@ -1,11 +1,13 @@
-cask :v1 => 'rawtherapee' do
-  version '4.1.26'
-  sha256 'b8afa0978050621bc10ddead6f4d0b7a79f54f4d06c608af63948c4e53122255'
+cask 'rawtherapee' do
+  version '5.6'
+  sha256 '274861597061e3febb204a8cd844bbadb20cdd925738f91d35fff382c6cec9f2'
 
-  url "http://rawtherapee.com/releases_head/mac/RawTherapee_OSX_10.7_64_#{version}.zip"
-  homepage 'http://rawtherapee.com'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://rawtherapee.com/releases_head/mac/RawTherapee_OSX_10.9_64_#{version}.zip"
+  appcast 'https://github.com/Beep6581/RawTherapee/releases.atom'
+  name 'RawTherapee'
+  homepage 'https://rawtherapee.com/'
 
-  container :nested => "RawTherapee_OSX_10.7_64_#{version}.dmg"
+  container nested: "RawTherapee_OSX_10.9_64_#{version}.dmg"
+
   app 'RawTherapee.app'
 end

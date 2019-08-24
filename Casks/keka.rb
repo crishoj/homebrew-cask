@@ -1,14 +1,22 @@
-cask :v1 => 'keka' do
-  version '1.0.4'
-  sha256 '0075741ed52e2c86d7749dfe2baf54c8b6dad75a780b4b51ca5fb14337124701'
+cask 'keka' do
+  version '1.1.17'
+  sha256 'fd7db0c173dc3933f3db9e737b2bf35efcfceca022a569447b6313e122e29d23'
 
-  url "http://www.kekaosx.com/release/Keka-#{version}-intel.dmg"
-  appcast 'http://update.kekaosx.com',
-          :sha256 => '7d5bf4d33a9c889b33bc5ba8e168deeb86abed84b1fd3deaebe4d85f34a80a32'
-  homepage 'http://kekaosx.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # github.com/aonez/Keka was verified as official when first introduced to the cask
+  url "https://github.com/aonez/Keka/releases/download/v#{version}/Keka-#{version}.dmg"
+  appcast 'https://github.com/aonez/Keka/releases.atom'
+  name 'Keka'
+  homepage 'http://www.kekaosx.com/'
+
+  auto_updates true
+  conflicts_with cask: 'keka-beta'
 
   app 'Keka.app'
 
-  zap :delete => '~/Library/Preferences/com.aone.keka.plist'
+  zap trash: [
+               '~/Library/Application Support/Keka',
+               '~/Library/Caches/com.aone.keka',
+               '~/Library/Preferences/com.aone.keka.plist',
+               '~/Library/Saved Application State/com.aone.keka.savedState',
+             ]
 end

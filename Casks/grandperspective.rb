@@ -1,10 +1,14 @@
-cask :v1 => 'grandperspective' do
-  version '1.5.1'
-  sha256 '92204458042a337c1091879e167ea95e45cae33a7be16fa6c11e80572c54d135'
+cask 'grandperspective' do
+  version '2.2.3'
+  sha256 '9278e4264ae173945e59dc2567b3a4dd7ac1c16f1e587f5f53a1fd10532c8c47'
 
-  url "http://downloads.sourceforge.net/project/grandperspectiv/grandperspective/#{version}/GrandPerspective-1_5_1.dmg"
-  homepage 'http://grandperspectiv.sourceforge.net/'
-  license :oss
+  # downloads.sourceforge.net/grandperspectiv was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/grandperspectiv/grandperspective/#{version}/GrandPerspective-#{version.dots_to_underscores}.dmg"
+  appcast 'https://sourceforge.net/projects/grandperspectiv/rss?path=/grandperspective'
+  name 'GrandPerspective'
+  homepage 'https://grandperspectiv.sourceforge.io/'
 
   app 'GrandPerspective.app'
+
+  zap trash: '~/Library/Preferences/net.sourceforge.grandperspectiv.plist'
 end

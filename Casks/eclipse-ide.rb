@@ -1,16 +1,10 @@
-cask :v1 => 'eclipse-ide' do
-  version '4.4.1'
+cask 'eclipse-ide' do
+  version '4.12.0,2019-06:R'
+  sha256 'c2f05fa10a6151f8f41cec3c028f4ec1bef7153cc86b46d06d0eacbdf14d1b5f'
 
-  if Hardware::CPU.is_32_bit?
-    sha256 '49cc7ff7ac89a8598157de3262128f0240f8283ecdcc9a9ae006143913a4bee6'
-    url 'http://download.eclipse.org/technology/epp/downloads/release/luna/SR1/eclipse-standard-luna-SR1-macosx-cocoa.tar.gz'
-  else
-    sha256 '787969d8816d502675cff5b6c9ab1ef4a3b7144d3216def9f90ab623ce71edc1'
-    url 'http://download.eclipse.org/technology/epp/downloads/release/luna/SR1/eclipse-standard-luna-SR1-macosx-cocoa-x86_64.tar.gz'
-  end
+  url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.after_comma.before_colon}/#{version.after_colon}/eclipse-committers-#{version.after_comma.before_colon}-#{version.after_colon}-macosx-cocoa-x86_64.dmg&r=1"
+  name 'Eclipse IDE for Eclipse Committers'
+  homepage 'https://eclipse.org/'
 
-  homepage 'http://eclipse.org/'
-  license :eclipse
-
-  app 'eclipse/Eclipse.app'
+  app 'Eclipse.app'
 end

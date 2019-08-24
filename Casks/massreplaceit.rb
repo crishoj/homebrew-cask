@@ -1,11 +1,11 @@
-cask :v1 => 'massreplaceit' do
-  version '2.9.1'
-  sha256 '1ab3482f7568953899474397fa401342daec56d4efe4a856de8e387294f7c667'
-  container :nested => 'MassReplaceIt.dmg'
+cask 'massreplaceit' do
+  version '3.0'
+  sha256 'b1a5eb1e8a3196a15e10ee82185a7f15c44e27a39742b4506e274a17391a2033'
 
-  url 'http://www.hexmonkeysoftware.com/files/mri.dmg.zip'
+  url 'http://www.hexmonkeysoftware.com/files/MassReplaceIt.dmg'
+  appcast 'http://www.hexmonkeysoftware.com/'
+  name 'MassReplaceIt'
   homepage 'http://www.hexmonkeysoftware.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
 
   app 'MassReplaceIt.app'
 end

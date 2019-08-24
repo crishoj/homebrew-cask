@@ -1,12 +1,13 @@
-cask :v1 => 'couleurs' do
-  version '1.0'
-  sha256 '64af095afc12b53d8b979594c9d23b6601bb3ad7dd177aa5b965c74a2bd7efa2'
+cask 'couleurs' do
+  version '1.2'
+  sha256 '59d725b0bbe7f7f2744b8b372006f0ec26c9b2300ea76139bed49ce8bb5824b2'
 
-  url "http://couleursapp.com/couleurs-#{version}.zip"
-  homepage 'http://couleursapp.com/'
-  license :gratis
+  url "https://couleursapp.com/couleurs-#{version}.zip"
+  appcast 'https://couleursapp.com/updates/releases.xml'
+  name 'Couleurs'
+  homepage 'https://couleursapp.com/'
+
+  depends_on macos: '>= :yosemite'
 
   app 'Couleurs.app'
-
-  depends_on :macos => '>= :yosemite'
 end

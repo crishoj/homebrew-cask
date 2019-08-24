@@ -1,16 +1,21 @@
-cask :v1 => 'default-folder-x' do
-  version '4.6.10'
-  sha256 '95752cf84ffd5f8090397ba85689ebaa409b205de9d15a4af4b0e5eae8626d59'
+cask 'default-folder-x' do
+  version '5.3.7'
+  sha256 '87b934e370fbe54743d2d98d07e977b7aac5ff578cf9322db906eade8f9a2ff9'
 
-  url "http://www.stclairsoft.com/download/DefaultFolderX-#{version}.dmg"
-  homepage 'http://www.stclairsoft.com/DefaultFolderX'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.stclairsoft.com/download/DefaultFolderX-#{version}.dmg"
+  appcast 'https://www.stclairsoft.com/cgi-bin/sparkle.cgi?DX5'
+  name 'Default Folder X'
+  homepage 'https://www.stclairsoft.com/DefaultFolderX/'
 
-  installer :manual => 'Default Folder X Installer.app'
+  auto_updates true
 
-  zap :delete => [
-                  '~/Library/Preferences/com.stclairsoft.DefaultFolderX.favorites.plist',
-                  '~/Library/Preferences/com.stclairsoft.DefaultFolderX.plist',
-                  '~/Library/Preferences/com.stclairsoft.DefaultFolderX.settings.plist',
-                 ]
+  app 'Default Folder X.app'
+
+  zap trash: [
+               '~/Library/Application Support/.com.stclairsoft',
+               '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.stclairsoft.defaultfolderx5.sfl*',
+               '~/Library/Application Support/com.stclairsoft.DefaultFolderX5',
+               '~/Library/Caches/com.stclairsoft.DefaultFolderX5',
+               '~/Library/Preferences/com.stclairsoft.DefaultFolderX5.plist',
+             ]
 end

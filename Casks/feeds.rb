@@ -1,14 +1,18 @@
-cask :v1 => 'feeds' do
-  version '2.0.5.1'
-  sha256 'abc72e4ef77a0bef4ea89d62b570698d47b197f2d56b74a48a9f3da52c6cd71e'
+cask 'feeds' do
+  version '2.1.2'
+  sha256 'a9b1476dae52fef2abc9f8427c106412ca726b873c469ae23553818660eb7fdc'
 
-  url "https://feedswww.appspot.com/releases/Feeds-#{version}.zip"
-  appcast 'https://feedswww.appspot.com/appcast.xml',
-          :sha256 => 'cb54169bafd37e7d482ef39ed2f8ee555c35009c36922a03914d87d1e751a2da'
+  # storage.googleapis.com/feeds-releases was verified as official when first introduced to the cask
+  url "https://storage.googleapis.com/feeds-releases/Feeds-#{version}.zip"
+  appcast 'https://storage.googleapis.com/feeds-releases/appcast.xml'
+  name 'Feeds'
   homepage 'http://www.feedsapp.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
 
   app 'Feeds.app'
 
-  zap :delete => '~/Library/Preferences/com.feedsapp.Feeds.plist'
+  zap trash: [
+               '~/Library/Caches/com.feedsapp.Feeds',
+               '~/Library/Logs/Feeds',
+               '~/Library/Preferences/com.feedsapp.Feeds.plist',
+             ]
 end

@@ -1,15 +1,13 @@
-cask :v1 => 'houdahspot' do
-  version :latest
-  sha256 :no_check
+cask 'houdahspot' do
+  version '5.0.7'
+  sha256 'df57bc36042450d9213afe9c28eba4796f186344ea7379028066f9b721416d13'
 
-  url 'http://www.houdah.com/houdahSpot/download_assets/HoudahSpot_latest.zip'
-  appcast 'http://www.houdah.com/houdahSpot/updates/profileInfo3.php'
-  homepage 'http://www.houdah.com/houdahSpot/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.houdah.com/HoudahSpot#{version}.zip"
+  appcast "https://www.houdah.com/houdahSpot/updates/cast#{version.major}.xml"
+  name 'HoudahSpot'
+  homepage 'https://www.houdah.com/houdahSpot/'
+
+  depends_on macos: '>= :high_sierra'
 
   app 'HoudahSpot.app'
-
-  postflight do
-    suppress_move_to_applications
-  end
 end

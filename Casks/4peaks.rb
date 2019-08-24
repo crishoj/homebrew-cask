@@ -1,11 +1,10 @@
-cask :v1 => '4peaks' do
+cask '4peaks' do
   version :latest
   sha256 :no_check
 
-  url 'http://nucleobytes.com/4peaks/download'
+  url 'http://downloads.nucleobytes.com/4peaks.dmg'
   name '4Peaks'
-  homepage 'http://nucleobytes.com/index.php/4peaks'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://nucleobytes.com/4peaks/index.html'
 
   app '4Peaks.app'
 end

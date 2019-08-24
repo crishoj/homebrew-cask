@@ -1,11 +1,12 @@
-cask :v1 => 'itools' do
-  version '2.4.3'
-  sha256 '4d17f188c710649a952eb66b75989fe739e848fc98db1970bf98fca0ae3f8cf9'
+cask 'itools' do
+  version '2.9.2'
+  sha256 'cd74e55b8b92a8c1a75278ad7c02baf5521b51241505620c282e9547cd20afcd'
 
-  url "http://dl2.itools.hk/dl/iTools_#{version}.dmg"
+  # dl2.itools.hk/dl was verified as official when first introduced to the cask
+  url "http://dl2.itools.hk/dl/iTools64_#{version}.dmg"
+  appcast 'http://dl2.itools.hk/update/iTools64ForMacCast.xml'
   name 'iTools'
-  homepage 'http://pro.itools.cn/mac'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://pro.itools.cn/mac/english'
 
   app 'iTools.app'
 end

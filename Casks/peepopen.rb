@@ -1,11 +1,10 @@
-cask :v1 => 'peepopen' do
+cask 'peepopen' do
   version :latest
   sha256 :no_check
 
   url 'https://topfunky.github.io/PeepOpen/dl/PeepOpen.dmg'
-  appcast 'https://peepcode.com/system/apps/PeepOpen/appcast.xml'
-  homepage 'http://topfunky.github.io/PeepOpen/'
-  license :oss
+  name 'PeepOpen'
+  homepage 'https://topfunky.github.io/PeepOpen/'
 
   app 'PeepOpen.app'
 end

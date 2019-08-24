@@ -1,10 +1,17 @@
-cask :v1 => 'unicodechecker' do
-  version :latest
-  sha256 :no_check
+cask 'unicodechecker' do
+  version '1.21.1,755'
+  sha256 '0b6019277bade20ccd2904adf0fd29c7395ab495e02ace8c5b58d4e33ebd6587'
 
-  url 'http://earthlingsoft.net/UnicodeChecker/UnicodeChecker.dmg'
-  homepage 'http://earthlingsoft.net/UnicodeChecker/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url 'https://earthlingsoft.net/UnicodeChecker/UnicodeChecker.zip'
+  appcast 'https://earthlingsoft.net/UnicodeChecker/appcast.xml'
+  name 'UnicodeChecker'
+  homepage 'https://earthlingsoft.net/UnicodeChecker/'
 
-  app 'UnicodeChecker.app'
+  app "UnicodeChecker #{version.before_comma} (#{version.after_comma})/UnicodeChecker.app"
+
+  zap trash: [
+               '~/Library/Application Support/UnicodeChecker',
+               '~/Library/Caches/net.earthlingsoft.UnicodeChecker',
+               '~/Library/Preferences/net.earthlingsoft.UnicodeChecker.plist',
+             ]
 end

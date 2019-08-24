@@ -1,26 +1,27 @@
-cask :v1 => 'launchbar' do
-
-  if MacOS.release <= :mountain_lion
-    version '5.6.4'
-    sha256 '22a1ec0c10de940e5efbcccd18b8b048d95fb7c63213a01c7976a76d6be69a4d'
-    url "http://www.obdev.at/downloads/launchbar/legacy/LaunchBar-#{version}.dmg"
+cask 'launchbar' do
+  if MacOS.version <= :mavericks
+    version '6.9.7'
+    sha256 'e1623c77a85857ec3191a82b8932909200f8d183bb654e9caa77e9c14afd7a63'
+    url "https://www.obdev.at/downloads/launchbar/legacy/LaunchBar-#{version}.dmg"
   else
-    version '6.1.6'
-    sha256 '7ae2d6fdb9d12817cd1ed49cfd35606cb7f3a3162c369108555ee8adc2940335'
-    url "http://www.obdev.at/downloads/launchbar/LaunchBar-#{version}.dmg"
+    version '6.11.1'
+    sha256 'de761526614a14885cfb096c2e3b4d5440f45b73110fadce0e949c5ea6ef3fb8'
+
+    url "https://www.obdev.at/downloads/launchbar/LaunchBar-#{version}.dmg"
+    appcast "https://sw-update.obdev.at/update-feeds/launchbar-#{version.major}.plist"
   end
 
-  homepage 'http://www.obdev.at/products/launchbar/'
-  license :commercial
+  name 'LaunchBar'
+  homepage 'https://www.obdev.at/products/launchbar/index.html'
+
+  auto_updates true
 
   app 'LaunchBar.app'
 
-  zap :delete => [
-                  '~/Library/Preferences/at.obdev.LaunchBar.plist',
-                  '~/Library/Application Support/LaunchBar/Configuration.plist',
-                  '~/Library/Application Support/LaunchBar/CustomShortcuts.plist',
-                  # todo unsure if these contain user-created content
-                  # '~/Library/Application Support/LaunchBar/Actions',
-                  # '~/Library/Application Support/LaunchBar/Snippets',
-                 ]
+  zap trash: [
+               '~/Library/Application Support/LaunchBar',
+               '~/Library/Caches/at.obdev.LaunchBar',
+               '~/Library/Preferences/at.obdev.LaunchBar.plist',
+               '~/Library/Saved Application State/at.obdev.LaunchBar.savedState',
+             ]
 end

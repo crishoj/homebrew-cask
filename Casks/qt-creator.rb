@@ -1,10 +1,14 @@
-cask :v1 => 'qt-creator' do
-  version '3.3.0'
-  sha256 '5e5491f6c82d3cb57b3ccc186b5b239ca52c2144034da92fc72ad7e8e6788045'
+cask 'qt-creator' do
+  version '4.9.2'
+  sha256 '6a724b9648602d36732855873b5d5cf98bd7d05d9e3f436bc511653f9b955c7b'
 
-  url "https://download.qt-project.org/official_releases/qtcreator/#{version.sub(%r{^(\d+\.\d+).*},'\1')}/#{version}/qt-creator-opensource-mac-x86_64-#{version}.dmg"
-  homepage 'http://qt-project.org/'
-  license :oss
+  url "https://download.qt.io/official_releases/qtcreator/#{version.major_minor}/#{version}/qt-creator-opensource-mac-x86_64-#{version}.dmg"
+  appcast 'https://download.qt.io/official_releases/qtcreator/',
+          configuration: version.major_minor
+  name 'Qt Creator'
+  homepage 'https://www.qt.io/developers/'
+
+  depends_on macos: '>= :sierra'
 
   app 'Qt Creator.app'
 end

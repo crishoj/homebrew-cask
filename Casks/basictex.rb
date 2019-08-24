@@ -1,15 +1,34 @@
-cask :v1 => 'basictex' do
-  version '20140807'
-  sha256 '02b2c0160ddd7a74f25b2ea58d1a79deec9b2230ff41d0c45c1c3157fa607afc'
+cask 'basictex' do
+  version '2019.0410'
+  sha256 '1472f6d03a239907c78a150c88909a16b1abf98ffec33f29c3bd1b3d3b394290'
 
-  url "http://mirror.ctan.org/systems/mac/mactex/basictex#{version}.pkg"
-  homepage 'http://www.tug.org/mactex/morepackages.html'
-  license :oss
+  # mirror.ctan.org/systems/mac/mactex was verified as official when first introduced to the cask
+  url "http://mirror.ctan.org/systems/mac/mactex/mactex-basictex-#{version.no_dots}.pkg"
+  name 'BasicTeX'
+  homepage 'https://www.tug.org/mactex/morepackages.html'
 
-  pkg "basictex#{version}.pkg"
+  conflicts_with cask: [
+                         'mactex-no-gui',
+                         'mactex',
+                       ]
+  depends_on macos: '>= :sierra'
 
-  uninstall :pkgutil => 'org.tug.mactex.basictex2014'
-  caveats do
-    path_environment_variable '/usr/texbin'
-  end
+  pkg "mactex-basictex-#{version.no_dots}.pkg"
+
+  uninstall pkgutil: "org.tug.mactex.basictex#{version.major}",
+            delete:  [
+                       "/usr/local/texlive/#{version.major}basic",
+                       '/etc/paths.d/TeX',
+                       '/etc/manpaths.d/TeX',
+                       '/Library/TeX',
+                     ]
+
+  zap trash: [
+               '/usr/local/texlive/texmf-local',
+               "~/Library/texlive/#{version.major}basic",
+             ],
+      rmdir: [
+               '/usr/local/texlive',
+               '~/Library/texlive',
+             ]
 end

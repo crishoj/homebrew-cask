@@ -1,12 +1,13 @@
-cask :v1 => 'lastpass' do
-  version :latest
-  sha256 :no_check
+cask 'lastpass' do
+  version '4.32.0'
+  sha256 '61a4bddc08da7c61cc1f95dd6a19d90400d46554ba6dcc69158cd8b65d70511e'
 
-  url 'https://lastpass.com/download/cdn/lpmacosx.zip'
-  homepage 'https://lastpass.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url 'https://download.cloud.lastpass.com/mac/LastPass.dmg'
+  appcast 'https://download.cloud.lastpass.com/mac/AppCast.xml'
+  name 'LastPass'
+  homepage 'https://www.lastpass.com/'
 
-  installer :manual => 'LastPass Installer.app'
+  depends_on macos: '>= :sierra'
 
-  uninstall :script => 'Uninstaller.app/Contents/Resources/uninstall.sh'
+  app 'LastPass.app'
 end

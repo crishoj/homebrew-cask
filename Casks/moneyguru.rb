@@ -1,11 +1,11 @@
-cask :v1 => 'moneyguru' do
-  version '2.8.1'
-  sha256 '3f2ef4c2ccbb1b363159057ecc2cf19193017d9bef5298e5aad26dbe58d82bf2'
+cask 'moneyguru' do
+  version '2.11.0'
+  sha256 '73a7a883b7a1b9a8bb882be0b987756990f2ccfcaafaba3a5531e4fe57e6c38c'
 
-  url "http://download.hardcoded.net/moneyguru_osx_#{version.gsub('.', '_')}.dmg"
+  url "https://download.hardcoded.net/moneyguru_osx_#{version.dots_to_underscores}.dmg"
+  appcast 'https://www.hardcoded.net/moneyguru/'
   name 'moneyGuru'
-  homepage 'http://www.hardcoded.net/moneyguru/'
-  license :bsd
+  homepage 'https://www.hardcoded.net/moneyguru/'
 
   app 'moneyGuru.app'
 end

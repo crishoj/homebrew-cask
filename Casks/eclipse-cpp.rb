@@ -1,16 +1,11 @@
-cask :v1 => 'eclipse-cpp' do
-  version '4.4.1'
+cask 'eclipse-cpp' do
+  version '4.12.0,2019-06:R'
+  sha256 'f37d1a77ceb538f1a3a766b23b19e6e77814c008735b29b354f206ea20baa040'
 
-  if Hardware::CPU.is_32_bit?
-    sha256 'bc208f2d3cedeecd721dc8e19d1d1a379ba5b3a295d5622071f8f5a2c1b98905'
-    url 'http://download.eclipse.org/technology/epp/downloads/release/luna/SR1/eclipse-cpp-luna-SR1-macosx-cocoa.tar.gz'
-  else
-    sha256 'bd2fe24d261f8ae7e49cd33cf3b111aad279bdc64cc31efb2cd1fea789d5ae46'
-    url 'http://mirror.cc.vt.edu/pub/eclipse/technology/epp/downloads/release/luna/SR1/eclipse-cpp-luna-SR1-macosx-cocoa-x86_64.tar.gz'
-  end
+  url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.after_comma.before_colon}/#{version.after_colon}/eclipse-cpp-#{version.after_comma.before_colon}-#{version.after_colon}-macosx-cocoa-x86_64.dmg&r=1"
+  name 'Eclipse IDE for C/C++ Developers'
+  homepage 'https://eclipse.org/'
 
-  homepage 'http://eclipse.org/'
-  license :eclipse
-
-  app 'eclipse/Eclipse.app'
+  # Renamed to avoid conflict with other Eclipse.
+  app 'Eclipse.app', target: 'Eclipse CPP.app'
 end

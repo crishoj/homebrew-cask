@@ -1,10 +1,14 @@
-cask :v1 => 'lmms' do
-  version '1.0.99'
-  sha256 '2ce390337a2ee372f76812b5c308ac8f3faad6981d99f0eb3b843149e3ebc98c'
+cask 'lmms' do
+  version '1.2.0'
+  sha256 'e258aa298b0bdab3b7be88933a83f24bddf39ac62ffaa1c20ecc5927b313bfbf'
 
-  url "https://github.com/LMMS/lmms/releases/download/v#{version}/lmms-#{version}.dmg"
-  homepage 'https://lmms.io'
-  license :gpl
+  # github.com/LMMS/lmms was verified as official when first introduced to the cask
+  url "https://github.com/LMMS/lmms/releases/download/v#{version}/lmms-#{version}-mac10.13.dmg"
+  appcast 'https://github.com/LMMS/lmms/releases.atom'
+  name 'LMMS'
+  homepage 'https://lmms.io/'
+
+  depends_on macos: '>= :high_sierra'
 
   app 'LMMS.app'
 end

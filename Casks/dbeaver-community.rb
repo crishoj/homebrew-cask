@@ -1,16 +1,16 @@
-cask :v1 => 'dbeaver-community' do
-  version '3.1.1'
+cask 'dbeaver-community' do
+  version '6.1.5'
+  sha256 '519d13a895b4a258eeed850b9955430cbb703de3665c13175ea0dfe870d84ba2'
 
-  if Hardware::CPU.is_32_bit?
-    sha256 '0e1eef7f80d880a895fdd8bc205edfa3c82b2d4165de25cfd5c6bd8292682707'
-    url "http://dbeaver.jkiss.org/files/dbeaver-#{version}-macosx.cocoa.x86.zip"
-  else
-    sha256 '77eff21ec2b49cf7473aa1fff3b7ccf99ddf93c48470414376f002263f324ef7'
-    url "http://dbeaver.jkiss.org/files/dbeaver-#{version}-macosx.cocoa.x86_64.zip"
+  # github.com/dbeaver/dbeaver was verified as official when first introduced to the cask
+  url "https://github.com/dbeaver/dbeaver/releases/download/#{version}/dbeaver-ce-#{version}-macos.dmg"
+  appcast 'https://github.com/dbeaver/dbeaver/releases.atom'
+  name 'DBeaver Community Edition'
+  homepage 'https://dbeaver.io/'
+
+  app 'DBeaver.app'
+
+  caveats do
+    depends_on_java '8+'
   end
-
-  homepage 'http://dbeaver.jkiss.org/'
-  license :oss
-
-  app 'dbeaver/dbeaver.app'
 end

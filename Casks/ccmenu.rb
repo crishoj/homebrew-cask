@@ -1,13 +1,12 @@
-cask :v1 => 'ccmenu' do
-  version '1.8'
-  sha256 'e2d36083388b4c68c1dff396393f4d3b2df614ff09deca1fdd9bbba286f7faa5'
+cask 'ccmenu' do
+  version '14.0'
+  sha256 '6e8c88c0de1db8206274109011db37b7ce53d63fdbed11de0057f967d7959976'
 
-  url "http://downloads.sourceforge.net/project/ccmenu/CCMenu/#{version}/ccmenu-#{version}-b.dmg"
-  appcast 'http://ccmenu.sourceforge.net/update-stable.xml',
-          :sha256 => 'a72951f416906d309cb7ec8d233bf5546540641efa99332e0f1bdde119b51cac'
+  # github.com/erikdoe/ccmenu was verified as official when first introduced to the cask
+  url "https://github.com/erikdoe/ccmenu/releases/download/v#{version}/CCMenu.app.zip"
+  appcast 'https://github.com/erikdoe/ccmenu/releases.atom'
   name 'CCMenu'
-  homepage 'http://ccmenu.sourceforge.net/'
-  license :oss
+  homepage 'http://ccmenu.org/'
 
   app 'CCMenu.app'
 end

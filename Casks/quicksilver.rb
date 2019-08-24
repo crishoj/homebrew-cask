@@ -1,15 +1,18 @@
-cask :v1 => 'quicksilver' do
-  version '1.2.2'
-  sha256 'bd11b3671ddc104e80ceefd017aae137f9f09e021f8f0af0c8c905130e329d85'
+cask 'quicksilver' do
+  version '1.6.0'
+  sha256 '7844afa8af6c4724ae736db82e5359407b845e4d77827d538295c2ce4f91879f'
 
-  url 'http://cdn.qsapp.com/plugins/files/com.blacktree.Quicksilver__16401.dmg'
-  homepage 'http://qsapp.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://qsapp.com/archives/downloads/Quicksilver%20#{version}.dmg"
+  appcast 'https://qsapp.com/archives/'
+  name 'Quicksilver'
+  homepage 'https://qsapp.com/'
+
+  auto_updates true
 
   app 'Quicksilver.app'
 
-  zap :delete => [
-                  '~/Library/Preferences/com.blacktree.Quicksilver.plist',
-                  '~/Library/Application Support/Quicksilver',
-                 ]
+  zap trash: [
+               '~/Library/Preferences/com.blacktree.Quicksilver.plist',
+               '~/Library/Application Support/Quicksilver',
+             ]
 end

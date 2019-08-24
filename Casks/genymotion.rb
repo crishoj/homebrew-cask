@@ -1,11 +1,15 @@
-cask :v1 => 'genymotion' do
-  version '2.3.1'
-  sha256 'aa41be79a773ccf3a6b68971088c38ef34ff864128c57b09a8362b878f4534e0'
+cask 'genymotion' do
+  version '3.0.2'
+  sha256 '97e7cc585eea32ddc8a55494d31046760e70ea42f8de11bddf9f7a2970d46b16'
 
-  url "http://files2.genymotion.com/genymotion/genymotion-#{version}/genymotion-#{version}.dmg"
-  homepage 'http://www.genymotion.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://dl.genymotion.com/releases/genymotion-#{version}/genymotion-#{version}.dmg"
+  appcast 'https://www.genymotion.com/product-release-note/desktop/'
+  name 'Genymotion'
+  homepage 'https://www.genymotion.com/'
+
+  depends_on cask: 'virtualbox'
 
   app 'Genymotion.app'
   app 'Genymotion Shell.app'
+  binary "#{appdir}/Genymotion Shell.app/Contents/MacOS/genyshell"
 end

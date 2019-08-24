@@ -1,12 +1,15 @@
-cask :v1 => 'odrive' do
-  version '2712'
-  sha256 'd7782b822b057cdb8b7ff7883296c7c546601cfdf6647ce66bddd3ace89bbcc6'
+cask 'odrive' do
+  version '6529'
+  sha256 'a7154bb7818cd4a4c2d848b0d611616632635587917194761d06d9430df94c14'
 
-  url "http://cdn-mac.odrive.com/odrive.#{version}.dmg"
-  homepage 'http://www.odrive.com'
-  license :gratis
+  # downloads can be found at https://www.odrive.com/downloaddesktop
+  # d3huse1s6vwzq6.cloudfront.net was verified as official when first introduced to the cask
+  url "https://d3huse1s6vwzq6.cloudfront.net/odrivesync.#{version}.dmg"
+  appcast 'https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://www.odrive.com/downloaddesktop?platform=mac'
+  name 'odrive'
+  homepage 'https://www.odrive.com/'
 
   pkg "odrive.#{version}.pkg"
 
-  uninstall :pkgutil => 'com.oxygencloud.odrive.*'
+  uninstall pkgutil: 'com.oxygen.odrive.*'
 end

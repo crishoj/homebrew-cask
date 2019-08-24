@@ -1,10 +1,12 @@
-cask :v1 => 'stella' do
-  version '3.9.3'
-  sha256 '83870088368be20224ed51f52e9babe53a75575495279adc596203f123e8477c'
+cask 'stella' do
+  version '6.0.1'
+  sha256 '177773f4b2b1227cd09dd61dd77b222ea3e4d606136425c8c249d0791b6d1da4'
 
-  url "http://downloads.sourceforge.net/project/stella/stella/#{version}/Stella-#{version}_intel-macosx.dmg"
-  homepage 'http://stella.sourceforge.net'
-  license :oss
+  # github.com/stella-emu/stella was verified as official when first introduced to the cask
+  url "https://github.com/stella-emu/stella/releases/download/#{version}/Stella-#{version}-macos.dmg"
+  appcast 'https://github.com/stella-emu/stella/releases.atom'
+  name 'Stella'
+  homepage 'https://stella-emu.github.io/'
 
   app 'Stella.app'
 end

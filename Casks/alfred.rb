@@ -1,16 +1,24 @@
-cask :v1 => 'alfred' do
-  version '2.5.1_308'
-  sha256 '06e55eed65c3e09bffd385a11a695ebd7df79a5303690e9cb197a0b72782e2dc'
+cask 'alfred' do
+  version '4.0.3_1092'
+  sha256 'bf341db22e66501d898ae716cb64dbcb146ab4925a0b2e3eb02f34734d73ddac'
 
-  url "https://cachefly.alfredapp.com/Alfred_#{version}.zip"
+  url "https://cachefly.alfredapp.com/Alfred_#{version}.dmg"
+  appcast "https://www.alfredapp.com/app/update#{version.major}/general.xml"
   name 'Alfred'
-  homepage 'http://www.alfredapp.com/'
-  license :commercial
+  homepage 'https://www.alfredapp.com/'
 
-  app 'Alfred 2.app'
-  app 'Alfred 2.app/Contents/Preferences/Alfred Preferences.app'
+  auto_updates true
 
-  postflight do
-    suppress_move_to_applications :key => 'suppressMoveToApplications'
-  end
+  app "Alfred #{version.major}.app"
+
+  uninstall quit:       'com.runningwithcrayons.Alfred',
+            login_item: 'Alfred'
+
+  zap trash: [
+               '~/Library/Application Support/Alfred',
+               '~/Library/Caches/com.runningwithcrayons.Alfred',
+               '~/Library/Preferences/com.runningwithcrayons.Alfred.plist',
+               '~/Library/Preferences/com.runningwithcrayons.Alfred-Preferences.plist',
+               '~/Library/Saved Application State/com.runningwithcrayons.Alfred-Preferences.savedState',
+             ]
 end

@@ -1,18 +1,16 @@
-cask :v1 => 'middleclick' do
-  version :latest
-  sha256 :no_check
+cask 'middleclick' do
+  version '1.0'
+  sha256 'a83a329493b9140cb73b418ddfa2e921555fc7706a11d8ec2ba13c4016392aca'
 
-  if MacOS.release <= :lion
-    url 'http://clement.beffa.org/labs/downloads/MiddleClick.zip'
-  elsif MacOS.release == :mountain_lion
-    url 'http://clement.beffa.org/labs/downloads/MiddleClick_ml.zip'
-  else
-    url 'http://clement.beffa.org/labs/downloads/MiddleClick-maverick.zip'
-  end
-
+  # github.com was verified as official when first introduced to the cask
+  url 'https://github.com/cl3m/MiddleClick/releases/download/mojave/MiddleClick_Mojave.zip'
+  appcast 'https://github.com/cl3m/MiddleClick/releases.atom'
   name 'MiddleClick'
-  homepage 'http://clement.beffa.org/labs/projects/middleclick'
-  license :gpl
+  homepage 'https://rouge41.com/labs/'
 
   app 'MiddleClick.app'
+
+  caveats do
+    discontinued
+  end
 end

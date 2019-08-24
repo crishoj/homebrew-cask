@@ -1,11 +1,11 @@
-cask :v1 => 'chronicle' do
-  version :latest
-  sha256 :no_check
+cask 'chronicle' do
+  version '9.1.1'
+  sha256 '883b3ca116959481448b84f1179043edee98f662be7699a74dc83e1557f81ca9'
 
-  url 'http://chronicleapp.com/static/downloads/chronicle.zip'
-  appcast 'http://www.littlefin.com/downloads/chronicle3.xml'
-  homepage 'http://chronicleapp.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url 'https://www.chronicleapp.com/static/downloads/chroniclepro.zip'
+  appcast 'http://www.littlefin.com/downloads/chronicle8.xml'
+  name 'Chronicle'
+  homepage 'https://chronicleapp.com/'
 
-  app 'Chronicle.app'
+  app 'Chronicle Pro.app'
 end

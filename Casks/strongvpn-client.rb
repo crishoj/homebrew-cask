@@ -1,13 +1,12 @@
-cask :v1 => 'strongvpn-client' do
-  version '1.1.4'
-  sha256 '7058980325ba50fde4b3bbb2f21d7b5e4d49b57ce87eaaae08aef47063522af4'
+cask 'strongvpn-client' do
+  version '1.2.0,b200'
+  sha256 '4b50f4f330394f141ffe9417eccdb86eaef9a595c2e5da238d7fee17b818fdb2'
 
-  # reliablehosting.com is the official download host per the vendor homepage
-  url "https://mirror2.reliablehosting.com/mac/StrongVPN_Mac_#{version}.zip"
-  appcast 'https://colomovers.com/mac.xml',
-          :sha256 => 'd3d2168154069fbcd2ca42eb7167cf9b411230d3c58ac4367b46139011c0415f'
-  homepage 'http://strongvpn.com/vpnclient.shtml'
-  license :closed
+  # mirror2.reliablehosting.com/mac was verified as official when first introduced to the cask
+  url "https://mirror2.reliablehosting.com/mac/StrongVPN_Mac_#{version.before_comma}.zip"
+  appcast 'https://colomovers.com/mac.xml'
+  name 'StrongVPN'
+  homepage 'https://strongvpn.com/setup.html/'
 
-  app 'StrongVPN Client.app'
+  app "StrongVPN Client_#{version.before_comma}_#{version.after_comma}/StrongVPN Client.app"
 end

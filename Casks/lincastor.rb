@@ -1,11 +1,14 @@
-cask :v1 => 'lincastor' do
-  version :latest
-  sha256 :no_check
+cask 'lincastor' do
+  version '2.2'
+  sha256 'f4cbbe5f684025fea27839372b7b143b89f9bebd0024a4df03ba33aab48aea88'
 
-  # dropboxusercontent.com is the official download host per the vendor homepage
-  url 'https://dl.dropboxusercontent.com/u/7614970/LinCastor.zip'
-  homepage 'http://onflapp.wordpress.com/lincastor/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # onflapp.github.io/blog/releases was verified as official when first introduced to the cask
+  url 'https://onflapp.github.io/blog/releases/lincastor/LinCastor.zip'
+  appcast 'https://onflapp.github.io/blog/releases/lincastor/appcast.xml'
+  name 'LinCastor'
+  homepage 'https://onflapp.wordpress.com/lincastor/'
+
+  depends_on macos: '>= :sierra'
 
   app 'LinCastor.app'
 end

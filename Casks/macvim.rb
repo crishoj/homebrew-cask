@@ -1,33 +1,32 @@
-cask :v1 => 'macvim' do
-  version '7.4-73'
+cask 'macvim' do
+  version '8.1.1722,157'
+  sha256 '5bca133cc2aae4e13e880ad466f376ac2d45e3480a104af6e9248ee6067cde19'
 
-  if MacOS.release <= :mountain_lion
-    sha256 '7f573fb9693052a86845c0a9cbb0b3c3c33ee23294f9d8111187377e4d89f72c'
-    url "https://github.com/eee19/macvim/releases/download/snapshot-#{version.sub(%r{^.*-},'')}/MacVim-snapshot-#{version.sub(%r{^.*-},'')}-Mountain-Lion.tbz"
-  else
-    sha256 '557c60f3487ab68426cf982c86270f2adfd15e8a4d535f762e6d55602754d224'
-    url "https://github.com/b4winckler/macvim/releases/download/snapshot-#{version.sub(%r{^.*-},'')}/MacVim-snapshot-#{version.sub(%r{^.*-},'')}-Mavericks.tbz"
-    appcast 'http://b4winckler.github.com/macvim/appcast/stable.xml',
-            :sha256 => '1408f192fe672eb99d7032eff37bd93537d65499fa9b4502eb0ae1365a73d056'
-  end
+  url "https://github.com/macvim-dev/macvim/releases/download/snapshot-#{version.after_comma}/MacVim.dmg"
+  appcast 'https://github.com/macvim-dev/macvim/releases.atom'
+  name 'MacVim'
+  homepage 'https://github.com/macvim-dev/macvim'
 
-  homepage 'http://code.google.com/p/macvim/'
-  license :oss
+  auto_updates true
+  conflicts_with formula: 'macvim'
 
-  app "MacVim-snapshot-#{version.sub(%r{^.*-},'')}/MacVim.app"
-  binary "MacVim-snapshot-#{version.sub(%r{^.*-},'')}/mvim"
+  app 'MacVim.app'
 
-  zap :delete => [
-                  '~/Library/Preferences/org.vim.MacVim.LSSharedFileList.plist',
-                  '~/Library/Preferences/org.vim.MacVim.plist',
-                 ]
+  [
+    'gview',
+    'gvim',
+    'gvimdiff',
+    'mview',
+    'mvim',
+    'mvimdiff',
+    'view',
+    'vim',
+    'vimdiff',
+  ].each { |link_name| binary "#{appdir}/MacVim.app/Contents/bin/mvim", target: link_name }
 
-  caveats do
-    files_in_usr_local
-    <<-EOS.undent
-      Note that homebrew also provides a compiled macvim Formula that links its
-      binary to /usr/local/bin/mvim. It's not recommended to install both the
-      Cask and the Formula of MacVim.
-    EOS
-  end
+  zap trash: [
+               '~/Library/Caches/org.vim.MacVim',
+               '~/Library/Preferences/org.vim.MacVim.LSSharedFileList.plist',
+               '~/Library/Preferences/org.vim.MacVim.plist',
+             ]
 end

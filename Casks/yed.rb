@@ -1,10 +1,11 @@
-cask :v1 => 'yed' do
-  version '3.13'
-  sha256 'b597d7468cef6981ed364a17c525a8b83d0818fd016c21f3efc6e3ea99922d1d'
+cask 'yed' do
+  version '3.19'
+  sha256 '5deca45e973072b6f60896e26128c8b410232ed48337375d4662798affa1aae9'
 
-  url "http://www.yworks.com/products/yed/demo/yEd-#{version}.dmg"
-  homepage 'http://www.yworks.com/en/products_yed_about.html'
-  license :unknown # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.yworks.com/resources/yed/demo/yEd-#{version}_with-JRE10.dmg"
+  appcast 'https://www.yworks.com/products/yed/download#download'
+  name 'yWorks yEd'
+  homepage 'https://www.yworks.com/products/yed'
 
   app 'yEd.app'
 end

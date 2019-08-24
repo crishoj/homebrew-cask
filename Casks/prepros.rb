@@ -1,10 +1,12 @@
-cask :v1 => 'prepros' do
-  version '4.0.1'
-  sha256 '84510d1252274898b0fc4f95828b60e29a2c946a158bbf7d3188611c62dcd3b1'
+cask 'prepros' do
+  version '6.3.0'
+  sha256 '575ea35fbcbf55a421b44e9812558b88384dffc7345fa94e77e2947c90ae5fff'
 
-  url "http://download.alphapixels.com/Prepros-#{version}.zip"
-  homepage 'http://alphapixels.com/prepros/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # prepros-6.nyc3.cdn.digitaloceanspaces.com was verified as official when first introduced to the cask
+  url "https://prepros-6.nyc3.cdn.digitaloceanspaces.com/stable/Prepros-Mac-#{version}.zip"
+  appcast 'https://prepros.io/changelog'
+  name 'Prepros'
+  homepage 'https://prepros.io/'
 
   app 'Prepros.app'
 end

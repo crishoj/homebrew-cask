@@ -1,10 +1,19 @@
-cask :v1 => 'deltawalker' do
-  version '2.0.1'
-  sha256 'eae3127fb05d84885c91e7ce5da5277aaaf128fd53225d1721d66456719b82fa'
+cask 'deltawalker' do
+  version '2.5.1'
+  sha256 'fa25263ad38e2a61334fee88603e0b67ba098147376d7812dff1aeb6cc2f9e64'
 
-  url "https://s3.amazonaws.com/deltawalker/DeltaWalker-#{version}_64.dmg"
-  homepage 'http://www.deltopia.com/compare-merge-sync/macosx/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # deltawalker.s3.amazonaws.com was verified as official when first introduced to the cask
+  url "https://deltawalker.s3.amazonaws.com/DeltaWalker-#{version}.dmg"
+  appcast 'https://www.deltawalker.com/assets/js/main.js'
+  name 'DeltaWalker'
+  homepage 'https://www.deltawalker.com/'
 
   app 'DeltaWalker.app'
+
+  zap trash: [
+               '~/Library/Caches/com.deltopia.DeltaWalker',
+               '~/Library/Containers/com.deltopia.DeltaWalker',
+               '~/Library/Preferences/com.deltopia.DeltaWalker.plist',
+               '~/Library/Saved Application State/com.deltopia.DeltaWalker.savedState',
+             ]
 end

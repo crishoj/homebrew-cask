@@ -1,32 +1,27 @@
-cask :v1 => 'intellij-idea-ce' do
-  version '14.0.2'
-  sha256 'e03e2a60b4bc067575cd75d27cc3b59209dcbd68c0567a8f24ab19d83ac1c986'
+cask 'intellij-idea-ce' do
+  version '2019.2.1,192.6262.58'
+  sha256 '2d029854a38817ba295d805dd09a0106c614e1956238a63f3db77bdfb1a466d4'
 
-  url "http://download.jetbrains.com/idea/ideaIC-#{version}.dmg"
+  url "https://download.jetbrains.com/idea/ideaIC-#{version.before_comma}.dmg"
+  appcast 'https://data.services.jetbrains.com/products/releases?code=IIC&latest=true&type=release'
+  name 'IntelliJ IDEA Community Edition'
+  name 'IntelliJ IDEA CE'
   homepage 'https://www.jetbrains.com/idea/'
-  license :oss
 
-  app 'IntelliJ IDEA 14 CE.app'
+  auto_updates true
 
-  postflight do
-    plist_set(':JVMOptions:JVMVersion', '1.6+')
+  app 'IntelliJ IDEA CE.app'
+
+  uninstall_postflight do
+    ENV['PATH'].split(File::PATH_SEPARATOR).map { |path| File.join(path, 'idea') }.each { |path| File.delete(path) if File.exist?(path) && File.readlines(path).grep(%r{# see com.intellij.idea.SocketLock for the server side of this interface}).any? }
   end
 
-  zap :delete => [
-                  '~/Library/Application Support/IdeaIC14',
-                  '~/Library/Preferences/IdeaIC14',
-                  '~/Library/Caches/IdeaIC14',
-                  '~/Library/Logs/IdeaIC14',
-                 ]
-
-  caveats <<-EOS.undent
-    #{token} may require Java 7 (an older version), available from the
-    caskroom-versions repository via
-
-      brew cask install caskroom/versions/java7
-
-    Alternatively, #{token} can be modified to use Java 8 as described in
-
-      https://github.com/caskroom/homebrew-cask/issues/4500#issuecomment-43955932
-  EOS
+  zap trash: [
+               "~/Library/Application Support/IdeaIC#{version.major_minor}",
+               "~/Library/Caches/IdeaIC#{version.major_minor}",
+               "~/Library/Logs/IdeaIC#{version.major_minor}",
+               "~/Library/Preferences/IdeaIC#{version.major_minor}",
+               '~/Library/Preferences/com.jetbrains.intellij.ce.plist',
+               '~/Library/Saved Application State/com.jetbrains.intellij.ce.savedState',
+             ]
 end

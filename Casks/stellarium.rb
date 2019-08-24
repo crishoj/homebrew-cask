@@ -1,10 +1,16 @@
-cask :v1 => 'stellarium' do
-  version '0.13.1'
-  sha256 '79f7835a799680c07a00dcb0687a135c8f61fd9e2f46978de069d5f1df631f44'
+cask 'stellarium' do
+  version '0.19.1'
+  sha256 'e2d0fc688dd8e47c6f420610e4491003d519926c9ba1e5fffb0d5e17835b586d'
 
-  url "http://downloads.sourceforge.net/sourceforge/stellarium/Stellarium-#{version}.dmg"
-  homepage 'http://stellarium.org'
-  license :oss
+  # github.com/Stellarium/stellarium was verified as official when first introduced to the cask
+  url "https://github.com/Stellarium/stellarium/releases/download/v#{version}/Stellarium-#{version}.dmg"
+  appcast 'https://github.com/Stellarium/stellarium/releases.atom'
+  name 'Stellarium'
+  homepage 'https://stellarium.org/'
+
+  depends_on macos: '>= :yosemite'
 
   app 'Stellarium.app'
+
+  zap trash: '~/Library/Preferences/Stellarium'
 end

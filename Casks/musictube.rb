@@ -1,11 +1,11 @@
-cask :v1 => 'musictube' do
-  version :latest
-  sha256 :no_check
+cask 'musictube' do
+  version '1.9'
+  sha256 '6f43a8007d2d9f172c18ce96545fce788b7f92074fb4b61fcf0a56559181a4b3'
 
-  url 'http://flavio.tordini.org/files/musictube/musictube.dmg'
-  appcast 'http://flavio.tordini.org/musictube-ws/appcast.xml'
-  homepage 'http://flavio.tordini.org/musictube'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url 'https://flavio.tordini.org/files/musictube/musictube.dmg'
+  appcast 'https://flavio.tordini.org/musictube-ws/appcast.xml'
+  name 'Musictube'
+  homepage 'https://flavio.tordini.org/musictube'
 
   app 'Musictube.app'
 end

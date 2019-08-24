@@ -1,10 +1,11 @@
-cask :v1 => 'delicious-library' do
-  version :latest
-  sha256 :no_check
+cask 'delicious-library' do
+  version '3.8.3'
+  sha256 '67e895f25b1c29515a860c08070cbb073c76cd3beb32cb3cd115b8e52d88f61e'
 
-  url 'http://delicious-monster.com/downloads/DeliciousLibrary3.zip'
-  homepage 'http://delicious-monster.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://delicious-monster.com/downloads/DeliciousLibrary#{version.major}/v#{version}/DeliciousLibrary#{version.major}.zip"
+  appcast "https://www.delicious-monster.com/downloads/DeliciousLibrary#{version.major}.xml"
+  name 'Delicious Library'
+  homepage 'https://delicious-monster.com/'
 
-  app 'Delicious Library 3.app'
+  app "Delicious Library #{version.major}.app"
 end

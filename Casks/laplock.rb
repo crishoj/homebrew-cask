@@ -1,11 +1,17 @@
-cask :v1 => 'laplock' do
-  version :latest
-  sha256 :no_check
+cask 'laplock' do
+  version '1.1.1'
+  sha256 '5ef75506d5fb6c79bc5a4de0ea6feccd32120a180da30a185f2b886fb0bedf2d'
 
-  # amazonaws is the official download host per the vendor homepage
-  url 'https://s3-eu-west-1.amazonaws.com/laplock/laplock.app.zip'
-  homepage 'http://beta.vyte.in/laplock-www/'
-  license :gratis
+  # laplock.s3.amazonaws.com was verified as official when first introduced to the cask
+  url "https://laplock.s3.amazonaws.com/Laplock-#{version}.dmg"
+  appcast 'https://www.laplock.co/'
+  name 'Laplock'
+  homepage 'https://www.laplock.co/'
 
-  app 'laplock.app'
+  pkg 'Laplock-Installer.pkg'
+
+  uninstall pkgutil: [
+                       'co.laplock.Laplock',
+                       'co.laplock.Laplock-KEXT',
+                     ]
 end

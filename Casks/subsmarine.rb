@@ -1,12 +1,12 @@
-cask :v1 => 'subsmarine' do
-  version '1.2'
-  sha256 '337722dedb0682d34f11f2decc3ad827849032f9a0e795d2f89c5c4bd0c32286'
+cask 'subsmarine' do
+  version '1.3'
+  sha256 '17be7a606995cdb9dbfe083720b056160855b52cfedb7371e707b5d596926ff3'
 
-  url "http://www.cocoawithchurros.com/downloads/subsmarine.app.#{version}.zip"
-  appcast 'http://www.cocoawithchurros.com/shine/appcast.php?id=7',
-          :sha256 => '9659830b134ac12326639e1b3f7ba06945cc18db343890e06a4c7f9d9dce8912'
-  homepage 'http://www.cocoawithchurros.com/subsmarine.php'
-  license :commercial
+  # cwcbucket.s3.amazonaws.com was verified as official when first introduced to the cask
+  url "https://cwcbucket.s3.amazonaws.com/subsmarine/subsmarine.app.#{version}.zip"
+  appcast 'https://www.cocoawithchurros.com/shine/appcast.php?id=7'
+  name 'SubsMarine'
+  homepage 'https://www.cocoawithchurros.com/subsmarine.php'
 
   app 'SubsMarine.app'
 end

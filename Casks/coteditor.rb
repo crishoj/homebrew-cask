@@ -1,13 +1,29 @@
-cask :v1 => 'coteditor' do
-  version '2.0.3'
-  sha256 'b656aa0b6526c89d7d52cf12b715cf529f8e5048c7e13720673c3e32318a26d8'
+cask 'coteditor' do
+  if MacOS.version <= :mavericks
+    version '2.5.7'
+    sha256 'f2c6eed9bfa31999f559396642e7bec0eb90ce0e3398f266fed8b3db5bdab37c'
+  elsif MacOS.version <= :yosemite
+    version '3.2.8'
+    sha256 '73dd20d27b75c7b0c46242a465adb3df5b5f0b901f42c5a9a85777a57c4a17d6'
+  else
+    version '3.7.7'
+    sha256 'e295688b4a99a29e3b9234f561611568522f39635e76ca2aaa3fb667903d9e7c'
+  end
 
+  # github.com/coteditor/CotEditor was verified as official when first introduced to the cask
   url "https://github.com/coteditor/CotEditor/releases/download/#{version}/CotEditor_#{version}.dmg"
-  appcast 'http://coteditor.com/appcast.xml',
-          :sha256 => '86c24c497701e51df3e0b35e72be5f1cc1d2e3b307a8deb0a188c3443ccd553f'
+  appcast 'https://github.com/coteditor/CotEditor/releases.atom'
   name 'CotEditor'
-  homepage 'http://coteditor.com/'
-  license :gpl
+  homepage 'https://coteditor.com/'
 
   app 'CotEditor.app'
+  binary "#{appdir}/CotEditor.app/Contents/SharedSupport/bin/cot"
+
+  zap trash: [
+               '~/Library/Application Scripts/com.coteditor.CotEditor',
+               '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.coteditor.coteditor.sfl*',
+               '~/Library/Caches/com.apple.helpd/SDMHelpData/Other/English/HelpSDMIndexFile/com.coteditor.CotEditor.help*',
+               '~/Library/Caches/com.apple.helpd/SDMHelpData/Other/Japanese/HelpSDMIndexFile/com.coteditor.CotEditor.help*',
+               '~/Library/Containers/com.coteditor.CotEditor',
+             ]
 end

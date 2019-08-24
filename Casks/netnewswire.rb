@@ -1,12 +1,14 @@
-cask :v1 => 'netnewswire' do
-  version '4.0.0-166'
-  sha256 '94bbf93cc820be06f32fc80ff1ce065e5e5e219a0587fee948355a72140d05f3'
+cask 'netnewswire' do
+  version '5.0b4'
+  sha256 '301caddba27bad5c83c3ae6aef73482d726dd0cc4a4e786354d833c13dbb2579'
 
-  url "http://cdn.netnewswireapp.com/releases/NetNewsWire-#{version}.zip"
-  appcast 'https://updates.blackpixel.com/updates?app=nnw',
-          :sha256 => '33564e80110c0e5bc562bf65f09046d95afcbab79d0e9c49617c2b8548a64cc2'
-  homepage 'http://netnewswireapp.com/'
-  license :commercial
+  url "https://ranchero.com/downloads/NetNewsWire#{version}.zip"
+  appcast 'https://ranchero.com/downloads/netnewswire-beta.xml'
+  name 'NetNetsWire'
+  homepage 'https://ranchero.com/netnewswire/'
+
+  auto_updates true
+  depends_on macos: '>= :mojave'
 
   app 'NetNewsWire.app'
 end

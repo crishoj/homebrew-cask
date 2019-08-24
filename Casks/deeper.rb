@@ -1,44 +1,40 @@
-cask :v1 => 'deeper' do
-  version :latest
-  sha256 :no_check
+cask 'deeper' do
+  macos_release = MacOS.version.to_s.delete('.')
 
-  if MacOS.release == :tiger
-    url 'http://www.titanium.free.fr/download/104/Deeper.dmg'
-  elsif MacOS.release == :leopard
-    url 'http://www.titanium.free.fr/download/105/Deeper.dmg'
-  elsif MacOS.release == :snow_leopard
-    url 'http://www.titanium.free.fr/download/106/Deeper.dmg'
-  elsif MacOS.release == :lion
-    url 'http://www.titanium.free.fr/download/107/Deeper.dmg'
-  elsif MacOS.release == :mountain_lion
-    url 'http://www.titanium.free.fr/download/108/Deeper.dmg'
-  elsif MacOS.release == :mavericks
-    url 'http://www.titanium.free.fr/download/109/Deeper.dmg'
-  elsif MacOS.release == :yosemite
-    url 'http://www.titanium.free.fr/download/1010/Deeper.dmg'
+  if MacOS.version == :mavericks
+    version '1.9.1'
+    sha256 'a601cee489825685b28fcf71e5b3801ec45ff73d5a015aa9948eb8641616383a'
+  elsif MacOS.version == :yosemite
+    version '2.0.4'
+    sha256 '70a8ae37e6a62541a03b1b144ff92bac38585ce936b1acc12ce484416db13b8f'
+  elsif MacOS.version == :el_capitan
+    version '2.1.4'
+    sha256 '3dc9607644872da14a0b6f20722e36d0cb6cb7ab2528f86de1cf059086cf2848'
+  elsif MacOS.version == :sierra
+    version '2.2.3'
+    sha256 '33fee21b65279e4459b6469dbc68f0c6df91663ed26d6b62042b21883efda0ed'
+  elsif MacOS.version == :high_sierra
+    version '2.3.3'
+    sha256 '08ac5820428bcce74548786e8fda947edfaa31cf4a822d5c443835e73a11dd3b'
   else
-    # Unusual case: there is no fall-through.  Each version of the software is
-    # specific to an OS X release, so define nothing when the release is unknown.
+    version '2.4.7'
+    sha256 '7f519d22684783dcf78384fbefe027ee4528aa7516d29ce2aaf2bc431260e2bb'
   end
 
-  homepage 'http://www.titanium.free.fr/downloaddeeper.php'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.titanium-software.fr/download/#{macos_release}/Deeper.dmg"
+  appcast 'https://www.titanium-software.fr/en/release_deeper.html'
+  name 'Deeper'
+  homepage 'https://www.titanium-software.fr/en/deeper.html'
+
+  # Unusual case: The software will stop working, or is dangerous to run, on the next macOS release.
+  depends_on macos: [
+                      :mavericks,
+                      :yosemite,
+                      :el_capitan,
+                      :sierra,
+                      :high_sierra,
+                      :mojave,
+                    ]
 
   app 'Deeper.app'
-
-  depends_on :macos => %w{
-                          :tiger
-                          :leopard
-                          :snow_leopard
-                          :lion
-                          :mountain_lion
-                          :mavericks
-                          :yosemite
-                         }
-
-  caveats do
-    if [:leopard, :tiger].include?(MacOS.release.to_sym)
-      puts 'Deeper only runs from an Administrator account on this version of OS X.'
-    end
-  end
 end

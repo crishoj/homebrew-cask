@@ -1,23 +1,22 @@
-cask :v1 => 'mpv' do
-  version '0.7.2'
-  sha256 'a73392d6c9cc998442a0dc3323caa90a1ef24258026c18da66fa21921d234f43'
+cask 'mpv' do
+  version '0.29.1'
+  sha256 '45d176bc884dfa84ce5226f53bc0809e2054984837e16a1518061e5493700f21'
 
-  url "https://github.com/mpv-player/mpv/releases/download/v#{version}/mpv_#{version}_mac.tar.bz2"
-  homepage 'http://mpv.io/'
-  license :gpl
+  # laboratory.stolendata.net/~djinn/mpv_osx was verified as official when first introduced to the cask
+  url "https://laboratory.stolendata.net/~djinn/mpv_osx/mpv-#{version}.tar.gz"
+  appcast 'https://laboratory.stolendata.net/~djinn/mpv_osx/'
+  name 'mpv'
+  homepage 'https://mpv.io/'
+
+  depends_on macos: '>= :yosemite'
 
   app 'mpv.app'
-  binary 'mpv.app/Contents/MacOS/mpv'
+  binary "#{appdir}/mpv.app/Contents/MacOS/mpv"
 
-  zap :delete => [
-                  '~/.mpv/channels.conf',
-                  '~/.mpv/config',
-                  '~/.mpv/input.conf',
-                  '~/.config/mpv/mpv.conf',
-                 ],
-      :rmdir  => '~/.mpv'
-
-  caveats do
-    files_in_usr_local
-  end
+  zap trash: [
+               '~/.config/mpv',
+               '~/Library/Logs/mpv.log',
+               '~/Library/Preferences/io.mpv.plist',
+               '~/Library/Preferences/mpv.plist',
+             ]
 end

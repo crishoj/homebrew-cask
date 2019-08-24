@@ -1,10 +1,21 @@
-cask :v1 => 'gimp' do
-  version '2.8.14'
-  sha256 'a90fe7001ee4f64d5108cd7b6aad843772aab7f1a7e67018564c620a4374460a'
+cask 'gimp' do
+  version '2.10.12'
+  sha256 '8b964ad3dbbe31d0fa48fb834aa4c17fc0eb81becbc4595a57b04e3d4fc6efeb'
 
-  url "http://download.gimp.org/pub/gimp/v2.8/osx/gimp-#{version}.dmg"
-  homepage 'http://www.gimp.org'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://download.gimp.org/pub/gimp/v#{version.major_minor}/osx/gimp-#{version}-x86_64.dmg"
+  appcast 'https://download.gimp.org/pub/gimp/stable/osx/'
+  name 'GIMP'
+  homepage 'https://www.gimp.org/'
 
-  app 'GIMP.app'
+  app "GIMP-#{version.major_minor}.app"
+
+  postflight do
+    set_permissions "#{appdir}/GIMP-#{version.major_minor}.app/Contents/MacOS/gimp", 'a+rx'
+  end
+
+  zap trash: [
+               '~/Library/Preferences/org.gnome.gimp.plist',
+               '~/Library/Application Support/Gimp',
+               '~/Library/Saved Application State/org.gnome.gimp.savedState',
+             ]
 end

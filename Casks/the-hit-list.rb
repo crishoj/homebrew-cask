@@ -1,11 +1,11 @@
-cask :v1 => 'the-hit-list' do
-  version :latest
-  sha256 :no_check
+cask 'the-hit-list' do
+  version '1.1.32,367'
+  sha256 'd64787b451782b99581345926c84bf8c838da3a8a493b62b347c6986e3986e40'
 
-  url 'http://www.potionfactory.com/files/thehitlist/TheHitList.zip'
-  appcast 'http://www.potionfactory.com/appcast/thehitlist.php'
-  homepage 'http://www.potionfactory.com/thehitlist'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://distrib.karelia.com/downloads/TheHitList-#{version.after_comma}.zip"
+  appcast 'https://launch.karelia.com/appcast.php?product=9&appname=The+Hit+List'
+  name 'The Hit List'
+  homepage 'https://www.karelia.com/products/the-hit-list/mac.html'
 
   app 'The Hit List.app'
 end

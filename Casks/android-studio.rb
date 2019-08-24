@@ -1,19 +1,30 @@
-cask :v1 => 'android-studio' do
-  version '1.0.2'
-  sha256 'bfbbf184997bb50d14e29efdab89935118bb1dc9c3a4901396782011d21cd797'
+cask 'android-studio' do
+  version '3.5.0.21,191.5791312'
+  sha256 'be3a0b809f4c3e6c588d4c3019f0a9062882ffab8440942bd23ebce7effa4989'
 
-  url "https://dl.google.com/dl/android/studio/ide-zips/#{version}/android-studio-ide-135.1653844-mac.zip"
+  # google.com/dl/android/studio was verified as official when first introduced to the cask
+  url "https://dl.google.com/dl/android/studio/install/#{version.before_comma}/android-studio-ide-#{version.after_comma}-mac.dmg"
+  appcast 'https://dl.google.com/android/studio/patches/updates.xml',
+          configuration: version.major_minor_patch
   name 'Android Studio'
-  homepage 'https://developer.android.com/sdk/'
-  license :apache
+  homepage 'https://developer.android.com/studio/index.html'
+
+  auto_updates true
 
   app 'Android Studio.app'
 
-  caveats <<-EOS.undent
-    If you have Java 7 or above installed, you may want to use it as Android Studio JDK, for example:
-
-    export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk
-
-    Please take a look at this post: http://tools.android.com/recent/androidstudio1rc3_releasecandidate3released
-  EOS
+  zap trash: [
+               '~/Library/Android/sdk',
+               "~/Library/Application Support/AndroidStudio#{version.major_minor}",
+               "~/Library/Caches/AndroidStudio#{version.major_minor}",
+               "~/Library/Logs/AndroidStudio#{version.major_minor}",
+               "~/Library/Preferences/AndroidStudio#{version.major_minor}",
+               '~/Library/Preferences/com.android.Emulator.plist',
+               '~/Library/Saved Application State/com.google.android.studio.savedState',
+               '~/.android',
+             ],
+      rmdir: [
+               '~/AndroidStudioProjects',
+               '~/Library/Android',
+             ]
 end

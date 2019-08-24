@@ -1,10 +1,13 @@
-cask :v1 => 'xmrouter' do
-  version :latest
-  sha256 :no_check
+cask 'xmrouter' do
+  version '0.9.16'
+  sha256 '3d1fafcc09b501aa25d698988b6667ad820dd75eee22635661bd76d597f77e10'
 
-  url 'http://bigota.miwifi.com/xiaoqiang/client/xqmac_client.dmg'
-  homepage 'http://www1.miwifi.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://bigota.miwifi.com/xiaoqiang/client/XMRouter-#{version}.dmg"
+  appcast 'https://api.miwifi.com/upgrade/log/latest?typeList=R1DMAC'
+  name 'xmrouter'
+  name 'miwifi'
+  name '小米路由器'
+  homepage 'http://miwifi.com/'
 
   app 'XMRouter.app'
 end

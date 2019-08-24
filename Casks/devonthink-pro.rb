@@ -1,13 +1,14 @@
-cask :v1 => 'devonthink-pro' do
-  version '2.8'
-  sha256 'ac9521a0017643f1305d24f7d1b8cdd19ab6dde78319ae9a862aae1b1fde2521'
+cask 'devonthink-pro' do
+  version '2.11.3'
+  sha256 '5e754263357b50d0148674b5ad13b66522f86424f90c9cd9c8af9d3f7f1ffcca'
 
-  url "https://s3.amazonaws.com/DTWebsiteSupport/download/devonthink/#{version}/DEVONthink_Pro.dmg.zip"
-  appcast 'http://www.devon-technologies.com/Sparkle/DEVONthinkPro2.xml',
-          :sha256 => '038025b21f4e07e0dceb4b3e3b731f6d1482a3a339151cbac446e4cfb970a75e'
-  homepage 'http://www.devontechnologies.com/products/devonthink/devonthink-pro.html'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # s3.amazonaws.com/DTWebsiteSupport was verified as official when first introduced to the cask
+  url "https://s3.amazonaws.com/DTWebsiteSupport/download/devonthink/#{version}/DEVONthink_Pro.app.zip"
+  appcast 'https://api.devontechnologies.com/1/apps/sparkle/sparkle.php?id=300030707'
+  name 'DEVONthink Pro'
+  homepage 'https://www.devontechnologies.com/apps/devonthink'
 
-  container :nested => 'DEVONthink_Pro.dmg'
+  auto_updates true
+
   app 'DEVONthink Pro.app'
 end

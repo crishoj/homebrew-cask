@@ -1,10 +1,16 @@
-cask :v1 => 'mikogo' do
+cask 'mikogo' do
   version :latest
   sha256 :no_check
 
-  url 'http://download.mikogo4.com/mikogo.dmg'
-  homepage 'http://www.mikogo.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # mikogo4.com was verified as official when first introduced to the cask
+  url 'https://download.mikogo4.com/Mikogo-installer.signed.pkg'
+  name 'Mikogo'
+  homepage 'https://www.mikogo.com/'
 
-  app 'Mikogo.app'
+  pkg 'Mikogo-installer.signed.pkg'
+
+  uninstall pkgutil: [
+                       'com.mikogo.open-beta',
+                       'com.mikogo.open-beta.video',
+                     ]
 end

@@ -1,10 +1,16 @@
-cask :v1 => 'netlogo' do
-  version '5.0.5'
-  sha256 '317faad5fadff9bababce580d9c72d74a491ec81de5129529a5d2f4dd8241ebf'
+cask 'netlogo' do
+  version '6.1.0'
+  sha256 '4a074f0edcc4e977e08eb72ca4f02a8eb45cb7cffaf3ad33df56029658ba41d1'
 
-  url "https://ccl.northwestern.edu/netlogo/#{version}/NetLogo%20#{version}.dmg"
-  homepage 'http://ccl.northwestern.edu/netlogo/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://ccl.northwestern.edu/netlogo/#{version}/NetLogo-#{version}.dmg"
+  appcast 'https://ccl.northwestern.edu/netlogo/oldversions.shtml'
+  name 'NetLogo'
+  homepage 'https://ccl.northwestern.edu/netlogo/'
 
-  app "NetLogo #{version}/NetLogo #{version}.app"
+  suite "NetLogo #{version}"
+
+  zap trash: [
+               '~/Library/Preferences/org.nlogo.netlogo.plist',
+               '~/Library/Saved Application State/org.nlogo.NetLogo.savedState',
+             ]
 end

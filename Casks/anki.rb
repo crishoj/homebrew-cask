@@ -1,11 +1,18 @@
-cask :v1 => 'anki' do
-  version '2.0.31'
-  sha256 '7afccba7d7998c187156702afb943e0be2b9d14729c8147b9a6fd20e40530fe2'
+cask 'anki' do
+  version '2.1.15'
+  sha256 '0e4a38930984aee1ff8f6bdf7c81b2a08c78d159592fd304a1e173270de19a50'
 
-  url "http://ankisrs.net/download/mirror/anki-#{version}.dmg"
+  url "https://apps.ankiweb.net/downloads/current/anki-#{version}-mac.dmg"
+  appcast 'https://apps.ankiweb.net/docs/changes.html'
   name 'Anki'
-  homepage 'http://ankisrs.net/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://apps.ankiweb.net/'
+
+  depends_on macos: '>= :sierra'
 
   app 'Anki.app'
+
+  zap trash: [
+               '~/Library/Application Support/Anki',
+               '~/Library/Application Support/Anki2',
+             ]
 end

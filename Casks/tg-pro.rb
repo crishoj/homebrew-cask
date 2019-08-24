@@ -1,11 +1,20 @@
-cask :v1 => 'tg-pro' do
-  version '2.4.1'
-  sha256 'cc5ea0ef039f534af01d596d77363df102d8c37536ec722466305f7429b0f06c'
+cask 'tg-pro' do
+  version '2.42'
+  sha256 '35bcdcb2447a35dd973f87ed71526e4bb17bf397fa675250e2b28925c0424186'
 
-  url "http://www.tunabellysoftware.com/resources/TGPro_#{version.gsub('.','_')}.zip"
+  url "https://www.tunabellysoftware.com/resources/TG%20Pro%20#{version}.dmg"
+  appcast 'https://www.tunabellysoftware.com/resources/sparkle/tgpro.xml'
   name 'TG Pro'
-  homepage 'http://www.tunabellysoftware.com/tgpro/'
-  license :commercial
+  homepage 'https://www.tunabellysoftware.com/tgpro/'
 
   app 'TG Pro.app'
+
+  zap trash: [
+               '/Library/LaunchDaemons/com.tunabellysoftware.TGFanHelper.plist',
+               '/Library/PrivilegedHelperTools/com.tunabellysoftware.TGFanHelper',
+               '~/Library/Application Support/TG Pro',
+               '~/Library/Caches/com.tunabellysoftware.tgpro',
+               '~/Library/Cookies/com.tunabellysoftware.tgpro.binarycookies',
+               '~/Library/Preferences/com.tunabellysoftware.tgpro.plist',
+             ]
 end

@@ -1,23 +1,30 @@
-cask :v1 => 'bettertouchtool' do
+cask 'bettertouchtool' do
+  if MacOS.version <= :mavericks
+    version '2.05'
+    sha256 '41013cfeffee286a038363651db3dd315ff3a1e0cf07774d9ce852111be50a5a'
 
-  if MacOS.release <= :snow_leopard
-    version '0.939'
-    sha256 'fad5e9d36259c379bdb33188cf15d179fd9ff73023035c98f5734e7e3e13bb75'
-    url "http://bettertouchtool.net/btt#{version}.zip"
+    # bettertouchtool.net/releases was verified as official when first introduced to the cask
+    url "https://bettertouchtool.net/releases/btt#{version}_final_10_9.zip"
   else
-    version :latest
-    sha256 :no_check
-    url 'http://bettertouchtool.net/BetterTouchTool.zip'
+    version '3.186'
+    sha256 '3c335a03b53159b64657d06edd456e89222080e6d75bbb2f3bffb49ede8e2545'
+
+    # bettertouchtool.net/releases was verified as official when first introduced to the cask
+    url "https://bettertouchtool.net/releases/btt#{version}.zip"
+    appcast 'https://bettertouchtool.net/releases/'
   end
 
-  appcast 'http://appcast.boastr.net'
-  homepage 'http://bettertouchtool.net/'
-  license :commercial
+  name 'BetterTouchTool'
+  homepage 'https://folivora.ai/'
+
+  auto_updates true
 
   app 'BetterTouchTool.app'
 
-  zap :delete => [
-                  '~/Library/Preferences/com.hegenberg.BetterTouchTool.plist',
-                  '~/Library/Application Support/BetterTouchTool',
-                 ]
+  uninstall login_item: 'BetterTouchTool'
+
+  zap trash: [
+               '~/Library/Preferences/com.hegenberg.BetterTouchTool.plist',
+               '~/Library/Application Support/BetterTouchTool',
+             ]
 end

@@ -1,10 +1,11 @@
-cask :v1 => 'keyboardcleantool' do
+cask 'keyboardcleantool' do
   version :latest
   sha256 :no_check
 
-  url 'http://bettertouchtool.net/KeyboardCleanTool.zip'
-  homepage 'http://bettertouchtool.net'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # bettertouchtool.net/releases was verified as official when first introduced to the cask
+  url 'https://bettertouchtool.net/releases/KeyboardCleanTool.zip'
+  name 'KeyboardCleanTool'
+  homepage 'https://www.boastr.net/downloads/'
 
   app 'KeyboardCleanTool.app'
 end

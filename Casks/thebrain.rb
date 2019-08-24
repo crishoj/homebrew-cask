@@ -1,10 +1,11 @@
-cask :v1 => 'thebrain' do
-  version '8.0.1.2'
-  sha256 '2ac492c6defc6d1156de434e84272daf9deb26edf7581da737ac077b244ad7f7'
+cask 'thebrain' do
+  version '10.0.53.0'
+  sha256 '1e1f71eaa5c3d1eb1635e3ee0f62f9787e668c0aa41dfa6f975176c7dcd0a706'
 
-  url "http://assets.thebrain.com/downloads/TheBrain_macos_J7_#{version.gsub('.', '_')}-a.dmg"
-  homepage 'http://www.thebrain.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "http://updater.thebrain.com/files/TheBrain#{version}.dmg"
+  appcast 'https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://salesapi.thebrain.com/?a=doDirectDownload%26id=10000'
+  name 'TheBrain'
+  homepage 'https://www.thebrain.com/'
 
-  app 'TheBrain.app'
+  app "TheBrain #{version.major}.app"
 end

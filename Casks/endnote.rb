@@ -1,10 +1,21 @@
-cask :v1 => 'endnote' do
-  version :latest
-  sha256 :no_check
+cask 'endnote' do
+  version '9'
+  sha256 :no_check # required as upstream package is updated in-place
 
-  url 'http://endnote.com/x7/EndNoteX7Installer.dmg'
-  homepage 'http://endnote.com/'
-  license :unknown # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://download.endnote.com/downloads/X#{version}/EndNoteX#{version}Installer.dmg"
+  name 'EndNote'
+  homepage 'https://endnote.com/'
 
-  app 'EndNote X7/EndNote X7.app'
+  container nested: "Install EndNote X#{version}.app/Contents/Resources/EndNote.zip"
+
+  suite 'EndNote'
+
+  zap trash: [
+               '/Library/Application Support/ResearchSoft/EndNote',
+               '~/Library/Application Support/EndNote',
+               '~/Library/Caches/com.ThomsonResearchSoft.EndNote',
+               '~/Library/Preferences/com.ThomsonResearchSoft.EndNote.plist',
+               '~/Library/Services/ENService.app',
+               '~/Library/Spotlight/EndNote.mdimporter',
+             ]
 end

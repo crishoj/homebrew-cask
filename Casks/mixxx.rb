@@ -1,10 +1,11 @@
-cask :v1 => 'mixxx' do
-  version '1.11.0'
-  sha256 '21fa06153a1a019c001f96024caa940ea6307a29f4cebd334fb2b7f071013314'
+cask 'mixxx' do
+  version '2.2.2'
+  sha256 '877290bee0825bdf7424990545f71b9c295896e7ab16c1105caa1b6c8297b45f'
 
-  url "http://downloads.mixxx.org/mixxx-#{version}/mixxx-#{version}-macintel.dmg"
-  homepage 'http://www.mixxx.org'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://downloads.mixxx.org/mixxx-#{version}/mixxx-#{version}-osxintel.dmg"
+  appcast 'https://www.mixxx.org/download/'
+  name 'Mixxx'
+  homepage 'https://www.mixxx.org/'
 
   app 'Mixxx.app'
 end

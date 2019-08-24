@@ -1,10 +1,10 @@
-cask :v1 => 'pdfinfo' do
+cask 'pdfinfo' do
   version :latest
   sha256 :no_check
 
-  url 'http://www.sybrex.com/download/macgui/files/pdfinfo/PDFInfo.dmg'
-  homepage 'http://www.sybrex.com/products/macgui/infomanager/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url 'https://www.sybrex.com/download/macgui/files/pdfinfo/PDFInfo.dmg'
+  name 'PDFInfo'
+  homepage 'https://www.sybrex.com/products/macgui/infomanager/'
 
   app 'PDFInfo.app'
 end

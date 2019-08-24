@@ -1,11 +1,13 @@
-cask :v1 => 'invisorql' do
-  version :latest
-  sha256 :no_check
+cask 'invisorql' do
+  version '3.0'
+  sha256 '12c98bb32dfe0281f9a0c9ce86ba5c8418094676b6e99b30d115ebf0eaf8997f'
 
-  url 'http://www.pozdeev.com/invisor/InvisorQL.zip'
+  url "https://www.invisorapp.com/download/InvisorQuickLook-#{version}.dmg"
+  appcast 'https://www.invisorapp.com/changelog-ql.php'
   name 'Invisor QuickLook Plug-In'
-  homepage 'http://www.pozdeev.com/invisor/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://www.invisorapp.com/'
 
-  qlplugin 'InvisorQL.qlgenerator'
+  depends_on cask: 'invisor-lite'
+
+  qlplugin 'Invisor QuickLook.app/Contents/Library/QuickLook/InvisorQL.qlgenerator'
 end

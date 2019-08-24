@@ -1,11 +1,11 @@
-cask :v1 => 'proxpn' do
-  version :latest
-  sha256 :no_check
+cask 'proxpn' do
+  version '4.5.0.3'
+  sha256 '099fa83105d363f0baa9d472b3f09b4d9d7ce8f9bc3ef73381fae7e3508d1f4b'
 
-  url 'https://proxpn.com/mac.dmg'
-  appcast 'http://www.proxpn.org/updater/appcast.rss'
-  homepage 'http://proxpn.com'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.proxpn.com/updater/proXPN-MacOSX-10.7-#{version}.dmg"
+  appcast 'https://www.proxpn.com/updater/appcast.rss'
+  name 'proXPN'
+  homepage 'https://www.proxpn.com/'
 
   app 'ProXPN.app'
 end

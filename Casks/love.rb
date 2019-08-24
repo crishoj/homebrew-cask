@@ -1,11 +1,13 @@
-cask :v1 => 'love' do
-  version '0.9.1'
-  sha256 '40dfeb1069f6c056b06d0e87c64f3950fd1b1523a9e19af2b03912a5d5c03b13'
+cask 'love' do
+  version '11.2'
+  sha256 '770286edc8cdab6abb7a522d05bb488ed2433dc5a76f6aca7b2ed54d7c5d4dd8'
 
-  url "https://bitbucket.org/rude/love/downloads/love-#{version}-macosx-x64.zip"
+  # bitbucket.org/rude/love was verified as official when first introduced to the cask
+  url "https://bitbucket.org/rude/love/downloads/love-#{version}-macos.zip"
+  appcast 'https://love2d.org/'
   name 'LÖVE'
-  homepage 'http://love2d.org'
-  license :oss
+  homepage 'https://love2d.org/'
 
   app 'love.app'
+  binary "#{appdir}/love.app/Contents/MacOS/love"
 end

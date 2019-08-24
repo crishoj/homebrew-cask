@@ -1,10 +1,11 @@
-cask :v1 => 'igetter' do
-  version '2.9.2'
-  sha256 '86fd84cbd16ad975e586498cad89a7784087a62e11ba969000a1d48a0b634461'
+cask 'igetter' do
+  version '2.9.6'
+  sha256 '31acb5393debc5fbb26a8d7a8ff1acf64144422ec127393dbc1a7329d9669a14'
 
-  url "http://www.igetter.net/search/downloads/iGetter#{version}.dmg"
-  homepage 'http://www.igetter.net/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.igetter.net/search/downloads/iGetter#{version}.dmg"
+  appcast 'https://www.igetter.net/downloads.html'
+  name 'iGetter'
+  homepage 'https://www.igetter.net/index.html'
 
   app "iGetter #{version}/iGetter.app"
 end

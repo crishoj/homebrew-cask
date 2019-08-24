@@ -1,10 +1,11 @@
-cask :v1 => 'teeworlds' do
-  version '0.6.2'
-  sha256 '954e8f213f22b0c47c529d6e4d92f5bc1008a6a1ee54229dc62e706ffd1cab64'
+cask 'teeworlds' do
+  version '0.7.3.1'
+  sha256 '3edc2b2bea2f62b8379c6db32314608aaa3bc2a496affb88732921e52d2d6c03'
 
-  url "https://teeworlds.com/files/teeworlds-#{version}-osx.dmg"
+  url "https://downloads.teeworlds.com/teeworlds-#{version}-osx.dmg"
+  appcast 'https://teeworlds.com/?page=downloads'
+  name 'Teeworlds'
   homepage 'https://www.teeworlds.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
 
   app 'Teeworlds.app'
   app 'Teeworlds Server.app'

@@ -1,13 +1,17 @@
-cask :v1 => 'adapter' do
-  version '2.1.3'
-  sha256 '215987042772e1a55fb3a4592895286644344dddef478b3cccfd64235b20f6b7'
+cask 'adapter' do
+  version '2.1.6'
+  sha256 'ef2de9f0795cd446d26a4de1180b2580402abe8e5f13368e42d8da39eadde729'
 
-  url "http://downloads.macroplant.com/Adapter-#{version}.dmg"
+  url "https://assets.macroplant.com/download/4/Adapter-#{version}.dmg"
+  appcast 'https://macroplant.com/adapter'
   name 'Adapter'
-  appcast 'http://www.macroplant.com/adapter/adapterAppcast.xml',
-          :sha256 => 'b3c13d29cccda4e5c30660f2eba270259c4481d39422106b01c669a58d655802'
-  homepage 'http://www.macroplant.com/adapter/'
-  license :gratis
+  homepage 'https://macroplant.com/adapter'
 
   app 'Adapter.app'
+
+  zap trash: [
+               '~/Library/Application Support/Adapter',
+               '~/Library/Caches/com.macroplant.adapter',
+               '~/Library/com.macroplant.adapter.plist',
+             ]
 end

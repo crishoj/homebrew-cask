@@ -1,10 +1,15 @@
-cask :v1 => 'provisionql' do
-  version '1.0.0'
-  sha256 'fc21f2996050711a2496351092f3ffe88d9d017594ae913cce6ef059d1cf2c2a'
+cask 'provisionql' do
+  version '1.6.0'
+  sha256 'eb4646ca2f082f15755fb93b2b1ab70d62b439dd657917667a8a921c0fa437d2'
 
   url "https://github.com/ealeksandrov/ProvisionQL/releases/download/#{version}/ProvisionQL.zip"
+  appcast 'https://github.com/ealeksandrov/ProvisionQL/releases.atom'
+  name 'ProvisionQL'
   homepage 'https://github.com/ealeksandrov/ProvisionQL'
-  license :mit
 
   qlplugin 'ProvisionQL.qlgenerator'
+
+  caveats do
+    'To prevent mobileprovision QuickLook override by Xcode: https://github.com/ealeksandrov/ProvisionQL/issues/20'
+  end
 end

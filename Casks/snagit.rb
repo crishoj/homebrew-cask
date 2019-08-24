@@ -1,11 +1,12 @@
-cask :v1 => 'snagit' do
-  version :latest
-  sha256 :no_check
+cask 'snagit' do
+  version '2019'
+  sha256 :no_check # required as upstream package is updated in-place
 
-  url 'http://download.techsmith.com/snagitmac/enu/Snagit.dmg'
-  appcast 'http://techsmithredirect.appspot.com/'
-  homepage 'http://www.techsmith.com/snagit.html'
-  license :commercial
+  url 'https://download.techsmith.com/snagitmac/enu/Snagit.dmg'
+  name 'Snagit'
+  homepage 'https://www.techsmith.com/screen-capture.html'
 
-  app 'Snagit.app'
+  depends_on macos: '>= :sierra'
+
+  app "Snagit #{version}.app"
 end

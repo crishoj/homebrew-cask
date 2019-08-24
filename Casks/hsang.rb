@@ -1,10 +1,12 @@
-cask :v1 => 'hsang' do
-  version '1.2.3'
-  sha256 '4ccbbfaeb0a0afe1570e6bc515b519b6b40a9b790678c81e44d38d6aa1421fa1'
+cask 'hsang' do
+  version '1.8.12'
+  sha256 '76809b3737d3f03abcf06a2b3411e19f214be22d00b3f167ed164e4ac660e797'
 
-  url "http://nie.gdl.netease.com/lushi/HSAng_#{version}.dmg"
-  homepage 'http://lushi.163.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # opd.gdl.netease.com was verified as official when first introduced to the cask
+  url "https://opd.gdl.netease.com/HSAng_#{version}.dmg"
+  appcast 'https://hs.gameyw.netease.com/mac.xml'
+  name 'HSAng'
+  homepage 'https://lushi.163.com/'
 
   app 'HSAng.app'
 end

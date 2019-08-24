@@ -1,10 +1,11 @@
-cask :v1 => 'textadept' do
-  version '7.7'
-  sha256 '4e684ffdca2e22d11ce8ea721a3510a2a4b0aef2ec905ecf566ee2f9c1346098'
+cask 'textadept' do
+  version '10.5'
+  sha256 'ab691e3a4a8958d390dcaacff1083f8acdc28539b7d54de77077d5145401308b'
 
-  url "http://foicica.com/textadept/download/textadept_#{version}.osx.zip"
-  homepage 'http://foicica.com/textadept/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://foicica.com/textadept/download/textadept_#{version}.osx.zip"
+  appcast 'https://foicica.com/textadept/feed'
+  name 'Textadept'
+  homepage 'https://foicica.com/textadept/'
 
   app "textadept_#{version}.osx/Textadept.app"
 end

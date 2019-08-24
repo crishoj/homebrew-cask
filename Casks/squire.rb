@@ -1,10 +1,11 @@
-cask :v1 => 'squire' do
+cask 'squire' do
   version :latest
   sha256 :no_check
 
-  url 'https://s3.amazonaws.com/Squire_Mac_Builds/Squire.dmg'
-  homepage 'http://squireapp.com'
-  license :commercial
+  # squire.s3.amazonaws.com was verified as official when first introduced to the cask
+  url 'https://squire.s3.amazonaws.com/builds/Squire.dmg'
+  name 'Squire'
+  homepage 'http://squireapp.com/'
 
   app 'Squire.app'
 end

@@ -1,12 +1,20 @@
-cask :v1 => 'texnicle' do
-  version '2.2.11'
-  sha256 'b522e551220bfc98ff3d3c09db224c0db2a31c1dff4c73353a26d1f13217733b'
+cask 'texnicle' do
+  version '2.3.1'
+  sha256 '0cdc81a0b7578f6656f2437cb24ffa390f556aa7b25a6fd9e4b90ed9a4dc5986'
 
-  url "http://www.bobsoft-mac.de/resources/TeXnicle/2.2/TeXnicle.app.#{version}.zip"
-  appcast 'http://www.bobsoft-mac.de/profileInfo.php',
-          :sha256 => '700cebec51784f2e6088d51c6ac79a8dbd9a6863415a7806ce7cfed57b2f6e43'
+  url "http://www.bobsoft-mac.de/resources/TeXnicle/#{version.major_minor}/TeXnicle.app.#{version}.zip"
+  appcast 'http://www.bobsoft-mac.de/texnicle_appcast.xml'
+  name 'TeXnicle'
   homepage 'http://www.bobsoft-mac.de/texnicle/texnicle.html'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+
+  auto_updates true
 
   app 'TeXnicle.app'
+
+  zap trash: [
+               '~/Library/Application Support/TeXnicle',
+               '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.bobsoft.texnicle.sfl*',
+               '~/Library/Caches/com.bobsoft.TeXnicle',
+               '~/Library/Preferences/com.bobsoft.TeXnicle.plist',
+             ]
 end

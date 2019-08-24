@@ -1,15 +1,17 @@
-cask :v1 => 'flash-player' do
-  version '16.0.0.235'
-  sha256 'f7bd90f9ee7520195cb02c0bf7803b4b30da48e64da040cd7d84d638aa000102'
+cask 'flash-player' do
+  version '32.0.0.238'
+  sha256 '81465ce12a8e7dd3ac97044f96c093a01ce97f7216903c912e0d541b849880f5'
 
-  url "https://fpdownload.macromedia.com/pub/flashplayer/updaters/#{version.to_i}/flashplayer_#{version.to_i}_sa.dmg"
-  homepage 'https://www.adobe.com/support/flashplayer/downloads.html'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://fpdownload.adobe.com/pub/flashplayer/updaters/#{version.major}/flashplayer_#{version.major}_sa.dmg"
+  appcast 'https://fpdownload.adobe.com/pub/flashplayer/update/current/xml/version_en_mac_pl.xml',
+          configuration: version.tr('.', ',')
+  name 'Adobe Flash Player projector'
+  homepage 'https://www.adobe.com/support/flashplayer/debug_downloads.html'
 
   app 'Flash Player.app'
 
-  zap :delete => [
-                  '~/Library/Caches/Adobe/Flash Player',
-                  '~/Library/Logs/FlashPlayerInstallManager.log',
-                 ]
+  zap trash: [
+               '~/Library/Caches/Adobe/Flash Player',
+               '~/Library/Logs/FlashPlayerInstallManager.log',
+             ]
 end

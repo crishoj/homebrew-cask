@@ -1,10 +1,11 @@
-cask :v1 => 'macwinzipper' do
-  version '2.5'
-  sha256 'fc3afd92ecfbde16bbdd388285e16ef8f7aa5f5edf669496115823fef92a0186'
+cask 'macwinzipper' do
+  version '2.5.3.1'
+  sha256 '33de61cfb8d2bef18eac623681a7b1b35c8980c6d7e7ed77f0205765e5d79f7d'
 
-  url "http://tidajapan.com/files/MacWinZipper-#{version}.dmg?download"
-  homepage 'http://tidajapan.com/macwinzipper'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://tida.me/files/MacWinZipper-#{version}.dmg?download"
+  appcast 'https://tida.me/macwinzipper'
+  name 'MacWinZipper'
+  homepage 'https://tida.me/macwinzipper'
 
   app 'MacWinZipper.app'
 end

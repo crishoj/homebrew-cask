@@ -1,14 +1,15 @@
-cask :v1 => 'mailmate' do
-  version :latest
-  sha256 :no_check
+cask 'mailmate' do
+  version '5635'
+  sha256 '2f46cf0de07fe06500fec8745890c71849afd347d8859c4eca03595d1e802554'
 
-  url 'http://dl.mailmate-app.com/MailMate.tbz'
-  homepage 'http://freron.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # mailmate-app.com was verified as official when first introduced to the cask
+  url "https://updates.mailmate-app.com/archives/MailMate_r#{version}.tbz"
+  appcast 'https://updates.mailmate-app.com/10.14/release'
+  name 'MailMate'
+  homepage 'https://freron.com/'
+
+  auto_updates true
 
   app 'MailMate.app'
-  binary 'MailMate.app/Contents/Resources/emate'
-  caveats do
-    files_in_usr_local
-  end
+  binary "#{appdir}/MailMate.app/Contents/Resources/emate"
 end

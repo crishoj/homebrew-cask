@@ -1,11 +1,19 @@
-cask :v1 => 'gyazo' do
-  version '2.0'
-  sha256 '41242a421ee0c2b467ac0ff7fa1baa895c824e940bc5aee92a4ec2bf8e204eb3'
+cask 'gyazo' do
+  version '3.8.0'
+  sha256 '21f639c03526ac0e53e6c370530d1ddb5a96ec65a7ab00b80e11cf589036d85c'
 
-  url "https://gyazo.s3.amazonaws.com/setup/Gyazo_#{version}.dmg"
+  url "https://files.gyazo.com/setup/Gyazo-#{version}.dmg"
+  appcast 'https://gyazo.com/api/gy_mac.xml'
+  name 'Nota Gyazo GIF'
   homepage 'https://gyazo.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
 
   app 'Gyazo.app'
   app 'Gyazo GIF.app'
+
+  zap trash: [
+               '~/Library/Caches/com.gyazo.gif',
+               '~/Library/Caches/com.gyazo.mac',
+               '~/Library/Preferences/com.gyazo.gif.plist',
+               '~/Library/Preferences/com.gyazo.mac.plist',
+             ]
 end

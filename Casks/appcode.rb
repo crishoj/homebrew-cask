@@ -1,15 +1,24 @@
-cask :v1 => 'appcode' do
-  version '3.1.1'
-  sha256 'f549e0fdfb7dcd2a1553ca452a75c1cbc135e3d66b926de0c58dde59865f3b6c'
+cask 'appcode' do
+  version '2019.2.1,192.6262.61'
+  sha256 '54c84ee49b058287a715c628b67dbef589109838d2d0fb9fa8ee72521621ba6a'
 
-  url "http://download.jetbrains.com/objc/AppCode-#{version}.dmg"
+  url "https://download.jetbrains.com/objc/AppCode-#{version.before_comma}.dmg"
+  appcast 'https://data.services.jetbrains.com/products/releases?code=AC&latest=true&type=release'
   name 'AppCode'
-  homepage 'http://www.jetbrains.com/objc/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://www.jetbrains.com/objc/'
+
+  auto_updates true
 
   app 'AppCode.app'
 
-  postflight do
-    plist_set(':JVMOptions:JVMVersion', '1.6+')
+  uninstall_postflight do
+    ENV['PATH'].split(File::PATH_SEPARATOR).map { |path| File.join(path, 'appcode') }.each { |path| File.delete(path) if File.exist?(path) && File.readlines(path).grep(%r{# see com.intellij.idea.SocketLock for the server side of this interface}).any? }
   end
+
+  zap trash: [
+               "~/Library/Application Support/AppCode#{version.major_minor}",
+               "~/Library/Caches/AppCode#{version.major_minor}",
+               "~/Library/Logs/AppCode#{version.major_minor}",
+               "~/Library/Preferences/AppCode#{version.major_minor}",
+             ]
 end

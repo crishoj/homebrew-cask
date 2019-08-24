@@ -1,16 +1,18 @@
-cask :v1 => 'mmex' do
-  version '1.1.0'
-  sha256 '37042d0255e4bf89aecab1373e8c27597ad654f9164a1ee1d2773f021c79a925'
+cask 'mmex' do
+  version '1.3.3'
+  sha256 '49eeb6b50a51bfa09da7f4bb063ad75c5695eeeac410ae13d4c8e8844ac43505'
 
-  url "http://downloads.sourceforge.net/sourceforge/moneymanagerex/Version%20#{version}/mmex_#{version}_mac.dmg"
-  homepage 'http://www.moneymanagerex.org'
-  license :gpl
+  # github.com/moneymanagerex/moneymanagerex was verified as official when first introduced to the cask
+  url "https://github.com/moneymanagerex/moneymanagerex/releases/download/v#{version}/mmex_#{version}_macos10.9-wx3.0.2build.dmg"
+  appcast 'https://github.com/moneymanagerex/moneymanagerex/releases.atom'
+  name 'Money Manager Ex'
+  homepage 'https://www.moneymanagerex.org/'
 
-  app 'mmex.app'
+  app 'MMEX.app'
 
-  zap :delete => [
-                  '~/Library/Application Support/mmex',
-                  '~/Library/Caches/com.yourcompany.MMEX',
-                  '~/Library/Preferences/com.yourcompany.MMEX.plist',
-                 ]
+  zap trash: [
+               '~/Library/Application Support/MoneyManagerEx',
+               '~/Library/Caches/com.yourcompany.MMEX',
+               '~/Library/Preferences/com.yourcompany.MMEX.plist',
+             ]
 end

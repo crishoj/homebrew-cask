@@ -1,20 +1,25 @@
-cask :v1 => 'spotify' do
+cask 'spotify' do
   version :latest
   sha256 :no_check
 
-  url 'http://download.spotify.com/Spotify.dmg'
+  # scdn.co was verified as official when first introduced to the cask
+  url 'https://download.scdn.co/Spotify.dmg'
   name 'Spotify'
-  homepage 'https://www.spotify.com'
-  license :gratis
+  homepage 'https://www.spotify.com/'
 
   app 'Spotify.app'
 
-  uninstall :launchctl => 'com.spotify.webhelper'
+  uninstall launchctl:  'com.spotify.webhelper',
+            login_item: 'Spotify'
 
-  zap :delete => [
-                  '~/Library/Application Support/Spotify',
-                  '~/Library/Preferences/com.spotify.client.plist',
-                  '~/Library/Caches/com.spotify.client',
-                  '~/Library/Logs/Spotify'
-                 ]
+  zap trash: [
+               '~/Library/Application Support/Spotify',
+               '~/Library/Caches/com.spotify.client',
+               '~/Library/Caches/com.spotify.client.helper',
+               '~/Library/Cookies/com.spotify.client.binarycookies',
+               '~/Library/Logs/Spotify',
+               '~/Library/Preferences/com.spotify.client.plist',
+               '~/Library/Preferences/com.spotify.client.helper.plist',
+               '~/Library/Saved Application State/com.spotify.client.savedState',
+             ]
 end

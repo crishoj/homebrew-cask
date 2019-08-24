@@ -1,10 +1,17 @@
-cask :v1 => 'mongodb' do
-  version '1.2'
-  sha256 '9b7f6e8988a3169bf5f234ee10f93823a16750b3c1d4de524cd2e2f09452fd02'
+cask 'mongodb' do
+  version '4.0.8-build.1'
+  sha256 '38d60ce05de52aedf10bf4d686681db28731a7e90b9b88b7047036cd9bd0d67f'
 
-  url "https://github.com/orelord/mongodbx-app/releases/download/v#{version}/MongoDBX-#{version}-2.4.9.zip"
-  homepage 'http://mongodbx-app.orelord.com/'
-  license :oss
+  # github.com/gcollazo/mongodbapp was verified as official when first introduced to the cask
+  url "https://github.com/gcollazo/mongodbapp/releases/download/#{version}/MongoDB.zip"
+  appcast 'https://github.com/gcollazo/mongodbapp/releases.atom'
+  name 'MongoDB'
+  homepage 'https://elweb.co/mongodb-app/'
 
   app 'MongoDB.app'
+
+  zap trash: [
+               '~/Library/Caches/io.blimp.MongoDB',
+               '~/Library/Preferences/io.blimp.MongoDB.plist',
+             ]
 end

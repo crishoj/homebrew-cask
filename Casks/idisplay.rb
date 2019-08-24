@@ -1,10 +1,24 @@
-cask :v1 => 'idisplay' do
-  version '2.3.10'
-  sha256 '6d87e0566e2e2693d89c4fdb1cddcfed9db6316f6f7b2bada24104ea18b996ae'
+cask 'idisplay' do
+  version :latest
+  sha256 :no_check
 
-  url "http://www.shape.ag/freedownload/iDisplay/iDisplayFull_#{version.gsub('.', '_')}.dmg"
-  homepage 'http://getidisplay.com/'
-  license :gratis
+  url 'https://getidisplay.com/downloads/iDisplayMac.dmg'
+  name 'iDisplay'
+  homepage 'https://getidisplay.com/'
 
-  app 'iDisplay.app'
+  pkg 'iDisplay.pkg'
+
+  uninstall launchctl: 'ag.shape.MSMToolHelper',
+            pkgutil:   [
+                         'ag.shape.iDisplay.pkg',
+                         'ag.shape.MSM*.pkg',
+                       ],
+            signal:    ['TERM', 'com.shapeservices.idisplay-host-full']
+
+  zap trash: '~/Library/Preferences/com.shapeservices.idisplay-host-full.plist'
+
+  caveats do
+    kext
+    reboot
+  end
 end

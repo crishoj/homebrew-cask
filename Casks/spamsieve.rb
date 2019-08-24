@@ -1,25 +1,11 @@
-cask :v1 => 'spamsieve' do
+cask 'spamsieve' do
+  version '2.9.37'
+  sha256 '86b4ccb2cb4ced10d10c750e6c6d91ef25d53961be138fbc4c4c7f1bade81532'
 
-  if MacOS.release <= :tiger
-    version '2.9.6'
-    sha256 'f060af29ab260450f0c0a906ada3e60408c9b6cd871e1df272dde2521bafeed3'
-
-    url "http://c-command.com/downloads/SpamSieve-#{version}-tiger.dmg"
-  elsif MacOS.release == :leopard
-    version '2.9.14'
-    sha256 '9acd154e5c379b21ca752ff70bd59766cc2f91532a10ea12dce87f71101d2f11'
-
-    url "http://c-command.com/downloads/SpamSieve-#{version}-leopard.dmg"
-  else
-    version '2.9.18'
-    sha256 '99ed10b0752d8b54b6d4f25d61eee3e42ece4b7134249b9f96c69951d8342b48'
-
-    url "http://c-command.com/downloads/SpamSieve-#{version}.dmg"
-  end
-
+  url "https://c-command.com/downloads/SpamSieve-#{version}.dmg"
+  appcast 'https://c-command.com/spamsieve/'
   name 'SpamSieve'
-  homepage 'http://c-command.com/spamsieve/'
-  license :commercial
+  homepage 'https://c-command.com/spamsieve/'
 
   app 'SpamSieve.app'
 end

@@ -1,16 +1,11 @@
-cask :v1 => 'retroarch' do
-  version '1.0.0.2'
+cask 'retroarch' do
+  version '1.7.7'
+  sha256 '526fe798f6ef70fe464ee08831d99af7112573bdda681a3fd1bc92db12300fe4'
 
-  if MacOS.release <= :snow_leopard
-    sha256 'a3ebc3a46d674433a1bf40c1b948021e752919b4b43da853fd73fb508bf40982'
-    url "http://www.libretro.com/wp-content/plugins/cip4-folder-download-widget/cip4-download.php?target=wp-content/releases/OSX/RetroArch-OSX10.6-x86-v#{version}.zip"
-  else
-    sha256 '9d2232663f5dade1b4f648cc0cf0bb605c630b1c6bcbfe5ddce265ddab0d9d2a'
-    url "http://www.libretro.com/wp-content/plugins/cip4-folder-download-widget/cip4-download.php?target=wp-content/releases/OSX/RetroArch-OSX10.7-x86_64-v#{version}.zip"
-  end
-
-  homepage 'http://www.libretro.com/'
-  license :unknown # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://buildbot.libretro.com/stable/#{version}/apple/osx/x86_64/RetroArch.dmg"
+  appcast 'https://buildbot.libretro.com/stable/'
+  name 'RetroArch'
+  homepage 'https://www.libretro.com/'
 
   app 'RetroArch.app'
 end

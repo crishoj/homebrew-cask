@@ -1,10 +1,12 @@
-cask :v1 => 'mirador' do
-  version '1.3beta'
-  sha256 'c2c4e2b5c9a9723c99c65894db97fa008fa49def3ede3a2d32426877b5b89351'
+cask 'mirador' do
+  version '1.5.1'
+  sha256 '91387a237f338722306a7d288bd7d809f7595e10267e1ef0653c93c713028290'
 
-  url "https://github.com/mirador/mirador/releases/download/#{version}/mirador-macosx-#{version}.zip"
-  homepage 'http://fathom.info/mirador/'
-  license :gpl
+  # github.com/mirador/mirador was verified as official when first introduced to the cask
+  url "https://github.com/mirador/mirador/releases/download/latest-macos/mirador-#{version}-macos.zip"
+  appcast 'https://github.com/mirador/mirador/releases.atom'
+  name 'Mirador'
+  homepage 'https://fathom.info/mirador/'
 
   app 'Mirador.app'
 end

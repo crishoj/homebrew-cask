@@ -1,10 +1,10 @@
-cask :v1 => 'sublercli' do
-  version '0.19'
-  sha256 '968c6c0ff530ee603a5a3deec93911cc1c5c1fd8b100883cb485278fccc79104'
+cask 'sublercli' do
+  version '0.32'
+  sha256 'e5e99fb67944acffff9df5c6bf0a66805a7c696fb41df8a81fbfaf0068ce4c26'
 
-  url "https://subler.googlecode.com/files/SublerCLI-#{version}.zip"
-  homepage 'https://code.google.com/p/subler/'
-  license :oss
+  url "https://bitbucket.org/galad87/sublercli/downloads/SublerCLI-#{version}.zip"
+  name 'SublerCLI'
+  homepage 'https://bitbucket.org/galad87/sublercli/'
 
   binary 'SublerCLI'
 end

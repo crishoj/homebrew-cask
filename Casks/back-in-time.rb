@@ -1,10 +1,10 @@
-cask :v1 => 'back-in-time' do
-  version :latest
-  sha256 :no_check
+cask 'back-in-time' do
+  version '5'
+  sha256 :no_check # required as upstream package is updated in-place
 
-  url 'http://www.tri-edre.fr/pub/files/backintime3.dmg'
-  homepage 'http://www.tri-edre.fr/english/backintime.html'
-  license :commercial
+  url "https://www.tri-edre.com/pub/files/backintime#{version}.dmg"
+  name 'Back-In-Time'
+  homepage 'https://www.tri-edre.com/english/backintime.html'
 
-  app 'Back-In-Time 3.app'
+  app "Back-In-Time #{version}.app"
 end

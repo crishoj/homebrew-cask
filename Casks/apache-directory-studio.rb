@@ -1,13 +1,17 @@
-cask :v1 => 'apache-directory-studio' do
-  version '2.0.0.v20130628'
-  sha256 '60914cc67f893afdc8bf537fa67a48cb7cd96357e7d28595a2c22a74a19f02e3'
+cask 'apache-directory-studio' do
+  version '2.0.0.v20180908-M14'
+  sha256 '845392529c86e52697c1edac1f0603261324ff2a649e697dbdf566ee5f5f8e5e'
 
-  url "http://mirrors.sonic.net/apache/directory/studio/dist/#{version}/ApacheDirectoryStudio-macosx-x86_64-#{version}.dmg"
+  url "https://www.apache.org/dyn/closer.cgi?path=/directory/studio/#{version}/ApacheDirectoryStudio-#{version}-macosx.cocoa.x86_64.dmg"
+  appcast 'http://apache.mirror.serversaustralia.com.au/directory/studio/'
   name 'Apache Directory Studio'
-  homepage 'http://directory.apache.org/studio/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://directory.apache.org/studio/'
 
-  app 'Apache Directory Studio.app'
+  app 'ApacheDirectoryStudio.app'
 
-  zap :delete => '~/.ApacheDirectoryStudio'
+  zap trash: '~/.ApacheDirectoryStudio'
+
+  caveats do
+    depends_on_java '8+'
+  end
 end

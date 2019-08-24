@@ -1,17 +1,29 @@
-cask :v1 => 'boom' do
-  version '1.0.1'
-  sha256 '9ee325c8901bfeaae54ca10be5eac129f42c956a0daef772a5e9b0192fd4ab2c'
+cask 'boom' do
+  version '1.6.8,1553238536'
+  sha256 'cc683afd2518210181d4994c9be0ada0e4d1dded0c4865dcfb3fdafea8849d82'
 
-  url "http://www.globaldelight.com/boom/download/2x/v#{version}/boom2.dmg"
-  homepage 'http://www.globaldelight.com/boom/'
-  license :commercial
+  # devmate.com/com.globaldelight.Boom2 was verified as official when first introduced to the cask
+  url "https://dl.devmate.com/com.globaldelight.Boom2/#{version.before_comma}/#{version.after_comma}/Boom2-#{version.before_comma}.dmg"
+  appcast 'https://updates.devmate.com/com.globaldelight.Boom2.xml'
+  name 'Boom'
+  homepage 'https://www.globaldelight.com/boom'
+
+  depends_on macos: '>= :yosemite'
 
   app 'Boom 2.app'
 
-  postflight do
-    # Delete the background image so that it will launch
-    system '/bin/rm', '--', "#{staged_path}/.DMG_Background_new.png"
-  end
+  uninstall kext:      'com.globaldelight.driver.Boom2Device',
+            launchctl: [
+                         'com.globaldelight.Boom2.*',
+                         'com.globaldelight.Boom2Daemon',
+                       ],
+            signal:    ['TERM', 'com.globaldelight.Boom2']
 
-  depends_on :macos => '>= :yosemite'
+  zap trash: [
+               '~/Library/Application Support/com.globaldelight.Boom2',
+               '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.globaldelight.boom2.sfl*',
+               '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.globaldelight.boom2daemon.sfl*',
+               '~/Library/Preferences/com.globaldelight.Boom2.plist',
+               '~/Library/Preferences/com.globaldelight.Boom2Daemon.plist',
+             ]
 end

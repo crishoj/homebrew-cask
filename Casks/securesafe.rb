@@ -1,10 +1,17 @@
-cask :v1 => 'securesafe' do
-  version :latest
-  sha256 :no_check
+cask 'securesafe' do
+  version '2.5.0'
+  sha256 'c641d2934a372dd89a0103bbc993f8a18f47fbe4dd080c088cc52911cbc8ecfc'
 
-  url 'http://www.securesafe.com/en/assets/sync-client/SecureSafe.dmg'
+  url "https://www.securesafe.com/downloads/SecureSafe_#{version}.pkg"
+  name 'SecureSafe'
   homepage 'https://www.securesafe.com/'
-  license :unknown
 
-  app 'SecureSafe.app'
+  depends_on macos: '>= :sierra'
+
+  pkg "SecureSafe_#{version}.pkg"
+
+  uninstall pkgutil: [
+                       'com.dswiss.securesafe.pkg.sync',
+                       'com.github.osxfuse.pkg.Core',
+                     ]
 end

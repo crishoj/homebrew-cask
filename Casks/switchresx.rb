@@ -1,23 +1,24 @@
-cask :v1 => 'switchresx' do
-  version '4.5'
-  sha256 'a8d1bb95be0d2b1ddbae50f77231568bcd00f2030d337386d85d34f06ea6b065'
+cask 'switchresx' do
+  version '4.9.0'
+  sha256 '6a30f259b117db7322f34aeee66379b9ab80cfea7515a9eda77e96fa30b53e2a'
 
-  url "http://www.madrau.com/data/switchresx/SwitchResX#{version.to_i}.zip"
-  homepage 'http://www.madrau.com'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.madrau.com/data/switchresx/SwitchResX#{version.major}.zip"
+  appcast "https://www.madrau.com/SRXCurrentVersion#{version.major}"
+  name 'SwitchResX'
+  homepage 'https://www.madrau.com/'
 
-  prefpane 'SwitchResX.prefPane'
+  prefpane 'SwitchResX.app/Contents/Resources/SwitchResX.prefPane'
 
-  uninstall :quit   => [
-                        'fr.madrau.switchresx.app',
-                        'fr.madrau.switchresx.daemon',  # note, daemon does not :quit cleanly
-                       ],
-            :signal => [
-                        [ 'INT',  'fr.madrau.switchresx.daemon' ],
-                        [ 'KILL', 'fr.madrau.switchresx.daemon' ],
-                      ],
-            :delete => [
-                        '/Library/ScriptingAdditions/SwitchResX Extensions.osax',
-                        '/Library/ScriptingAdditions/SwitchResX Menu.osax',
-                       ]
+  uninstall quit:   [
+                      'fr.madrau.switchresx.app',
+                      'fr.madrau.switchresx.daemon', # note, daemon does not :quit cleanly
+                    ],
+            signal: [
+                      ['INT',  'fr.madrau.switchresx.daemon'],
+                      ['KILL', 'fr.madrau.switchresx.daemon'],
+                    ],
+            delete: [
+                      '/Library/ScriptingAdditions/SwitchResX Extensions.osax',
+                      '/Library/ScriptingAdditions/SwitchResX Menu.osax',
+                    ]
 end

@@ -1,13 +1,12 @@
-cask :v1 => 'typinator' do
-  version '6.2'
-  sha256 '4b9b3acc26716dbf01951043f0102489ffd32436cdad6820e382dbb5b1fa0eb6'
+cask 'typinator' do
+  version '8.1'
+  sha256 '3e3d06a29042b32e39e92c3515a7764c35439f291c158d236bc183fa66d6f5b7'
 
-  url "http://www.ergonis.com/downloads/products/typinator/Typinator#{version.gsub('.', '')}-Install.dmg"
+  url "https://www.ergonis.com/downloads/products/typinator/Typinator#{version.no_dots}-Install.dmg",
+      user_agent: :fake
+  appcast 'https://update.ergonis.com/vck/typinator.xml'
   name 'Typinator'
-  homepage 'http://www.ergonis.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://www.ergonis.com/'
 
   app 'Typinator.app'
-
-  accessibility_access true
 end

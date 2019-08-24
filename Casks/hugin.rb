@@ -1,11 +1,12 @@
-cask :v1 => 'hugin' do
-  version '2014.0.0'
-  sha256 '9d3995612aff2235a20cd53b119dde565cd6c00afb62ec48bf63203a24fa8e61'
+cask 'hugin' do
+  version '2019.0.0'
+  sha256 'dced75dab3723631fbe794fa79535c90c05e39f1c6d481763dacb6c898efd61b'
 
-  url "http://downloads.sourceforge.net/sourceforge/hugin/Hugin-#{version}.dmg"
+  # downloads.sourceforge.net/hugin was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/hugin/Hugin-#{version}.dmg"
+  appcast 'https://sourceforge.net/projects/hugin/rss'
   name 'Hugin'
-  homepage 'http://hugin.sourceforge.net/'
-  license :oss
+  homepage 'https://hugin.sourceforge.io/'
 
-  app 'Hugin.app'
+  suite 'Hugin'
 end

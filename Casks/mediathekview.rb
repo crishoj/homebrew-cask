@@ -1,10 +1,11 @@
-cask :v1 => 'mediathekview' do
-  version '8'
-  sha256 'af2b9cb5202a528bebd832dcb5de5fe9b3937027ff65f5808cc1b08f0f85f195'
+cask 'mediathekview' do
+  version '13.3.0'
+  sha256 '805dd68de99f018b2549984c379535419fed43a7281dd38699ed6b2947fbdacb'
 
-  url "http://downloads.sourceforge.net/project/zdfmediathk/Mediathek/Mediathek%20#{version}/MediathekView_#{version}.dmg"
-  homepage 'http://sourceforge.net/projects/zdfmediathk/'
-  license :gpl
+  url "https://download.mediathekview.de/stabil/MediathekView-#{version}-mac.dmg"
+  appcast 'https://mediathekview.de/changelog/index.xml'
+  name 'MediathekView'
+  homepage 'https://mediathekview.de/'
 
   app 'MediathekView.app'
 end

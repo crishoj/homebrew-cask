@@ -1,10 +1,12 @@
-cask :v1 => 'tv-browser' do
-  version '3.3.3'
-  sha256 '951fe8478fa2efa5f7784c23f153bcc8b0a6fcb8a7405c4990c44b3c967e73cc'
+cask 'tv-browser' do
+  version '4.0.1'
+  sha256 '0f881a81da4a10ee29622e1667df07b9445559746a900a1ac24000f6da9f1e0a'
 
-  url "http://downloads.sourceforge.net/sourceforge/tvbrowser/tvbrowser_#{version}_mac.dmg"
-  homepage 'http://www.tvbrowser.org/'
-  license :oss
+  # sourceforge.net/tvbrowser was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/tvbrowser/tvbrowser_#{version}_macjava.dmg"
+  appcast 'https://sourceforge.net/projects/tvbrowser/rss'
+  name 'TV-Browser'
+  homepage 'https://www.tvbrowser.org/'
 
   app 'TV-Browser.app'
 end

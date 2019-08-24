@@ -1,10 +1,11 @@
-cask :v1 => 'mkvtools' do
-  version '3.4.4'
-  sha256 '21fd96039cca22866fe9f75fc5275e2673e9fd2362cb8b54bd210fe8fd1f88d1'
+cask 'mkvtools' do
+  version '3.7.1'
+  sha256 '0726c2816f1012565fe75eba410d553c97e64f607d85fcaa54b5d623965c9ab4'
 
   url "http://www.emmgunn.com/downloads/mkvtools#{version}.zip"
-  homepage 'http://www.emmgunn.com/mkvtools/mkvtoolshome.html'
-  license :commercial
+  appcast 'http://www.emmgunn.com/mkvtools-home/mkvtools-downloads/'
+  name 'MKVtools'
+  homepage 'http://www.emmgunn.com/mkvtools-home/'
 
   app "mkvtools#{version}/MKVtools.app"
 end

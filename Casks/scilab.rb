@@ -1,10 +1,20 @@
-cask :v1 => 'scilab' do
-  version '5.5.1'
-  sha256 '5c9455c10be9fceab63ef65231ad01a0ba68c5985481ae260a8db0a71637a3c0'
+cask 'scilab' do
+  version '6.0.2'
+  sha256 '307be532115eecc2cfbb3d5656f7424544368b972767cd3fc9616e6cf77d4a37'
 
-  url "http://www.scilab.org/download/#{version}/scilab-#{version}-x86_64.dmg"
-  homepage 'https://www.scilab.org'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # utc.fr/~mottelet/scilab was verified as official when first introduced to the cask
+  url "https://www.utc.fr/~mottelet/scilab/download/#{version}/scilab-#{version}-x86_64.dmg"
+  appcast 'https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://www.scilab.org/download/'
+  name 'Scilab'
+  homepage 'https://www.scilab.org/'
+
+  depends_on macos: '>= :sierra'
 
   app "scilab-#{version}.app"
+  binary "#{appdir}/Scilab-#{version}.app/Contents/MacOS/bin/scilab"
+  binary "#{appdir}/Scilab-#{version}.app/Contents/MacOS/bin/scilab-cli"
+
+  caveats do
+    depends_on_java '6'
+  end
 end

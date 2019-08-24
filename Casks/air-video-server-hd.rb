@@ -1,11 +1,18 @@
-cask :v1 => 'air-video-server-hd' do
-  version '2.0.2'
-  sha256 'b0a0ef30fcb19de24051fe32e5de0eb601d65664fe71a8cfb4e3243d49c1e1d5'
+cask 'air-video-server-hd' do
+  version '2.3.0-beta1u1'
+  sha256 '1e45abf868349f1ad43b6f3a1234a254d31e943ef5c7d72b84eff9f955a15a33'
 
+  # s3.amazonaws.com/AirVideoHD was verified as official when first introduced to the cask
   url "https://s3.amazonaws.com/AirVideoHD/Download/Air+Video+Server+HD+#{version}.dmg"
+  appcast 'https://s3.amazonaws.com/AirVideoHD/Download/appcast.xml'
   name 'Air Video Server HD'
-  homepage 'http://www.inmethod.com/airvideohd'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://airvideo.app/'
 
   app 'Air Video Server HD.app'
+
+  zap trash: [
+               '~/Library/Caches/com.inmethod.AirVideoServerHD',
+               '~/Library/Logs/AirVideoServerHD',
+               '~/Library/Preferences/com.inmethod.AirVideoServerHD.plist',
+             ]
 end

@@ -1,19 +1,15 @@
-cask :v1 => 'witch' do
-  if MacOS.release == :snow_leopard
-    version '3.9.1'
-    sha256 '5e46508e150ff16be14b9955abdcd15098376230ef71e3de6f15a056eec75e45'
-    url 'http://manytricks.com/download/witch/3.9.1'
-  else
-    version :latest
-    sha256 :no_check
+cask 'witch' do
+  version '4.3.3'
+  sha256 '44150acc2b9ecd820e262549f41554acad4763fe6f3bbd367a5fb5824deb47eb'
 
-    url 'http://manytricks.com/download/witch'
-  end
+  url 'https://manytricks.com/download/witch'
+  appcast 'https://manytricks.com/witch/appcast.xml'
+  name 'Witch'
+  homepage 'https://manytricks.com/witch/'
 
-  homepage 'http://manytricks.com/witch/'
-  license :commercial
+  auto_updates true
 
   prefpane 'Witch.prefPane'
 
-  zap :delete => '~/Library/Preferences/com.manytricks.Witch.plist'
+  zap trash: '~/Library/Preferences/com.manytricks.Witch.plist'
 end

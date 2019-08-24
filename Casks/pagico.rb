@@ -1,13 +1,13 @@
-cask :v1 => 'pagico' do
-  version '6.8.1637'
-  sha256 '55df590853906fe6590f6526b2f8c2663f90f4b76c5baf2976f722d203383ddd'
+cask 'pagico' do
+  version '8.18.2405'
+  sha256 'c21443cd5b27bf995d7054551eef3fc1ae74a4626e223434c7488d0dd576805a'
 
-  url "http://pagico.com/downloads/Pagico_Desktop_r#{version.sub(%r{^.*\.},'')}.dmg"
-  homepage 'http://pagico.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.pagico.com/downloads/Pagico_macOS_r#{version.patch}.dmg"
+  appcast 'https://www.pagico.com/api/pagico8.mac.xml'
+  name 'Pagico'
+  homepage 'https://www.pagico.com/'
 
-  pkg 'Install Pagico.pkg'
+  depends_on macos: '>= :sierra'
 
-  uninstall :pkgutil => 'com.pagico.*',
-            :delete => '/Applications/Pagico'
+  app 'Pagico.app'
 end

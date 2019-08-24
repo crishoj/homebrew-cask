@@ -1,19 +1,19 @@
-cask :v1 => 'autopano-pro' do
-  version '3.6'
-  sha256 '8bf8840b9d3126c3f64dcef6a9ccf4115c6f23779f563b6cfa4c7a8f663cc088'
+cask 'autopano-pro' do
+  version '4.4.2.400,2018-09-10'
+  sha256 'f4fae478d58b2a1a0f6422855b921723abcfaafffefaeccdc847ec0efc215424'
 
-  url 'http://download.kolor.com/app/stable/macleopard'
+  url "https://cdn-download.kolor.com/app/#{version.before_comma}_#{version.after_comma}/AutopanoPro_Mac_#{version.major_minor_patch.no_dots}_#{version.after_comma}.dmg"
+  appcast 'https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=http://download.kolor.com/app/stable/mac'
   name 'Autopano Pro'
-  homepage 'http://www.kolor.com/panorama-software-autopano-pro.html'
-  license :commercial
+  homepage 'https://www.kolor.com/autopano/'
 
-  pkg "Autopano Pro #{version}.pkg"
+  pkg "Autopano Pro #{version.major_minor}.pkg"
 
-  uninstall :pkgutil => [
-                         'com.kolor.pkg.AutopanoPro.*',
-                         'com.kolor.pkg.Aperture_plugin',
-                         'com.kolor.pkg.Bridge_plugin',
-                         'com.kolor.pkg.Lightroom_plugin',
-                         'com.kolor.pkg.plugin.picasa',
-                        ]
+  uninstall pkgutil: [
+                       'com.kolor.pkg.AutopanoPro.*',
+                       'com.kolor.pkg.Aperture_plugin',
+                       'com.kolor.pkg.Bridge_plugin',
+                       'com.kolor.pkg.Lightroom_plugin',
+                       'com.kolor.pkg.plugin.picasa',
+                     ]
 end

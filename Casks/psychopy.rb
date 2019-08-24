@@ -1,10 +1,11 @@
-cask :v1 => 'psychopy' do
-  version '1.79.01'
-  sha256 'a2b174aee30ca4a8858238404adfd9271da9ec14243aa30be0b7f9a6abb047b8'
+cask 'psychopy' do
+  version '3.1.5'
+  sha256 '935eac2e7aa6bbac7764fdb8277eb2200cadc6f1aa1057e9a2d2f1097ee7e2a3'
 
-  url "http://downloads.sourceforge.net/sourceforge/psychpy/StandalonePsychoPy-#{version}-OSX.dmg"
-  homepage 'http://www.psychopy.org/'
-  license :oss
+  url "https://github.com/psychopy/psychopy/releases/download/#{version}/StandalonePsychoPy3-#{version}-MacOS.dmg"
+  appcast 'https://github.com/psychopy/psychopy/releases.atom'
+  name 'PsychoPy'
+  homepage 'https://github.com/psychopy/psychopy'
 
-  app 'PsychoPy2.app'
+  app 'PsychoPy3.app'
 end

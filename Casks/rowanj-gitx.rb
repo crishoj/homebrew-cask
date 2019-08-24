@@ -1,12 +1,15 @@
-cask :v1 => 'rowanj-gitx' do
-  version :latest
-  sha256 :no_check
+cask 'rowanj-gitx' do
+  version '0.15.1964'
+  sha256 'd88bcb7f92ca1cdf31cb3f1d2e24c03e2091ab330319aeef2e770c0dbd6f7817'
 
-  url 'http://builds.phere.net/GitX/development/GitX-dev.dmg'
-  appcast 'https://s3.amazonaws.com/builds.phere.net/GitX/development/GitX-dev.xml'
-  homepage 'http://rowanj.github.io/gitx/'
-  license :oss
+  # github.com/rowanj/gitx was verified as official when first introduced to the cask
+  url "https://github.com/rowanj/gitx/releases/download/builds/#{version.major_minor}/#{version.patch}/GitX-dev-#{version.patch}.dmg"
+  appcast 'https://github.com/rowanj/gitx/releases.atom'
+  name 'GitX-dev'
+  homepage 'https://rowanj.github.io/gitx/'
+
+  conflicts_with cask: 'gitx'
 
   app 'GitX.app'
-  binary 'GitX.app/Contents/Resources/gitx'
+  binary "#{appdir}/GitX.app/Contents/Resources/gitx"
 end

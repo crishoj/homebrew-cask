@@ -1,10 +1,11 @@
-cask :v1 => 'doxygen' do
-  version '1.8.7'
-  sha256 'd4d23df0372362358d26ab3c3c13d701b1f1751a7b80d427742665739a4f49c0'
+cask 'doxygen' do
+  version '1.8.16'
+  sha256 'b95c91f85346ccd5ad1847697867acc8663e33460976319f544d824ec9d35278'
 
-  url "ftp://ftp.stack.nl/pub/users/dimitri/Doxygen-#{version}.dmg"
-  homepage 'http://www.stack.nl/~dimitri/doxygen/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "http://doxygen.nl/files/Doxygen-#{version}.dmg"
+  appcast 'http://www.doxygen.nl/download.html'
+  name 'Doxygen'
+  homepage 'http://www.doxygen.nl/'
 
   app 'Doxygen.app'
 end

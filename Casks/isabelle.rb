@@ -1,10 +1,11 @@
-cask :v1 => 'isabelle' do
-  version '2014'
-  sha256 'e4a4b5f454d6cb24d5ef7271adc54e9fa7109addda8c6707bd7414b4d4061a23'
+cask 'isabelle' do
+  version '2019'
+  sha256 'a422bc02a985182440eff0943735db8c9ae4b67190ed47d08c8d968385179a80'
 
-  url "http://www.cl.cam.ac.uk/research/hvg/Isabelle/dist/Isabelle#{version}.dmg"
-  homepage 'http://www.cl.cam.ac.uk/research/hvg/Isabelle/'
-  license :bsd
+  url "https://www.cl.cam.ac.uk/research/hvg/Isabelle/dist/Isabelle#{version}_macos.tar.gz"
+  appcast 'https://mirror.cse.unsw.edu.au/pub/isabelle/dist/'
+  name 'Isabelle'
+  homepage 'https://www.cl.cam.ac.uk/research/hvg/Isabelle/'
 
   app "Isabelle#{version}.app"
 end

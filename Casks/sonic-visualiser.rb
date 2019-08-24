@@ -1,10 +1,15 @@
-cask :v1 => 'sonic-visualiser' do
-  version '2.4.1'
-  sha256 '45edf5021376ed79e3a7a9a17745261f91362c05d90db17dc3179b1649c29332'
+cask 'sonic-visualiser' do
+  version '3.3.0,2486'
+  sha256 '0697f375ab8796e5ad0e14c682f9a94a61e1a6708baced55158e16b34cf9fd73'
 
-  url "https://code.soundsoftware.ac.uk/attachments/download/1186/Sonic%20Visualiser-#{version}.dmg"
-  homepage 'http://www.sonicvisualiser.org/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # code.soundsoftware.ac.uk was verified as official when first introduced to the cask
+  url "https://code.soundsoftware.ac.uk/attachments/download/#{version.after_comma}/Sonic%20Visualiser-#{version.before_comma.major_minor}.dmg"
+  appcast 'https://code.soundsoftware.ac.uk/projects/sonic-visualiser/repository/raw/CHANGELOG',
+          configuration: version.major_minor
+  name 'Sonic Visualiser'
+  homepage 'https://www.sonicvisualiser.org/'
+
+  depends_on macos: '>= :sierra'
 
   app 'Sonic Visualiser.app'
 end

@@ -1,13 +1,28 @@
-cask :v1 => 'eqmac' do
-  version '1.3.2-b1'
-  sha256 '4e810e2956f3c46b13f3a7024c58676fd54a1f2d02e63252f946c53479ce43a1'
+cask 'eqmac' do
+  version '2.2'
+  sha256 'ff60579197b52571d9686bbfaec695dfa75797b8a9314fbf69a673bbeb12e1fc'
 
-  url "http://eqmac.hulse.id.au/sites/default/files/downloads/Mount-#{version}.app_.zip"
-  name 'EQMac'
-  homepage 'http://eqmac.hulse.id.au/'
-  license :unknown
+  # github.com/nodeful/eqMac was verified as official when first introduced to the cask
+  url "https://github.com/nodeful/eqMac#{version.major}/releases/download/V#{version}/eqMac#{version.major}.dmg"
+  appcast "https://github.com/nodeful/eqMac#{version.major}/releases.atom"
+  name 'eqMac'
+  homepage 'https://www.bitgapp.com/eqmac/'
 
-  # Renamed for clarity: app name is inconsistent with the branding on the website, and will be corrected in the next version.
-  # Original discussion: https://github.com/caskroom/homebrew-cask/pull/8438
-  app "Mount-#{version}.app", :target => 'EQMac.app'
+  app "eqMac#{version.major}.app"
+  installer script: {
+                      executable: "#{staged_path}/eqMac#{version.major}.app/Contents/Resources/install_driver.sh",
+                      sudo:       true,
+                    }
+
+  uninstall login_item: "eqMac#{version.major}",
+            quit:       "com.bitgapp.eqMac#{version.major}",
+            script:     {
+                          executable: "#{appdir}/eqMac#{version.major}.app/Contents/Resources/uninstall_driver.sh",
+                          sudo:       true,
+                        }
+
+  zap trash: [
+               "~/Library/Caches/com.bitgapp.eqMac#{version.major}",
+               "~/Library/Cookies/com.bitgapp.eqMac#{version.major}.binarycookies",
+             ]
 end

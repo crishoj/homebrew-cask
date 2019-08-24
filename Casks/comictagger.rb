@@ -1,10 +1,11 @@
-cask :v1 => 'comictagger' do
-  version '1.1.10-beta'
-  sha256 'f59514cfd15e64a8c595c4ad9707266b2c01d7744ca9f5836bee484954ce2fa6'
+cask 'comictagger' do
+  version '1.1.16-beta-rc2'
+  sha256 '3d2d883371a22074205ef96f98fdd0ccc35399f9439bc235b6f4c1c21e856bc5'
 
-  url "https://comictagger.googlecode.com/files/ComicTagger-#{version}.dmg"
-  homepage 'http://code.google.com/p/comictagger/'
-  license :oss
+  url "https://github.com/davide-romanini/comictagger/releases/download/#{version}/ComicTagger-#{version}.dmg"
+  appcast 'https://github.com/davide-romanini/comictagger/releases.atom'
+  name 'ComicTagger'
+  homepage 'https://github.com/davide-romanini/comictagger'
 
   app 'ComicTagger.app'
 end

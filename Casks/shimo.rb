@@ -1,11 +1,14 @@
-cask :v1 => 'shimo' do
-  version :latest
-  sha256 :no_check
+cask 'shimo' do
+  version '4.1.5.1_8837'
+  sha256 'bd97b294936a84b28daa29df680e0e4e047b19c93f10c69c9d71a295737bf73e'
 
-  url 'http://www.chungwasoft.com/files/Shimo_latest.zip'
-  appcast 'http://www.chungwasoft.com/library/appcasts/Shimo3/shimocast.php'
-  homepage 'http://www.chungwasoft.com/shimo/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # shimo.s3.amazonaws.com was verified as official when first introduced to the cask
+  url "https://shimo.s3.amazonaws.com/Shimo_#{version}.zip"
+  appcast 'https://www.shimovpn.com/appcast.php'
+  name 'Shimo'
+  homepage 'https://www.shimovpn.com/'
+
+  auto_updates true
 
   app 'Shimo.app'
 end

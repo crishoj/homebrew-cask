@@ -1,11 +1,15 @@
-cask :v1 => 'ampps' do
-  version '2.3'
-  sha256 'ce7a1a7e71f0314edbc994e10fe4f6a80303c1999904ca1fb14d98c7477ae8e0'
+cask 'ampps' do
+  version '3.8'
+  sha256 '56ec575ce053d9c99decb143832d2e5a8a1cfa26230503930dac61b5213c86de'
 
-  url "http://files.ampps.com/AMPPS-#{version}.dmg"
+  url "https://files.ampps.com/AMPPS-#{version}.dmg"
+  appcast 'https://www.ampps.com/downloads'
   name 'AMPPS'
-  homepage 'http://www.ampps.com'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://www.ampps.com/'
 
   suite 'AMPPS'
+
+  uninstall_preflight do
+    set_permissions "#{appdir}/AMPPS", '0777'
+  end
 end

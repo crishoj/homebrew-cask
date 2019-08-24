@@ -1,13 +1,22 @@
-cask :v1 => 'klayout' do
-  version '0.23.2'
-  sha256 '96ce3fdead710248ed2ed4f25c9a94859949466d42eaa4f87881c17567dc1f15'
+cask 'klayout' do
+  version '0.25.9,5124'
+  sha256 '3fbf0e31ecf1fea539eb6af05b120787d67e3f832af77d6e16dd1c00e4cdfbbb'
 
-  url "http://178.77.72.242/downloads/klayout.#{version}.pkg"
-  homepage 'http://www.klayout.de/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # klayout.org was verified as official when first introduced to the cask
+  url "https://www.klayout.org/downloads/MacOS/klayout-#{version.before_comma}-macOS-Mojave-1-Qt#{version.after_comma}mp.dmg"
+  appcast 'https://www.klayout.de/development.html'
+  name 'KLayout'
+  homepage 'https://www.klayout.de/'
 
-  pkg "klayout.#{version}.pkg"
+  depends_on macos: '>= :mojave'
 
-  uninstall :pkgutil => 'klayout.de',
-            :quit => 'klayout.de'
+  suite 'KLayout'
+
+  preflight do
+    # There is no sub-folder in the DMG; the root *is* the folder
+    FileUtils.mv(staged_path.children, staged_path.join('KLayout').tap(&:mkpath))
+  end
+
+  uninstall pkgutil: 'klayout.de',
+            quit:    'klayout.de'
 end

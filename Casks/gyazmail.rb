@@ -1,10 +1,11 @@
-cask :v1 => 'gyazmail' do
-  version '1.5.16'
-  sha256 'fe15be1217dea0fa1eac39dd92be29073723b64b29fefa34ee9cdd3754725a4d'
+cask 'gyazmail' do
+  version '1.5.21'
+  sha256 '6518565a461f2cf7c5acf1786b0bad752fa1e819e64c1d7d18a2ebe5d11ffce0'
 
-  url "http://gyazsquare.com/gyazmail/GyazMail-#{version.gsub('.','')}.dmg"
+  url "http://gyazsquare.com/gyazmail/GyazMail-#{version.no_dots}.dmg"
+  appcast 'http://gyazsquare.com/gyazmail/'
+  name 'GyazMail'
   homepage 'http://gyazsquare.com/gyazmail/'
-  license :commercial
 
   app 'GyazMail.app'
 end

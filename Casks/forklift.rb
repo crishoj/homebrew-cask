@@ -1,14 +1,35 @@
-cask :v1 => 'forklift' do
-  version '2.6.2'
-  sha256 '326ef943df71204940ce1de537e00ec07724d69012901f5a967fa54747215a34'
+cask 'forklift' do
+  version '3.3.4'
+  sha256 'e69fc7f6436e6f86e1cf0a56c415a6e80bbff792c7bf94786c0d3dd3d13651fc'
 
-  url "http://download.binarynights.com/ForkLift#{version}.zip"
-  appcast 'http://update.binarynights.com/ForkLift2/update.xml',
-          :sha256 => '1641b37355845f454c6c6d9ecc8565d6bc14720b68a8665c0bdde0ff6616aec0'
-  homepage 'http://www.binarynights.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://download.binarynights.com/ForkLift#{version}.zip"
+  appcast "https://updates.binarynights.com/ForkLift#{version.major}/update.xml"
+  name 'ForkLift'
+  homepage 'https://binarynights.com/'
+
+  auto_updates true
+  depends_on macos: '>= :el_capitan'
 
   app 'ForkLift.app'
 
-  zap :delete => '~/Library/Preferences/com.binarynights.ForkLift2.plist'
+  uninstall delete:    '/Library/PrivilegedHelperTools/com.binarynights.ForkLiftHelper',
+            launchctl: [
+                         'com.binarynights.ForkLiftHelper',
+                         'com.binarynights.ForkLiftMini',
+                       ],
+            quit:      [
+                         "com.binarynights.ForkLift-#{version.major}",
+                         'com.binarynights.ForkLiftMini',
+                       ]
+
+  zap trash: [
+               '~/Library/Application Support/ForkLift',
+               "~/Library/Caches/com.binarynights.ForkLift-#{version.major}",
+               "~/Library/Cookies/com.binarynights.ForkLift-#{version.major}.binarycookies",
+               '~/Library/Logs/ForkLift',
+               '~/Library/Logs/ForkLiftMini',
+               "~/Library/Preferences/com.binarynights.ForkLift-#{version.major}.plist",
+               '~/Library/Preferences/com.binarynights.ForkLiftMini.plist',
+               "~/Library/Saved Application State/com.binarynights.ForkLift-#{version.major}.savedState",
+             ]
 end

@@ -1,12 +1,18 @@
-cask :v1 => 'lyx' do
-  version '2.1.2.2'
-  sha256 '82047ac2aec85f422d94e3f3ea88ffb911264499c09fe9eee341f10537495990'
+cask 'lyx' do
+  version '2.3.3'
+  sha256 '503fe3153deaa8f88e07dee46a0814a377df4fd6f4577f0575866e09f4053541'
 
-  url "ftp://ftp.lyx.org/pub/lyx/bin/#{version}/LyX-#{version}+qt4-x86_64-cocoa.dmg"
-  gpg "#{url}.sig",
-      :key_id => 'de7a44fac7fb382d'
-  homepage 'http://www.lyx.org'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # ftp.lip6.fr/pub/lyx/ was verified as official when first introduced to the cask
+  url "https://ftp.lip6.fr/pub/lyx/bin/#{version.major_minor_patch}/LyX-#{version}+qt5-x86_64-cocoa.dmg"
+  appcast 'https://www.lyx.org/misc/rss/lyx_news_feed.xml'
+  name 'LyX'
+  homepage 'https://www.lyx.org/'
 
   app 'LyX.app'
+
+  zap trash: [
+               "~/Library/Application Support/LyX-#{version.major_minor}",
+               "~/Library/Preferences/org.lyx.LyX-#{version.major_minor}.plist",
+               '~/Library/Saved Application State/org.lyx.lyx.savedState',
+             ]
 end

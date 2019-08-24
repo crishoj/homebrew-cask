@@ -1,10 +1,11 @@
-cask :v1 => 'sococo' do
-  version '3.2.7'
-  sha256 '6772f2c2ef5c7b046612de408b79a71ed0936041fb9286785af69d862f653d1f'
+cask 'sococo' do
+  version '6.5.0-20770'
+  sha256 'f1e128fecd89b84f751234bea3f5c5b52e94eb0e333a9fda149efc397c1e39b8'
 
-  url "http://download.sococo.com/10069/Sococo_#{version.gsub('.','_')}_10069.dmg"
-  homepage 'http://www.sococo.com'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://s.sococo.com/rs/client/mac/Sococo-#{version}.dmg"
+  appcast 'https://s.sococo.com/rs/client/latest.json'
+  name 'Sococo'
+  homepage 'https://www.sococo.com/'
 
   app 'Sococo.app'
 end

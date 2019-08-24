@@ -1,10 +1,12 @@
-cask :v1 => 'camranger' do
-  version '1.8'
-  sha256 'fe27f11d08df3119d99c5b72b8a5214f5a34e491b43943bfc2b2f1fde905882d'
+cask 'camranger' do
+  version '2.0.2'
+  sha256 'fc2d10db1d9e57b8125146625ff399c96aa91f7190b5217a2b7cc08f2e460fc5'
 
-  url "http://www.camranger.com/downloadFiles/CamRanger_#{version.gsub('.', '_')}.zip"
-  homepage 'http://www.camranger.com/downloads/#fbox_5594'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.camranger.com/downloadFiles/CamRanger_Mac_#{version.dots_to_underscores}.dmg",
+      user_agent: :fake
+  appcast 'https://camranger.com/mac-downloads/'
+  name 'CamRanger'
+  homepage 'https://camranger.com/mac-downloads/'
 
-  app "#{version}/CamRanger.app"
+  app 'CamRanger.app'
 end

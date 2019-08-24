@@ -1,20 +1,22 @@
-cask :v1 => 'dash' do
-  version :latest
-  sha256 :no_check
+cask 'dash' do
+  version '4.6.5'
+  sha256 'c1a3a89d2d86a3fa3ee0287ffd65270cb9c6f0d35338a2643fca836153086c7f'
 
-  url 'http://kapeli.com/Dash.zip'
-  appcast 'http://kapeli.com/Dash.xml'
-  homepage 'http://kapeli.com/dash'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://kapeli.com/downloads/v#{version.major}/Dash.zip"
+  appcast "https://kapeli.com/Dash#{version.major}.xml"
+  name 'Dash'
+  homepage 'https://kapeli.com/dash'
+
+  auto_updates true
 
   app 'Dash.app'
 
-  postflight do
-    suppress_move_to_applications
-  end
-
-  zap :delete => [
-                  '~/Library/Application Support/Dash/library.dash',
-                  '~/Library/Preferences/com.kapeli.dash.plist',
-                 ]
+  zap trash: [
+               '~/Library/Application Support/Dash',
+               '~/Library/Application Support/com.kapeli.dashdoc',
+               '~/Library/Caches/com.kapeli.dashdoc',
+               '~/Library/Cookies/com.kapeli.dashdoc.binarycookies',
+               '~/Library/Logs/Dash',
+               '~/Library/Preferences/com.kapeli.dashdoc.plist',
+             ]
 end

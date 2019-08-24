@@ -1,10 +1,16 @@
-cask :v1 => 'openra' do
-  version '20141029'
-  sha256 '421f341d324e2e360cf17facc1379b19036f7459516b84685037a041d5020e64'
+cask 'openra' do
+  version '20190314'
+  sha256 '47991698799dfc15e65641317293fa5503efbe02703aa8c570b838cfc3649693'
 
-  url "https://github.com/OpenRA/OpenRA/releases/download/release-#{version}/OpenRA-release-#{version}.zip"
-  homepage 'http://www.openra.net/'
-  license :oss
+  # github.com/OpenRA/OpenRA was verified as official when first introduced to the cask
+  url "https://github.com/OpenRA/OpenRA/releases/download/release-#{version}/OpenRA-release-#{version}.dmg"
+  appcast 'https://github.com/OpenRA/OpenRA/releases.atom'
+  name 'OpenRA'
+  homepage 'https://www.openra.net/'
 
-  app 'OpenRA.app'
+  depends_on cask: 'mono-mdk'
+
+  app 'OpenRA - Dune 2000.app'
+  app 'OpenRA - Red Alert.app'
+  app 'OpenRA - Tiberian Dawn.app'
 end
